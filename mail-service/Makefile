@@ -1,5 +1,10 @@
-build :
+all : build run
 
-run :
+build : src/Main.java
+	javac -Xlint:unchecked -d classes/ src/Main.java
 
-clean :
+run :	classes/Main.class
+	java -cp classes Main
+
+clean : classes/Main.class
+	rm classes/Main.class
