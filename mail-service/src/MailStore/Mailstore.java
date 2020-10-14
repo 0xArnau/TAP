@@ -1,4 +1,4 @@
-package MailStore;
+package mailStore;
 
 public class Mailstore {
 	

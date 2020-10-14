@@ -1,4 +1,4 @@
-package MailBox;
+package mailBox;
 
 public class Mailbox {
 	
