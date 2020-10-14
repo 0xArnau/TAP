@@ -1,5 +1,5 @@
 package mailBox;
 
-public class Mailbox {
+public class MailBox {
 	
 }
