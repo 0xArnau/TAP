@@ -1,14 +1,24 @@
 import users.*;
+import messages.*;
+import mailStore.*;
+
 
 public class Main {
 	public static void main(String [] args) throws Exception {
 		System.out.println("\nHI\n");
 
 		User user = new User("star", "arnau", "2000");
+		System.out.println("\n\n" + user);
 
-		System.out.println(user.getUserName());
-		System.out.println(user.getName());
-		System.out.println(user.getYear());
+		Message m1 = new Message("from","to", "subject", "body");
+		System.out.println("\n\n" + m1);
+		Message m2 = new Message("from","to", "subject", "body");
+		System.out.println("\n\n" + m2);
+
+		System.out.println(m2.compareTo(m1));
+		System.out.println(m1.compareTo(m2));
+		System.out.println(m2.compareTo(m2));
+		
 
 	}
 }

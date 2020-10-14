@@ -10,8 +10,15 @@ public class User {
 		this.name = name;
 		this.yearOfBirth = year;
 	}
-
+	/***/
 	public String getUserName() {return username;}
+	/***/
 	public String getName() {return name;}
+	/***/
 	public String getYear() {return yearOfBirth;}
+	/***/
+	public String toString() {
+		return "Username: " + username + ", Name: " + name
+		+ ", Born: " + yearOfBirth;
+	}
 }
