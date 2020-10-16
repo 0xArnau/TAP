@@ -1,6 +1,6 @@
 import users.*;
 import messages.*;
-import mailStore.*;
+import mailstore.*;
 
 
 public class Main {
