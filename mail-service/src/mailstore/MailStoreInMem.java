@@ -29,7 +29,7 @@ public class MailStoreInMem extends MailStore{
 	 * @param u
 	 * @return
 	 */
-	public List getMail(User u) {
+	public List<Message> getMail(User u) {
 		return messages.get(u);
 	}
 }

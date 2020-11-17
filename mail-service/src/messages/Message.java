@@ -6,13 +6,13 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 public class Message {
-	private User from;
-	private User to;
+	private String from;
+	private String to;
 	private String subject;
 	private String body;
 	private Timestamp time;
 
-	public Message(User from, User to, String subject, String body) {
+	public Message(String from, String to, String subject, String body) {
 		this.from = from;
 		this.to = to;
 		this.subject = subject;
@@ -20,9 +20,9 @@ public class Message {
 		time = Timestamp.from(Instant.now());
 	}
 	/***/
-	public User getFrom() {return from;}
+	public String getFrom() {return from;}
 	/***/
-	public User getTo() {return to;}
+	public String getTo() {return to;}
 	/***/
 	public String getSubject() {return subject;}
 	/***/
@@ -33,7 +33,7 @@ public class Message {
 	public int compareTo(Message m) {return time.compareTo(m.getTime());}
 	/***/
 	public String toString() {
-		return "From: " + from.getUserName() + "; To: " + to.getUserName() + "; Subject: " + 
-		subject + "; Body: " + body + "; Time: " + time.toString();
+		return from + ";" + to + ";" + 
+		subject + ";" + body + ";" + time.toString();
 	}
 }

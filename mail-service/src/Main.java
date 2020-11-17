@@ -12,9 +12,9 @@ public class Main {
 		User user1 = new User("star1", "arnau1", 2000);
 		System.out.println("\n\n" + user);
 
-		Message m1 = new Message(user, user1, "subject", "body");
+		Message m1 = new Message(user.getUserName(), user1.getUserName(), "subject", "body");
 		System.out.println("\n\n" + m1);
-		Message m2 = new Message(user1, user, "subject", "body");
+		Message m2 = new Message(user1.getUserName(), user.getUserName(), "subject", "body");
 		System.out.println("\n\n" + m2);
 
 		System.out.println(m2.compareTo(m1));
@@ -22,7 +22,7 @@ public class Main {
 		System.out.println(m2.compareTo(m2));
 
 		MailStore ms1 = new MailStoreInMem();
-		MailStore ms2 = new MailStoreInMem();
+		MailStore ms2 = new MailStoreOnFile();
 
 
 		ms1.sendMail(user, m1);
@@ -32,7 +32,7 @@ public class Main {
 		System.out.println(ms1.getMail(user1));
 		System.out.println(ms1.getMail(user));
 
-		//ms2.sendMail(user1, m1);
+		ms2.sendMail(user1, m1);
 		System.out.println(ms2.getMail(user1));
 		System.out.println(ms2.getMail(user));
 

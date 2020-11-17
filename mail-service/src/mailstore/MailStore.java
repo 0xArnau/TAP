@@ -11,5 +11,5 @@ import java.util.List;
 public class MailStore {
 	
 	public void sendMail(User u, Message m) {;}
-	public List getMail(User u) {return null;}
+	public List<Message> getMail(User u) {return null;}
 }
