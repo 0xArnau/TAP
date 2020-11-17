@@ -4,8 +4,12 @@ main 		: src/Main.java users messages mailstore
 		javac -Xlint:unchecked -encoding UTF-8 -d .out/mailservice/ src/Main.java -cp .out/mailservice/
 mailbox 	: src/mailBox/MailBox.java
 		javac -Xlint:unchecked -encoding UTF-8 -d .out/mailservice/ src/mailBox/MailBox.java -cp .out/mailservice/
-mailstore 	: src/mailStore/MailStore.java users messages
-		javac -Xlint:unchecked -encoding UTF-8 -d .out/mailservice/ src/mailStore/MailStore.java -cp .out/mailservice/
+mailstore 	: src/mailStore/MailStore.java src/mailStore/MailStoreInMem.java src/mailStore/MailStoreOnFile.java users messages
+		javac -Xlint:unchecked -encoding UTF-8 			\
+		-d .out/mailservice/ src/mailStore/MailStore.java  	\
+		-d .out/mailservice/ src/mailStore/MailStoreInMem.java 	\
+		-d .out/mailservice/ src/mailStore/MailStoreOnFile.java \
+		-cp .out/mailservice/
 messages 	: src/messages/Message.java
 		javac -Xlint:unchecked -encoding UTF-8 -d .out/mailservice/ src/messages/Message.java -cp .out/mailservice/
 users 		: src/users/User.java

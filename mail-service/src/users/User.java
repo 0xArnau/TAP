@@ -3,9 +3,9 @@ package users;
 public class User {
 	private String username;
 	private String name;
-	private String yearOfBirth;
+	private int yearOfBirth;
 
-	public User(String username, String name, String year) throws Exception {
+	public User(String username, String name, int year) throws Exception {
 		this.username = username;
 		this.name = name;
 		this.yearOfBirth = year;
@@ -15,7 +15,7 @@ public class User {
 	/***/
 	public String getName() {return name;}
 	/***/
-	public String getYear() {return yearOfBirth;}
+	public int getYear() {return yearOfBirth;}
 	/***/
 	public String toString() {
 		return "Username: " + username + ", Name: " + name
