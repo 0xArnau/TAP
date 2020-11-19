@@ -31,7 +31,7 @@ public class Main {
 		System.out.println(ms1.getMail(user1));
 		System.out.println(ms1.getMail(user));
 
-		ms2.sendMail(user1, m1);
+		ms2.sendMail(user, m2);
 		System.out.println(ms2.getMail(user1));
 		System.out.println(ms2.getMail(user));
 

@@ -5,7 +5,7 @@ public class User {
 	private String name;
 	private int yearOfBirth;
 
-	public User(String username, String name, int year) throws Exception {
+	public User(String username, String name, int year){
 		this.username = username;
 		this.name = name;
 		this.yearOfBirth = year;

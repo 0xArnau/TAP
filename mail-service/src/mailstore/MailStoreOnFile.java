@@ -50,6 +50,7 @@ public class MailStoreOnFile extends MailStore{
 		}
 		
 	}
+	
 	public List<Message> getMail(User u) {
 		File log = new File(fileName);
 		String line;
