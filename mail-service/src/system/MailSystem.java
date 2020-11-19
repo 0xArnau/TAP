@@ -1,7 +1,7 @@
 package system;
 
 import mailbox.*;
-import mailbox.*;
+import mailstore.*;
 import messages.*;
 import users.*;
 

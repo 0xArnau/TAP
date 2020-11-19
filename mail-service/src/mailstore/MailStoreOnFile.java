@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class MailStoreOnFile extends MailStore{
 
-	private String regex = ";";
-	private String fileName = "mail_store.txt";
+	
+	private String fileName;
 	
 	public MailStoreOnFile(String fileName) throws Exception {
 		this.fileName = fileName;
@@ -45,11 +45,13 @@ public class MailStoreOnFile extends MailStore{
 
 	public void sendMail(User u, Message m) {
 		try {
-			writeFile(/*u.getUserName() + ";" +*/ m.toString() + "\n");
+			if (m.toString().matches(".+;"+u.getUserName()+";.+"))
+				writeFile(/*u.getUserName() + ";" +*/ m.toString() + "\n");
+			else
+				System.out.println("ERROR ==> Message(to) != User");
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);
 		}
-		
 	}
 	
 	public List<Message> getMail(User u) {
@@ -76,8 +78,6 @@ public class MailStoreOnFile extends MailStore{
 			System.out.println("ERROR: " + e);
 			return null;
 		} 
-
-		
 		return list;
 	}
 }
