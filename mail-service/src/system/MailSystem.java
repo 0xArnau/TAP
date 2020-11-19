@@ -14,9 +14,9 @@ import java.util.HashMap;
 public class MailSystem {
 	
 	//DB?
-	private Map<String, User> users= new HashMap<String, User>();
+	private static Map<String, User> users= new HashMap<String, User>();
 
-	public void newUser(String name, String username, int yearOfBorn){
+	public static void newUser(String name, String username, int yearOfBorn){
 		
 		User u = new User(name,username,yearOfBorn);
 
@@ -58,7 +58,7 @@ public class MailSystem {
 	 */
 	public int countMessages() {return 0;}
 
-	public User getUser(String username) {
+	public static User getUser(String username) {
 		return users.get(username);
 	}
 }

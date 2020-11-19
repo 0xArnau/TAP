@@ -2,6 +2,7 @@ package mailstore;
 
 import users.*;
 import messages.*;
+import system.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -61,7 +62,13 @@ public class MailStoreOnFile extends MailStore{
 				line = input.nextLine();
 				if (line.matches(".+;" + u.getUserName() + ";.+")) {
 					String [] part = line.split(regex);
-					list.add(new Message(part[0], part[1], part[2], part[3]));
+					User from = MailSystem.getUser(part[0]);
+					User to = MailSystem.getUser(part[1]);
+					if (from == null || to == null) {
+
+					} else {
+						list.add(new Message(from, to, part[2], part[3]));	
+					}
 				}
 			}
 			input.close();

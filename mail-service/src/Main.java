@@ -12,9 +12,9 @@ public class Main {
 		User user1 = new User("star1", "arnau1", 2000);
 		System.out.println("\n\n" + user);
 
-		Message m1 = new Message(user.getUserName(), user1.getUserName(), "subject", "body");
+		Message m1 = new Message(user, user1, "subject", "body");
 		System.out.println("\n\n" + m1);
-		Message m2 = new Message(user1.getUserName(), user.getUserName(), "subject", "body");
+		Message m2 = new Message(user1, user, "subject", "body");
 		System.out.println("\n\n" + m2);
 
 		System.out.println(m2.compareTo(m1));
