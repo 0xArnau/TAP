@@ -34,7 +34,7 @@ public class MailStoreOnFile extends MailStore{
 
 	// Mètode que afegeix el @message al final del fitxer.
 	private void writeFile(String message) throws Exception {
-		createFile();
+		//createFile();
 		
 		FileWriter log = new FileWriter(fileName, true);
 		log.write(message);
@@ -44,7 +44,7 @@ public class MailStoreOnFile extends MailStore{
 
 	public void sendMail(User u, Message m) {
 		try {
-			writeFile(u.getUserName() + ";" + m.toString() + "\n");
+			writeFile(/*u.getUserName() + ";" +*/ m.toString() + "\n");
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);
 		}
@@ -58,9 +58,9 @@ public class MailStoreOnFile extends MailStore{
 			Scanner input = new Scanner(log);
 			while (input.hasNextLine()) {
 				line = input.nextLine();
-				if (line.matches("^" + u.getUserName() + ";.+")) {
+				if (line.matches(".+;" + u.getUserName() + ";.+")) {
 					String [] part = line.split(regex);
-					list.add(new Message(part[1], part[2], part[3], part[4]));
+					list.add(new Message(part[0], part[1], part[2], part[3]));
 				}
 			}
 			input.close();

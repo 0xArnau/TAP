@@ -24,7 +24,6 @@ public class Main {
 		MailStore ms1 = new MailStore();
 		MailStore ms2 = new MailStoreOnFile();
 
-
 		ms1.sendMail(user, m1);
 		ms1.sendMail(user, m2);
 		ms1.sendMail(user1, m2);
