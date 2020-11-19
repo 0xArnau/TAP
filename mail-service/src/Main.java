@@ -21,7 +21,7 @@ public class Main {
 		System.out.println(m1.compareTo(m2));
 		System.out.println(m2.compareTo(m2));
 
-		MailStore ms1 = new MailStoreInMem();
+		MailStore ms1 = new MailStore();
 		MailStore ms2 = new MailStoreOnFile();
 
 

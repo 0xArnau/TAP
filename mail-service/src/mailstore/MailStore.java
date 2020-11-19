@@ -10,6 +10,26 @@ import java.util.List;
 
 public class MailStore {
 	
-	public void sendMail(User u, Message m) {;}
-	public List<Message> getMail(User u) {return null;}
+	private Map<User, List<Message>> messages = new HashMap<User, List<Message>>();
+
+	/**
+	 * 
+	 * @param u
+	 * @param m
+	 */
+	public void sendMail(User u, Message m) {
+		if (messages.containsKey(u)) {
+			messages.get(u).add(m);
+			return;
+		}
+		messages.put(u,new LinkedList<Message>(){{add(m);}});
+	}
+	/**
+	 * 
+	 * @param u
+	 * @return
+	 */
+	public List<Message> getMail(User u) {
+		return messages.get(u);
+	}
 }
