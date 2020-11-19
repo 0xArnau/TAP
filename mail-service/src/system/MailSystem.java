@@ -26,6 +26,14 @@ public class MailSystem {
 			users.put(username,u);
 		}	
 	}
+	public static void newUser(User u){
+
+		if (users.containsKey(u.getUserName())) {
+			System.out.println(">> username: " + u.getUserName() + " already exists.");
+		} else {
+			users.put(u.getUserName(), u);
+		}	
+	}
 
 	/**The mailbox can be retrieved later by giving the username (log in)
 	 * 

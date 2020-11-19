@@ -1,5 +1,6 @@
 import users.*;
 import messages.*;
+import system.MailSystem;
 import mailstore.*;
 
 
@@ -11,6 +12,9 @@ public class Main {
 		System.out.println("\n\n" + user);
 		User user1 = new User("star1", "arnau1", 2000);
 		System.out.println("\n\n" + user);
+
+		MailSystem.newUser(user);
+		MailSystem.newUser(user1);
 
 		Message m1 = new Message(user, user1, "subject", "body");
 		System.out.println("\n\n" + m1);
