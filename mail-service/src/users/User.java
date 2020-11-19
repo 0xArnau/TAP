@@ -4,6 +4,7 @@ public class User {
 	private String username;
 	private String name;
 	private int yearOfBirth;
+	//?private String passwd;
 
 	public User(String username, String name, int year){
 		this.username = username;

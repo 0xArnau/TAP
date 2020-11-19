@@ -33,7 +33,7 @@ public class Message {
 	public int compareTo(Message m) {return time.compareTo(m.getTime());}
 	/***/
 	public String toString() {
-		return from + ";" + to + ";" + 
+		return from.getUserName() + ";" + to.getUserName() + ";" + 
 		subject + ";" + body + ";" + time.toString();
 	}
 }
