@@ -1,4 +1,4 @@
-package menu;
+package system;
 
 import mailbox.*;
 import mailbox.*;
@@ -8,19 +8,22 @@ import users.*;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class MailSystem {
 	
-	private Set<User> users= new HashSet<User>();
+	//DB?
+	private Map<String, User> users= new HashMap<String, User>();
 
-	private void newUser(String name, String username, int yearOfBorn){
+	public void newUser(String name, String username, int yearOfBorn){
 		
 		User u = new User(name,username,yearOfBorn);
 
-		if (users.contains(u)) {
+		if (users.containsKey(username)) {
 			System.out.println(">> username: " + username + " already exists.");
 		} else {
-			users.add(u);
+			users.put(username,u);
 		}	
 	}
 
@@ -28,30 +31,34 @@ public class MailSystem {
 	 * 
 	 * @return
 	*/
-	private void logIn(){;}
+	public void logIn(){;}
 	
 	/**Get all messages in the system.
 	 * 
 	 * @return
 	 */
-	private List<Message> getAllMessages() {return null;} 
+	public List<Message> getAllMessages() {return null;} 
 
 	/**Get all users in the system.
 	 * 
 	 * @return
 	 */
-	private Set<User> getAllUsers() {return null;}
+	public Set<User> getAllUsers() {return null;}
 
 	/**Filter messages globally: 
 	 * Get all messages in the system that fulfill a condition.
 	 * 
 	 * @return
 	 */
-	private List<Message> filter() {return null;}
+	public List<Message> filter() {return null;}
 
 	/**Count total number of messages.
 	 * 
 	 * @return
 	 */
-	private int countMessages() {return 0;}
+	public int countMessages() {return 0;}
+
+	public User getUser(String username) {
+		return users.get(username);
+	}
 }
