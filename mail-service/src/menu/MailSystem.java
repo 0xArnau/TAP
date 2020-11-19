@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 
-public class Cli {
+public class MailSystem {
 	
 	private Set<User> users= new HashSet<User>();
 
