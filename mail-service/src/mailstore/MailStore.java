@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class MailStore {
 	protected String regex = ";";
 	private Map<User, List<Message>> messages = new HashMap<User, List<Message>>();

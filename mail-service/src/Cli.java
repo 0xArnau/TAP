@@ -35,7 +35,7 @@ public class Cli {
 		
 	}
 
-	private static void askData4NewUser() throws Exception {
+	private static void askData4NewUser() throws IOException {
 		System.out.println("Name:");
 		System.out.print(">>");
 		name = reader.readLine();
