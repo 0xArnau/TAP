@@ -11,14 +11,14 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class MailStore {
-	protected String regex = ";";
-	private Map<User, List<Message>> messages = new HashMap<User, List<Message>>();
+	protected static String regex = ";";
+	private static Map<User, List<Message>> messages = new HashMap<User, List<Message>>();
 	/**
 	 * 
 	 * @param u
 	 * @param m
 	 */
-	public void sendMail(User u, Message m) {
+	public static void sendMail(User u, Message m) {
 		if (messages.containsKey(u)) {
 			if (m.toString().matches(".+;"+u.getUserName()+";.+"))
 				messages.get(u).add(m);
@@ -33,7 +33,7 @@ public class MailStore {
 	 * @param u
 	 * @return
 	 */
-	public List<Message> getMail(User u) {
-		return messages.get(u);
+	public static List<Message> getMail(User u) {
+		return new LinkedList<Message>(messages.get(u));
 	}
 }

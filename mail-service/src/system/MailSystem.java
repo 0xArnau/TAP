@@ -69,4 +69,8 @@ public class MailSystem {
 	public static User getUser(String username) {
 		return users.get(username);
 	}
+
+	public static boolean getExist(String username) {
+		return users.containsKey(username);
+	}
 }

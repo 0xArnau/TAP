@@ -13,18 +13,20 @@ import java.util.Scanner;
 public class MailStoreOnFile extends MailStore{
 
 	
-	private String fileName;
+	private static String fileName = "mail_store.txt";
 	
+	/*
 	public MailStoreOnFile(String fileName) throws Exception {
-		this.fileName = fileName;
+		MailStoreOnFile.fileName = fileName;
 		createFile();
 	}
 	public MailStoreOnFile() throws Exception {
-		fileName = "mail_store.txt";
+		MailStoreOnFile.fileName = ;
 		createFile();
 	}
+	*/
 	// Mètode que crea un fitxer, si aquest no existeix.
-	private void createFile() throws Exception {
+	private static void createFile() throws Exception {
 		File log = new File(fileName);
 		if (log.createNewFile()) {
 			System.out.println("[File created]");
@@ -34,7 +36,7 @@ public class MailStoreOnFile extends MailStore{
 	}
 
 	// Mètode que afegeix el @message al final del fitxer.
-	private void writeFile(String message) throws Exception {
+	private static void writeFile(String message) throws Exception {
 		//createFile();
 		
 		FileWriter log = new FileWriter(fileName, true);
@@ -43,7 +45,7 @@ public class MailStoreOnFile extends MailStore{
 		System.out.println("[added successfully]");
 	}
 
-	public void sendMail(User u, Message m) {
+	public static void sendMail(User u, Message m) {
 		try {
 			if (m.toString().matches(".+;"+u.getUserName()+";.+"))
 				writeFile(/*u.getUserName() + ";" +*/ m.toString() + "\n");
@@ -54,11 +56,12 @@ public class MailStoreOnFile extends MailStore{
 		}
 	}
 	
-	public List<Message> getMail(User u) {
-		File log = new File(fileName);
+	public static List<Message> getMail(User u) {
+		
 		String line;
 		List<Message> list = new LinkedList<Message>();
 		try {
+			File log = new File(fileName);
 			Scanner input = new Scanner(log);
 			while (input.hasNextLine()) {
 				line = input.nextLine();
@@ -78,6 +81,6 @@ public class MailStoreOnFile extends MailStore{
 			System.out.println("ERROR: " + e);
 			return null;
 		} 
-		return list;
+		return new LinkedList<Message>(list);
 	}
 }
