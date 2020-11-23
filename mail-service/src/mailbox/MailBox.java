@@ -33,7 +33,7 @@ public class MailBox {
 		System.out.println(messages);
 	}
 
-	public void sentMail(User to, String subject, String body) {
+	public void sendMail(User to, String subject, String body) {
 		if (mem)
 			MailStore.sendMail(to, new Message(user, to, subject, body));
 		else

@@ -1,5 +1,7 @@
 import system.*;
 import users.*;
+import messages.*;
+import mailbox.*;
 
 import java.io.BufferedReader; 
 import java.io.IOException; 
@@ -7,9 +9,9 @@ import java.io.InputStreamReader;
 
 public class Cli {
 	private static User user;
-	private static String name;
-	private static String username;
-	private static int born;
+	//private static String name;
+	//private static String username;
+	//private static int born;
 	private static BufferedReader reader =
 		new BufferedReader(new InputStreamReader(System.in));
 	private static int input;
@@ -18,7 +20,7 @@ public class Cli {
 		
 		do {
 			System.out.println("0 -> EXIT");
-			System.out.println("1 -> New user\t\t 2 -> LogIn");//login no password
+			System.out.println("1 -> New user\t\t 2 -> LogIn\t\t 3 -> List users");//login no password
 			System.out.print(">> ");
 			input = Integer.parseInt(reader.readLine());
 
@@ -27,30 +29,35 @@ public class Cli {
 					return;
 				//break;
 				case 1:
-					clearWindow();
+					clearWindow(100);
 					askData4NewUser();
 				break;
 				case 2:
-					clearWindow();
+					clearWindow(100);
 					asUser(logIn());
+					input = 1;
+				break;
+				case 3:
+					clearWindow(100);
+					MailSystem.printUsers();
 					input = 1;
 				break;
 				default: System.out.println("ERROR");
 			}
-			clearWindow();
+			clearWindow(2);
 		} while(input != 0);
 	}
 
 	private static void askData4NewUser() throws IOException {
 		System.out.println("Name:");
 		System.out.print(">> ");
-		name = reader.readLine();
+		String name = reader.readLine();
 		System.out.println("Username:");
 		System.out.print(">> ");
-		username= reader.readLine();
+		String username= reader.readLine();
 		System.out.println("born:");
 		System.out.print(">> ");
-		born = Integer.parseInt(reader.readLine());
+	 	int	born = Integer.parseInt(reader.readLine());
 		MailSystem.newUser(name, username, born);
 	}
 
@@ -65,8 +72,14 @@ public class Cli {
 	}
 
 	private static void asUser(User u) throws IOException {
-		clearWindow();
+		clearWindow(100);
 		System.out.println(u);
+
+		System.out.print("Mail in mem(0)/on file(1): >> ");
+		if (Boolean.parseBoolean(reader.readLine()))
+			MailSystem.inMem(false);
+		else 
+			MailSystem.inMem(true);
 
 		do {
 			System.out.println("0 -> EXIT\t\t 1 -> Send mail");
@@ -100,14 +113,26 @@ public class Cli {
 
 	}
 	
-	private static void sendMail(){}
-	private static void update(){}
-	private static void list(){}
-	private static void sort(){}
-	private static void filter(){}
+	private static void sendMail() throws IOException {
+		System.out.println("To:");
+		System.out.print(">> ");
+		User to = MailSystem.getUser(reader.readLine());
+		System.out.println("Subject:");
+		System.out.print(">> ");
+		String subject = reader.readLine();
+		System.out.println("Body:");
+		System.out.print(">> ");
+		String body = reader.readLine();
 
-	private static void clearWindow() {
-		for (int i = 0; i < 100; i++) {
+		//MailBox.sendMail();
+	}
+	private static void update() {}
+	private static void list() {}
+	private static void sort() {}
+	private static void filter() {}
+
+	private static void clearWindow(int x) {
+		for (int i = 0; i < x; i++) {
 			System.out.println();
 		}
 	}
