@@ -3,7 +3,7 @@ package mailbox;
 import users.*;
 import messages.*;
 import mailstore.*;
-import system.*;
+//import system.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class MailBox {
 	private User user;

@@ -14,17 +14,7 @@ public class MailStoreOnFile extends MailStore{
 
 	
 	private static String fileName = "mail_store.txt";
-	
-	/*
-	public MailStoreOnFile(String fileName) throws Exception {
-		MailStoreOnFile.fileName = fileName;
-		createFile();
-	}
-	public MailStoreOnFile() throws Exception {
-		MailStoreOnFile.fileName = ;
-		createFile();
-	}
-	*/
+
 	// Mètode que crea un fitxer, si aquest no existeix.
 	private static void createFile() throws Exception {
 		File log = new File(fileName);
@@ -37,7 +27,7 @@ public class MailStoreOnFile extends MailStore{
 
 	// Mètode que afegeix el @message al final del fitxer.
 	private static void writeFile(String message) throws Exception {
-		//createFile();
+		createFile();
 		
 		FileWriter log = new FileWriter(fileName, true);
 		log.write(message);

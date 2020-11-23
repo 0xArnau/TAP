@@ -1,6 +1,6 @@
 all 		: build test
 build 		: main mailbox mailstore messages users	
-main 		: src/Test.java src/Cli.java users messages mailstore system
+main 		: src/Test.java src/Cli.java users messages mailstore system mailbox
 		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
 		-d .out/mailservice/ src/Test.java			\
 		-d .out/mailservice/ src/Cli.java			\
