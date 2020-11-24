@@ -17,6 +17,7 @@ public class MailSystem {
 	private static Map<String, User> users= new HashMap<String, User>();
 	private static boolean inMem = true;
 	private static MailBox box;
+	private static User user;
 
 	public static void newUser(String name, String username, int yearOfBorn){
 		
@@ -42,7 +43,12 @@ public class MailSystem {
 	 * 
 	 * @return
 	*/
-	public void logIn(){;}
+	public static boolean logIn(String username) {
+		user = getUser(username);
+		if (user == null)
+			return false;
+		return true;
+	}
 	
 	/**Get all messages in the system.
 	 * 
@@ -71,6 +77,9 @@ public class MailSystem {
 
 	public static User getUser(String username) {
 		return users.get(username);
+	}
+	public static User getCurrentUser() {
+		return user;
 	}
 
 	public static void printUsers() {

@@ -1,5 +1,5 @@
 import system.*;
-import users.*;
+//import users.*;
 //import messages.*;
 //import mailbox.*;
 
@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader; 
 
 public class Cli {
-	private static User user;
+	//private static User user;
 	//private static String name;
 	//private static String username;
 	//private static int born;
@@ -61,21 +61,22 @@ public class Cli {
 		MailSystem.newUser(name, username, born);
 	}
 
-	private static User logIn() throws IOException {
+	private static boolean logIn() throws IOException {
 		String username;
+		boolean valid;
 		do {
 			System.out.print("Username:\n>> ");
 			username = reader.readLine();
-		} while (!MailSystem.getExist(username) && !username.toLowerCase().contains("exit"));
+		} while (!(valid = MailSystem.logIn(username)) && !username.toLowerCase().contains("exit"));
 
-		return user = MailSystem.getUser(username);
+		return valid;
 	}
 
-	private static void asUser(User u) throws IOException {
+	private static void asUser(boolean valid) throws IOException {
 		clearWindow(100);
-		if (u == null)
+		if (!valid)
 			return;
-		System.out.println("["+u+"]");
+		System.out.println("["+MailSystem.getCurrentUser()+"]");
 
 		System.out.print("Mail in mem(0)/on file(1): >> ");
 		if (Boolean.parseBoolean(reader.readLine()))
@@ -119,7 +120,7 @@ public class Cli {
 	private static void sendMail() throws IOException {
 		System.out.println("To:");
 		System.out.print(">> ");
-		User to = MailSystem.getUser(reader.readLine());
+		String to = reader.readLine();
 		System.out.println("Subject:");
 		System.out.print(">> ");
 		String subject = reader.readLine();
@@ -127,7 +128,7 @@ public class Cli {
 		System.out.print(">> ");
 		String body = reader.readLine();
 
-		if (to == null) {
+		if (!MailSystem.getExist(to)) {
 			System.out.println("ERROR: username");
 			return;
 		}
