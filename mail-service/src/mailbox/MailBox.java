@@ -85,20 +85,20 @@ public class MailBox {
 	private String askDataW() throws IOException {
 		BufferedReader reader =
 			new BufferedReader(new InputStreamReader(System.in));
-		String date;
+		//String date;
 
-		System.out.print("Word: ");
-		date = reader.readLine();
+		//System.out.print("Word: ");
+		//date = reader.readLine();
 
-		return date;
+		return reader.readLine();
 	}
 	private int askDataS() throws IOException {
 		BufferedReader reader =
 			new BufferedReader(new InputStreamReader(System.in));
-		int date;
+		//int date;
 
-		System.out.print("Sinteger.parse ze: ");
-		date = Integer.parseInt(reader.readLine());
-		return date;
+		//System.out.print("Sinteger.parse ze: ");
+		//date = Integer.parseInt(reader.readLine());
+		return Integer.parseInt(reader.readLine());
 	}
 }

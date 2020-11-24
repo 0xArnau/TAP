@@ -1,7 +1,7 @@
 import system.*;
 import users.*;
-import messages.*;
-import mailbox.*;
+//import messages.*;
+//import mailbox.*;
 
 import java.io.BufferedReader; 
 import java.io.IOException; 
@@ -66,14 +66,16 @@ public class Cli {
 		do {
 			System.out.print("Username:\n>> ");
 			username = reader.readLine();
-		} while (!MailSystem.getExist(username));
+		} while (!MailSystem.getExist(username) && !username.toLowerCase().contains("exit"));
 
 		return user = MailSystem.getUser(username);
 	}
 
 	private static void asUser(User u) throws IOException {
 		clearWindow(100);
-		System.out.println(u);
+		if (u == null)
+			return;
+		System.out.println("["+u+"]");
 
 		System.out.print("Mail in mem(0)/on file(1): >> ");
 		if (Boolean.parseBoolean(reader.readLine()))
@@ -109,6 +111,7 @@ public class Cli {
 				break;
 				default: System.out.println("ERROR");
 			}
+			clearWindow(3);
 		} while(input != 0);
 
 	}
@@ -124,6 +127,11 @@ public class Cli {
 		System.out.print(">> ");
 		String body = reader.readLine();
 
+		if (to == null) {
+			System.out.println("ERROR: username");
+			return;
+		}
+
 		//MailBox.sendMail();
 	}
 	private static void update() {}
@@ -132,8 +140,7 @@ public class Cli {
 	private static void filter() {}
 
 	private static void clearWindow(int x) {
-		for (int i = 0; i < x; i++) {
+		for (int i = 0; i < x; i++)
 			System.out.println();
-		}
 	}
 }
