@@ -64,8 +64,11 @@ public class Test {
 		mb2.updateMail();
 		mb2.listMail();
 
-
+		
 		////
-
+		System.out.println("\n\nMailbox Iterator:");
+		for (Message m : mb) {
+			System.out.println(m);
+		}
 	}
 }

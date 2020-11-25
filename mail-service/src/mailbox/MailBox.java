@@ -5,6 +5,7 @@ import messages.*;
 import mailstore.*;
 //import system.*;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -12,7 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MailBox {
+public class MailBox implements Iterable<Message> {
 	private User user;
 	private List<Message> messages;
 	private boolean mem;
@@ -100,5 +101,10 @@ public class MailBox {
 		//System.out.print("Sinteger.parse ze: ");
 		//date = Integer.parseInt(reader.readLine());
 		return Integer.parseInt(reader.readLine());
+	}
+
+	@Override
+	public Iterator<Message> iterator() {
+		return messages.iterator();
 	}
 }
