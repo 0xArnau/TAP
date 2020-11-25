@@ -15,8 +15,6 @@ public class MailSystem {
 	
 	//DB?
 	private static Map<String, User> users= new HashMap<String, User>();
-	private static boolean inMem = true;
-	private static MailBox box;
 	private static User user;
 
 	public static void newUser(String name, String username, int yearOfBorn){
@@ -24,6 +22,8 @@ public class MailSystem {
 		User u = new User(username,name,yearOfBorn);
 		if (getExist(u.getUserName())) {
 			System.out.println("=> username: " + username + " already exists.");
+		} else if (username.equalsIgnoreCase("exit")) {
+			System.out.println("ERROR: invalid username: " + username);
 		} else {
 			users.put(username,u);
 			System.out.println("=> username: " + username + " created.");
@@ -33,6 +33,8 @@ public class MailSystem {
 
 		if (getExist(u.getUserName())) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
+		} else if (u.getUserName().equalsIgnoreCase("exit")) {
+			System.out.println("ERROR: invalid username: " + u.getUserName());
 		} else {
 			users.put(u.getUserName(), u);
 			System.out.println("=> username: " + u.getUserName() + " created.");
@@ -90,11 +92,6 @@ public class MailSystem {
 		return users.containsKey(username);
 	}
 
-	public static void inMem(boolean b) {
-		inMem = b;
-	}
 
-	public static void createMailBox(User u) {
-		box = new MailBox(u, inMem);
-	}
+
 }

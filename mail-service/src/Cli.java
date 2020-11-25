@@ -1,14 +1,15 @@
 import system.*;
-//import users.*;
-//import messages.*;
-//import mailbox.*;
+import users.*;
+import messages.*;
+import mailbox.*;
 
 import java.io.BufferedReader; 
 import java.io.IOException; 
 import java.io.InputStreamReader; 
 
 public class Cli {
-	//private static User user;
+	private static User user;
+	private static MailBox box;
 	//private static String name;
 	//private static String username;
 	//private static int born;
@@ -19,6 +20,7 @@ public class Cli {
 	public static void main(String[] args) throws Exception {
 		
 		do {
+			clearWindow(2);
 			System.out.println("0 -> EXIT");
 			System.out.println("1 -> New user\t\t 2 -> LogIn\t\t 3 -> List users");//login no password
 			System.out.print(">> ");
@@ -44,7 +46,6 @@ public class Cli {
 				break;
 				default: System.out.println("ERROR");
 			}
-			clearWindow(2);
 		} while(input != 0);
 	}
 
@@ -67,8 +68,8 @@ public class Cli {
 		do {
 			System.out.print("Username:\n>> ");
 			username = reader.readLine();
-		} while (!(valid = MailSystem.logIn(username)) && !username.toLowerCase().contains("exit"));
-
+		} while (!(valid = MailSystem.logIn(username)) && !username.equalsIgnoreCase("exit"));
+		user = MailSystem.getUser(username);
 		return valid;
 	}
 
@@ -79,20 +80,38 @@ public class Cli {
 		System.out.println("["+MailSystem.getCurrentUser()+"]");
 
 		System.out.print("Mail in mem(0)/on file(1): >> ");
-		if (Boolean.parseBoolean(reader.readLine()))
+		/*if (Boolean.parseBoolean(reader.readLine())) {
+			box = new MailBox(user, false);
 			MailSystem.inMem(false);
-		else 
+		}
+		else {
+			box = new MailBox(user, true);
 			MailSystem.inMem(true);
+			System.out.println(box);
+			reader.readLine();
+		}*/
+		try {
+			box = new MailBox(user, !Boolean.parseBoolean(reader.readLine()));
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
+		}
 
+		clearWindow(3);
 		do {
 			System.out.println("0 -> EXIT\t\t 1 -> Send mail");
 			System.out.println("2 -> update\t\t 3 -> list");
 			System.out.println("4 -> sort\t\t 5 -> filter");
 			System.out.print(">> ");
-			input = Integer.parseInt(reader.readLine());
+			try {
+				input = Integer.parseInt(reader.readLine());
+			} catch (Exception e) {
+				input = -1;
+			}
+		
 
 			switch (input) {
 				case 0: 
+					clearWindow(100);
 					return;
 				//break;
 				case 1:
@@ -102,7 +121,10 @@ public class Cli {
 					update();
 				break;
 				case 3:
+					clearWindow(10);
 					list();
+					System.out.print(">>");
+					reader.readLine();
 				break;
 				case 4:
 					sort();
@@ -110,9 +132,9 @@ public class Cli {
 				case 5:
 					filter();
 				break;
-				default: System.out.println("ERROR");
+				default: System.out.println("ERROR: invalid input");
 			}
-			clearWindow(3);
+			clearWindow(1);
 		} while(input != 0);
 
 	}
@@ -132,11 +154,27 @@ public class Cli {
 			System.out.println("ERROR: username");
 			return;
 		}
-
-		//MailBox.sendMail();
+		box.sendMail(MailSystem.getUser(to), subject, body);
 	}
-	private static void update() {}
-	private static void list() {}
+
+
+
+	private static void update() {
+		try {
+			box.updateMail();
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
+		}
+	}
+	private static void list() {
+		try {
+			for (Message m : box) {
+				System.out.println(m);
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR: " + e);
+		}
+	}
 	private static void sort() {}
 	private static void filter() {}
 
