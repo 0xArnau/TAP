@@ -136,7 +136,6 @@ public class Cli {
 			}
 			clearWindow(1);
 		} while(input != 0);
-
 	}
 	
 	private static void sendMail() throws IOException {

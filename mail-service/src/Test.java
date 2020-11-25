@@ -70,5 +70,8 @@ public class Test {
 		for (Message m : mb) {
 			System.out.println(m);
 		}
+
+		System.out.println("\nGet all users");
+		System.out.println(MailSystem.getAllUsers());
 	}
 }

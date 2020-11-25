@@ -6,13 +6,14 @@ import messages.*;
 import users.*;
 
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 //import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
 public class MailSystem {
-	
 	//DB?
 	private static Map<String, User> users= new HashMap<String, User>();
 	private static User user;
@@ -56,13 +57,18 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public List<Message> getAllMessages() {return null;} 
+	public List<Message> getAllMessages() {
+		
+		
+
+		return null;
+	} 
 
 	/**Get all users in the system.
 	 * 
 	 * @return
 	 */
-	public Set<User> getAllUsers() {return null;}
+	public static Set<User> getAllUsers() {return users.values().stream().collect(Collectors.toSet());}
 
 	/**Filter messages globally: 
 	 * Get all messages in the system that fulfill a condition.
