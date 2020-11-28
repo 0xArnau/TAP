@@ -60,6 +60,8 @@ public class Cli {
 		user = new User(name,username,born);
 		System.out.print("Mail in mem(0)/on file(1): >> ");
 		box = MailSystem.newUser(user,Boolean.parseBoolean(reader.readLine()));
+		
+		if (user == null || box == null) MailSystem.removeUser(username);
 	}
 
 	private static boolean logIn() throws IOException {

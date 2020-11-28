@@ -83,6 +83,12 @@ public class MailSystem {
 	 */
 	public int countMessages() {return 0;}
 
+
+	public static void removeUser(String username) {
+		User rm = getUser(username);
+		if (rm != null) administrative.remove(rm);
+	}
+
 	public static User getUser(String username) {
 		for (User u : administrative.keySet()) {
 				if (u.getUserName().equals(username)) return u;
