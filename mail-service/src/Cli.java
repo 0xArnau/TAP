@@ -10,9 +10,6 @@ import java.io.InputStreamReader;
 public class Cli {
 	private static User user;
 	private static MailBox box;
-	//private static String name;
-	//private static String username;
-	//private static int born;
 	private static BufferedReader reader =
 		new BufferedReader(new InputStreamReader(System.in));
 	private static int input;
@@ -58,8 +55,11 @@ public class Cli {
 		String username= reader.readLine();
 		System.out.println("born:");
 		System.out.print(">> ");
-	 	int	born = Integer.parseInt(reader.readLine());
-		MailSystem.newUser(name, username, born);
+		int	born = Integer.parseInt(reader.readLine());
+		
+		user = new User(name,username,born);
+		System.out.print("Mail in mem(0)/on file(1): >> ");
+		box = MailSystem.newUser(user,Boolean.parseBoolean(reader.readLine()));
 	}
 
 	private static boolean logIn() throws IOException {
@@ -77,24 +77,10 @@ public class Cli {
 		clearWindow(100);
 		if (!valid)
 			return;
-		System.out.println("["+MailSystem.getCurrentUser()+"]");
+		System.out.println("["+user+"]");
 
-		System.out.print("Mail in mem(0)/on file(1): >> ");
-		/*if (Boolean.parseBoolean(reader.readLine())) {
-			box = new MailBox(user, false);
-			MailSystem.inMem(false);
-		}
-		else {
-			box = new MailBox(user, true);
-			MailSystem.inMem(true);
-			System.out.println(box);
-			reader.readLine();
-		}*/
-		try {
-			box = new MailBox(user, !Boolean.parseBoolean(reader.readLine()));
-		} catch (Exception e) {
-			System.out.println("ERROR: " + e);
-		}
+	//	System.out.print("Mail in mem(0)/on file(1): >> ");
+
 
 		clearWindow(3);
 		do {

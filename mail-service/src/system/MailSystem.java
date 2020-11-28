@@ -6,18 +6,17 @@ import messages.*;
 import users.*;
 
 import java.util.Set;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-//import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
 public class MailSystem {
 	//DB?
-	private static Map<String, User> users= new HashMap<String, User>();
-	private static User user;
+	//private static Map<String, User>  users= new HashMap<String, User>();
+	//private static Map<String, MailBox> boxs = new HashMap<String, MailBox>();
+	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
 
+	/*
 	public static void newUser(String name, String username, int yearOfBorn){
 		
 		User u = new User(username,name,yearOfBorn);
@@ -28,26 +27,27 @@ public class MailSystem {
 		} else {
 			users.put(username,u);
 			System.out.println("=> username: " + username + " created.");
+
 		}	
 	}
-	public static void newUser(User u){
-
-		if (getExist(u.getUserName())) {
+	*/
+	public static MailBox newUser(User u, boolean inMemory){
+		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
-		} else if (u.getUserName().equalsIgnoreCase("exit")) {
-			System.out.println("ERROR: invalid username: " + u.getUserName());
+			return null;
 		} else {
-			users.put(u.getUserName(), u);
+			MailBox box = new MailBox(u, inMemory);
+			administrative.put(u,box);
 			System.out.println("=> username: " + u.getUserName() + " created.");
+			return box;
 		}	
 	}
-
 	/**The mailbox can be retrieved later by giving the username (log in)
 	 * 
 	 * @return
 	*/
 	public static boolean logIn(String username) {
-		user = getUser(username);
+		User user = getUser(username);
 		if (user == null)
 			return false;
 		return true;
@@ -68,7 +68,7 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static Set<User> getAllUsers() {return users.values().stream().collect(Collectors.toSet());}
+	public static Set<User> getAllUsers() {return administrative.keySet();}
 
 	/**Filter messages globally: 
 	 * Get all messages in the system that fulfill a condition.
@@ -84,18 +84,24 @@ public class MailSystem {
 	public int countMessages() {return 0;}
 
 	public static User getUser(String username) {
-		return users.get(username);
-	}
-	public static User getCurrentUser() {
-		return user;
+		for (User u : administrative.keySet()) {
+				if (u.getUserName().equals(username)) return u;
+		}
+		return null;
 	}
 
 	public static void printUsers() {
-		users.forEach((key,value) -> System.out.println("User: " + value));
+		administrative.forEach((key,value) -> System.out.println("User: " + key));
 	}
 
+	public static boolean getExist(User u) {
+		return administrative.containsKey(u);
+	}
 	public static boolean getExist(String username) {
-		return users.containsKey(username);
+		for (User u : administrative.keySet()) {
+			if (u.getUserName().equals(username)) return true;
+		}
+		return false;
 	}
 
 
