@@ -5,6 +5,7 @@ import system.MailSystem;
 import mailstore.*;
 
 
+
 public class Test {
 	public static void main(String [] args) throws Exception {
 
