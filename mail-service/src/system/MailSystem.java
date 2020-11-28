@@ -34,6 +34,7 @@ public class MailSystem {
 	public static MailBox newUser(User u, boolean inMemory){
 		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
+			u = null;
 			return null;
 		} else {
 			MailBox box = new MailBox(u, inMemory);
