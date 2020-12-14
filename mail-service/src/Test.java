@@ -8,7 +8,7 @@ import mailstore.*;
 
 public class Test {
 	public static void main(String [] args) throws Exception {
-
+		/*
 		User user = new User("star", "Arnau", 2000);
 		System.out.println("\n" + user);
 		User user1 = new User("Mr.Star", "Arnau", 2000);
@@ -74,5 +74,7 @@ public class Test {
 
 		System.out.println("\nGet all users");
 		System.out.println(MailSystem.getAllUsers());
+
+		*/
 	}
 }

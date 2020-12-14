@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 
-public class MailStoreOnFile extends MailStore{
+public class OnFile implements MailStore{
 
 	
 	private static String fileName = "mail_store.txt";

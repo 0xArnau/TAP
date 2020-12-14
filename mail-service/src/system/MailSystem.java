@@ -28,7 +28,7 @@ public class MailSystem {
 			users.put(username,u);
 			System.out.println("=> username: " + username + " created.");
 
-		}	
+		}
 	}
 	*/
 	public static MailBox newUser(User u, boolean inMemory){
@@ -41,7 +41,7 @@ public class MailSystem {
 			administrative.put(u,box);
 			System.out.println("=> username: " + u.getUserName() + " created.");
 			return box;
-		}	
+		}
 	}
 	/**The mailbox can be retrieved later by giving the username (log in)
 	 * 
