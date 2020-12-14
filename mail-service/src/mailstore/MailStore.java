@@ -9,7 +9,7 @@ import java.util.List;
 public interface MailStore {
 
 	static final String regex = ";";
-	public static void sendMail(User u, Message m) {};
-	public static List<Message> getMail(User u)  {return null;};
+	public void sendMail(User u, Message m);
+	public List<Message> getMail(User u);
 }
 

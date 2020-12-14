@@ -35,7 +35,7 @@ public class OnFile implements MailStore{
 		System.out.println("[added successfully]");
 	}
 
-	public static void sendMail(User u, Message m) {
+	public void sendMail(User u, Message m) {
 		try {
 			if (m.toString().matches(".+;"+u.getUserName()+";.+"))
 				writeFile(/*u.getUserName() + ";" +*/ m.toString() + "\n");
@@ -46,8 +46,7 @@ public class OnFile implements MailStore{
 		}
 	}
 	
-	public static List<Message> getMail(User u) {
-		
+	public List<Message> getMail(User u) {
 		String line;
 		List<Message> list = new LinkedList<Message>();
 		try {

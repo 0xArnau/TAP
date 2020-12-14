@@ -24,7 +24,7 @@ public class MailBox implements Iterable<Message> {
 	}
 
 	public void updateMail() throws Exception {
-			messages = sortByTime(MailStore.getMail(user));
+			messages = sortByTime(store.getMail(user));
 	}
 
 	public void listMail() {
@@ -32,7 +32,7 @@ public class MailBox implements Iterable<Message> {
 	}
 
 	public void sendMail(User to, String subject, String body) {
-		MailStore.sendMail(to, new Message(user, to, subject, body));
+		store.sendMail(to, new Message(user, to, subject, body));
 	}
 
 	public void filterMail(int x) {

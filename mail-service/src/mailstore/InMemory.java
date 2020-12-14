@@ -18,7 +18,7 @@ public class InMemory implements MailStore {
 	 * @param u
 	 * @param m
 	 */
-	public static void sendMail(User u, Message m) {
+	public void sendMail(User u, Message m) {
 		if (messages.containsKey(u)) {
 			if (m.toString().matches(".+;"+u.getUserName()+";.+"))
 				messages.get(u).add(m);
@@ -33,7 +33,7 @@ public class InMemory implements MailStore {
 	 * @param u
 	 * @return
 	 */
-	public static List<Message> getMail(User u) {
+	public List<Message> getMail(User u) {
 		return new LinkedList<Message>(messages.get(u));
 	}
 }
