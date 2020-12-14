@@ -16,18 +16,15 @@ import java.io.InputStreamReader;
 public class MailBox implements Iterable<Message> {
 	private User user;
 	private List<Message> messages;
-	private boolean mem;
+	private MailStore store;
 
-	public MailBox(User u, boolean mem) {
+	public MailBox(User u, MailStore store) {
 		user = u;
-		this.mem = mem;
+		this.store = store;
 	}
 
 	public void updateMail() throws Exception {
-		if (mem)
 			messages = sortByTime(MailStore.getMail(user));
-		else
-			messages = sortByTime(MailStoreOnFile.getMail(user));
 	}
 
 	public void listMail() {
@@ -35,10 +32,7 @@ public class MailBox implements Iterable<Message> {
 	}
 
 	public void sendMail(User to, String subject, String body) {
-		if (mem)
-			MailStore.sendMail(to, new Message(user, to, subject, body));
-		else
-			MailStoreOnFile.sendMail(to, new Message(user, to, subject, body));
+		MailStore.sendMail(to, new Message(user, to, subject, body));
 	}
 
 	public void filterMail(int x) {
