@@ -31,13 +31,13 @@ public class MailSystem {
 		}
 	}
 	*/
-	public static MailBox newUser(User u, boolean inMemory){
+	public static MailBox newUser(User u, MailStore store){
 		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			u = null;
 			return null;
 		} else {
-			MailBox box = new MailBox(u, inMemory);
+			MailBox box = new MailBox(u, store);
 			administrative.put(u,box);
 			System.out.println("=> username: " + u.getUserName() + " created.");
 			return box;
