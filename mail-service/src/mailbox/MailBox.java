@@ -8,6 +8,7 @@ import mailstore.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class MailBox implements Iterable<Message> {
 	}
 
 	public void updateMail() throws Exception {
-			messages = sortByTime(store.getMail(user));
+		
 	}
 
 	public void listMail() {
@@ -35,66 +36,8 @@ public class MailBox implements Iterable<Message> {
 		store.sendMail(to, new Message(user, to, subject, body));
 	}
 
-	public void filterMail(int x) {
-		switch (x) {
-			case 1:
-				try {
-					sortByContent(askDataW());
-				} catch (Exception e) {
-					System.out.println("ERROR: " + e);
-				}
-			break;
-			case 2:
-				try {
-					sortByLessThanN(askDataS());
-				} catch (Exception e) {
-					System.out.println("ERROR: " + e);
-				}
-			break;
-			default:
-				System.out.println("ERROR: number");
-			break;
-		}
-	}
-
-	private List<Message> sortByTime(List<Message> list) throws Exception {
-		if (list == null)
-			return null;
-
-		List<Message> sorted = new LinkedList<Message>();
-
-		while (!list.isEmpty()) {
-			sorted.add(((LinkedList<Message>) list).pop());
-		}
-		return sorted;
-	}
-
-	private Stream<Message> sortByContent(String word) {
-		return messages.stream().filter(c -> c.toString().contains(word));
-	}
-
-	private Stream<Message> sortByLessThanN(int n) {
-		return messages.stream().filter(c-> c.toString().length() < n);
-	}
-
-	private String askDataW() throws IOException {
-		BufferedReader reader =
-			new BufferedReader(new InputStreamReader(System.in));
-		//String date;
-
-		//System.out.print("Word: ");
-		//date = reader.readLine();
-
-		return reader.readLine();
-	}
-	private int askDataS() throws IOException {
-		BufferedReader reader =
-			new BufferedReader(new InputStreamReader(System.in));
-		//int date;
-
-		//System.out.print("Sinteger.parse ze: ");
-		//date = Integer.parseInt(reader.readLine());
-		return Integer.parseInt(reader.readLine());
+	public void filterMail(String p) {
+		messages.stream().filter(str -> str.toString().contains(p)).forEach(System.out::println);
 	}
 
 	@Override
