@@ -33,6 +33,8 @@ public class MailBox implements Iterable<Message> {
 	public void filterMail(String p) {
 		messages.stream().filter(str -> str.toString().contains(p)).forEach(System.out::println);
 	}
+	
+	public void getMail() {}
 
 	@Override
 	public Iterator<Message> iterator() {

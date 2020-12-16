@@ -71,6 +71,9 @@ public class MailSystem {
 		User rm = getUser(username);
 		if (rm != null) administrative.remove(rm);
 	}
+	public static void removeUser(User u) {
+		administrative.remove(u);
+	}
 
 	public static User getUser(String username) {
 		for (User u : administrative.keySet()) {

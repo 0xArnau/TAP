@@ -1,7 +1,5 @@
 package messages;
 
-import users.User;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 
