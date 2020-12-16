@@ -1,25 +1,19 @@
 package mailbox;
 
-import users.*;
 import messages.*;
 import mailstore.*;
 //import system.*;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 public class MailBox implements Iterable<Message> {
-	private User user;
+	private String user;
 	private List<Message> messages;
 	private MailStore store;
 
-	public MailBox(User u, MailStore store) {
+	public MailBox(String u, MailStore store) {
 		user = u;
 		this.store = store;
 	}
@@ -32,7 +26,7 @@ public class MailBox implements Iterable<Message> {
 		System.out.println(messages);
 	}
 
-	public void sendMail(User to, String subject, String body) {
+	public void sendMail(String to, String subject, String body) {
 		store.sendMail(to, new Message(user, to, subject, body));
 	}
 

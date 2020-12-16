@@ -1,8 +1,6 @@
 package mailstore;
 
-import users.*;
 import messages.*;
-import system.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -35,9 +33,9 @@ public class OnFile implements MailStore{
 		System.out.println("[added successfully]");
 	}
 
-	public void sendMail(User u, Message m) {
+	public void sendMail(String u, Message m) {
 		try {
-			if (m.toString().matches(".+;"+u.getUserName()+";.+"))
+			if (m.toString().matches(".+;"+u+";.+"))
 				writeFile(/*u.getUserName() + ";" +*/ m.toString() + "\n");
 			else
 				System.out.println("ERROR ==> Message(to) != User");
@@ -46,7 +44,7 @@ public class OnFile implements MailStore{
 		}
 	}
 	
-	public List<Message> getMail(User u) {
+	public List<Message> getMail(String u) {
 		String line;
 		List<Message> list = new LinkedList<Message>();
 		try {
@@ -54,10 +52,10 @@ public class OnFile implements MailStore{
 			Scanner input = new Scanner(log);
 			while (input.hasNextLine()) {
 				line = input.nextLine();
-				if (line.matches(".+;" + u.getUserName() + ";.+")) {
+				if (line.matches(".+;" + u + ";.+")) {
 					String [] part = line.split(regex);
-					User from = MailSystem.getUser(part[0]);
-					User to = MailSystem.getUser(part[1]);
+					String from = part[0];
+					String to = part[1];
 					if (from == null || to == null) {
 
 					} else {

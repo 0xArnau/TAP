@@ -1,6 +1,5 @@
 package mailstore;
 
-import users.*;
 import messages.*;
 
 
@@ -12,15 +11,15 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class InMemory implements MailStore {
 	protected static String regex = ";";
-	private static Map<User, List<Message>> messages = new HashMap<User, List<Message>>();
+	private static Map<String, List<Message>> messages = new HashMap<String, List<Message>>();
 	/**
 	 * 
 	 * @param u
 	 * @param m
 	 */
-	public void sendMail(User u, Message m) {
+	public void sendMail(String u, Message m) {
 		if (messages.containsKey(u)) {
-			if (m.toString().matches(".+;"+u.getUserName()+";.+"))
+			if (m.toString().matches(".+;"+u+";.+"))
 				messages.get(u).add(m);
 			else
 				System.out.println("ERROR ==> Message(to) != User");
@@ -33,7 +32,7 @@ public class InMemory implements MailStore {
 	 * @param u
 	 * @return
 	 */
-	public List<Message> getMail(User u) {
+	public List<Message> getMail(String u) {
 		return new LinkedList<Message>(messages.get(u));
 	}
 }

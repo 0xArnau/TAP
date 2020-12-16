@@ -1,6 +1,5 @@
 package mailstore;
 
-import users.*;
 import messages.*;
 import java.util.List;
 /**
@@ -9,7 +8,7 @@ import java.util.List;
 public interface MailStore {
 
 	static final String regex = ";";
-	public void sendMail(User u, Message m);
-	public List<Message> getMail(User u);
+	public void sendMail(String u, Message m);
+	public List<Message> getMail(String u);
 }
 

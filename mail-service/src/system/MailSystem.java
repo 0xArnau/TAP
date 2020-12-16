@@ -11,33 +11,15 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class MailSystem {
-	//DB?
-	//private static Map<String, User>  users= new HashMap<String, User>();
-	//private static Map<String, MailBox> boxs = new HashMap<String, MailBox>();
 	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
 
-	/*
-	public static void newUser(String name, String username, int yearOfBorn){
-		
-		User u = new User(username,name,yearOfBorn);
-		if (getExist(u.getUserName())) {
-			System.out.println("=> username: " + username + " already exists.");
-		} else if (username.equalsIgnoreCase("exit")) {
-			System.out.println("ERROR: invalid username: " + username);
-		} else {
-			users.put(username,u);
-			System.out.println("=> username: " + username + " created.");
-
-		}
-	}
-	*/
 	public static MailBox newUser(User u, MailStore store){
 		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			u = null;
 			return null;
 		} else {
-			MailBox box = new MailBox(u, store);
+			MailBox box = new MailBox(u.getUserName(), store);
 			administrative.put(u,box);
 			System.out.println("=> username: " + u.getUserName() + " created.");
 			return box;

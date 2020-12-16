@@ -1,7 +1,3 @@
-import system.*;
-import users.*;
-import messages.*;
-import mailbox.*;
 
 import java.io.BufferedReader; 
 import java.io.IOException; 
