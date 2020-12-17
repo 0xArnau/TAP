@@ -17,6 +17,13 @@ public class Message {
 		this.body = body;
 		time = Timestamp.from(Instant.now());
 	}
+	public Message(String from, String to, String subject, String body, String time) {
+		this.from = from;
+		this.to = to;
+		this.subject = subject;
+		this.body = body;
+		this.time = Timestamp.valueOf(time);
+	}
 	/***/
 	public String getFrom() {return from;}
 	/***/

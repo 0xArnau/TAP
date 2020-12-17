@@ -59,7 +59,7 @@ public class OnFile implements MailStore{
 					if (from == null || to == null) {
 
 					} else {
-						list.add(new Message(from, to, part[2], part[3]));	
+						list.add(new Message(from, to, part[2], part[3], part[4]));	
 					}
 				}
 			}
