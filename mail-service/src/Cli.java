@@ -21,6 +21,7 @@ public class Cli {
 		update,
 		list,
 		sort,
+		exit,
 	}
 	public static void main(String[] args) {
 		nonUsers();
@@ -29,11 +30,24 @@ public class Cli {
 		String [] info;
 		info = waiting4commandNonUsers();
 		switch (info[0]) {
-			case "creatuser":	
+			case "creatuser":
+				if (info.length < 4) {
+					System.out.println("ERROR\nTry again:");
+					nonUsers();
+				}
+
 			break;
 			case "filter":
 			break;
 			case "logas":
+				if (MailSystem.logIn(info[1]))
+					users();
+				else {
+					System.out.println("ERROR: username\nTry again:");
+					nonUsers();
+				}
+			break;
+			case "exit":
 			break;
 			default:
 			System.out.println("ERROR\nTry again:");
@@ -45,9 +59,10 @@ public class Cli {
 		
 		try {
 			System.out.println("Commands availables 4 non users:");
-			System.out.println("\t" + Commands.createuser + " <username><args>...");
+			System.out.println("\t" + Commands.createuser + " <username><name><year of born>");
 			System.out.println("\t" + Commands.filter + " <contains<word>> <lessthan<n words>>");
 			System.out.println("\t" + Commands.logas + " <username>");
+			System.out.println("\t" + Commands.exit);
 			System.out.print(">> ");
 			String [] info = reader.readLine().split(" ");
 			return info;
@@ -61,23 +76,35 @@ public class Cli {
 
 	private static void users() {
 		String [] info;
-		info = waiting4commandNonUsers();
+		info = waiting4commandUsers();
 		switch (info[0]) {
-			case "creatuser":	
+			case "send":
+			break;
+			case "update":
+			break;
+			case "list":
+			break;
+			case "sort":
 			break;
 			case "filter":
 			break;
-			case "logas":
+			case "exit":
+				nonUsers();
 			break;
 			default:
+				users();
 			break;
 		}
 	}
 	private static String [] waiting4commandUsers() {
-		
 		try {
 			System.out.println("Commands availables 4 users:");
+			System.out.println("\t" + Commands.send + " <to>");
+			System.out.println("\t" + Commands.update);
+			System.out.println("\t" + Commands.list);
+			System.out.println("\t" + Commands.sort + " <>");
 			System.out.println("\t" + Commands.filter + " <contains<word>> <lessthan<n words>>");
+			System.out.println("\t" + Commands.exit);
 			System.out.print(">> ");
 			String [] info = reader.readLine().split(" ");
 			return info;
