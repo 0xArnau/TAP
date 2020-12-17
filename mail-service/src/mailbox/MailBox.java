@@ -6,6 +6,8 @@ import mailstore.*;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class MailBox implements Iterable<Message> {
@@ -18,8 +20,9 @@ public class MailBox implements Iterable<Message> {
 		this.store = store;
 	}
 
-	public void updateMail() throws Exception {
+	public Stream<Message> updateMail() throws Exception {
 		messages = store.getMail(user);
+		return messages.stream();
 	}
 
 	public List<Message> listMail() {
@@ -34,7 +37,9 @@ public class MailBox implements Iterable<Message> {
 		messages.stream().filter(str -> str.toString().contains(p)).forEach(System.out::println);
 	}
 	
-	public void getMail() {}
+	public Stream<Message> sortMail() {
+    return 	messages.stream().sorted().collect(Collectors.toList()).stream(); 
+	}
 
 	@Override
 	public Iterator<Message> iterator() {

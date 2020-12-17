@@ -59,7 +59,7 @@ public class Cli {
 		
 		try {
 			System.out.println("Commands availables 4 non users:");
-			System.out.println("\t" + Commands.createuser + " <username><name><year of born>");
+			System.out.println("\t" + Commands.createuser + " <username><name><year of birth>");
 			System.out.println("\t" + Commands.filter + " <contains<word>> <lessthan<n words>>");
 			System.out.println("\t" + Commands.logas + " <username>");
 			System.out.println("\t" + Commands.exit);

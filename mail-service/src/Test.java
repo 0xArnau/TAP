@@ -1,6 +1,9 @@
-
-
-
+import mailbox.MailBox;
+import mailstore.InMemory;
+import mailstore.MailStore;
+import mailstore.OnFile;
+import messages.Message;
+import users.User;
 
 public class Test {
 	public static void main(String [] args) throws Exception {
@@ -72,5 +75,19 @@ public class Test {
 		System.out.println(MailSystem.getAllUsers());
 
 		*/
+
+		User user = new User("star", "Arnau", 2000);
+		User user1 = new User("betaSAV", "Sergi", 1999);
+		Message mensaje = new Message("star", "betaSAV", "KLK", "WTF");
+		MailStore memo = new InMemory();
+		MailStore file = new OnFile();
+		MailBox boxM = new MailBox("star", memo);
+		MailBox boxF = new MailBox("star", file);
+
+		memo.sendMail("betaSAV", mensaje);
+		memo.sendMail("star", mensaje);
+		System.out.println(memo.getMail("betaSAV"));
+		file.sendMail("betaSAV", mensaje);
+		System.out.println(file.getMail("betaSAV"));
 	}
 }
