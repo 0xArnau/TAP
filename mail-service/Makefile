@@ -1,5 +1,5 @@
 all 		: build
-build 	: main messages users	mailstore mailbox system
+build 	: users messages mailstore mailbox system main
 
 main 		: src/Test.java src/Cli.java
 		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\

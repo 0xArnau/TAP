@@ -3,7 +3,7 @@ package messages;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-public class Message {
+public class Message implements Comparable<Message> {
 	private String from;
 	private String to;
 	private String subject;
@@ -34,6 +34,8 @@ public class Message {
 	public String getBody() {return body;}
 	/***/
 	public Timestamp getTime() {return time;}
+	
+	@Override
 	/***/
 	public int compareTo(Message m) {return time.compareTo(m.getTime());}
 	/***/

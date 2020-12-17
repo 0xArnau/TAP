@@ -22,6 +22,8 @@ public class MailBox implements Iterable<Message> {
 
 	public Stream<Message> updateMail() throws Exception {
 		messages = store.getMail(user);
+		if (messages == null) 
+			return null;
 		return messages.stream();
 	}
 
@@ -32,9 +34,11 @@ public class MailBox implements Iterable<Message> {
 	public void sendMail(String to, String subject, String body) {
 		store.sendMail(to, new Message(user, to, subject, body));
 	}
-
-	public void filterMail(String p) {
-		messages.stream().filter(str -> str.toString().contains(p)).forEach(System.out::println);
+	public void sendMail(String to, Message m) {
+		store.sendMail(to, m);
+	}
+	public Stream<Message> filterMail(String p) {
+		return messages.stream().filter(str -> str.toString().contains(p));
 	}
 	
 	public Stream<Message> sortMail() {
@@ -43,6 +47,8 @@ public class MailBox implements Iterable<Message> {
 
 	@Override
 	public Iterator<Message> iterator() {
+		if (messages == null)
+			return null;
 		return messages.iterator();
 	}
 }

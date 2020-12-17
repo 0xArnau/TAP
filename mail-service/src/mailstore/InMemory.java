@@ -10,13 +10,8 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class InMemory implements MailStore {
-	protected static String regex = ";";
-	private static Map<String, List<Message>> messages = new HashMap<String, List<Message>>();
-	/**
-	 * 
-	 * @param u
-	 * @param m
-	 */
+	private  Map<String, List<Message>> messages = new HashMap<String, List<Message>>();
+
 	public void sendMail(String u, Message m) {
 		if (messages.containsKey(u)) {
 			if (m.toString().matches(".+;"+u+";.+"))
@@ -33,6 +28,8 @@ public class InMemory implements MailStore {
 	 * @return
 	 */
 	public List<Message> getMail(String u) {
+		if (messages.get(u) == null)
+			return null;
 		return new LinkedList<Message>(messages.get(u));
 	}
 }

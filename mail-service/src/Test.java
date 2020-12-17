@@ -1,3 +1,5 @@
+import java.util.stream.Stream;
+
 import mailbox.MailBox;
 import mailstore.InMemory;
 import mailstore.MailStore;
@@ -78,16 +80,57 @@ public class Test {
 
 		User user = new User("star", "Arnau", 2000);
 		User user1 = new User("betaSAV", "Sergi", 1999);
-		Message mensaje = new Message("star", "betaSAV", "KLK", "WTF");
+		Message mensaje = new Message("star", "betaSAV", "yo", "WTF");
 		MailStore memo = new InMemory();
 		MailStore file = new OnFile();
 		MailBox boxM = new MailBox("star", memo);
-		MailBox boxF = new MailBox("star", file);
+		MailBox boxF = new MailBox("betaSAV", file);
 
-		memo.sendMail("betaSAV", mensaje);
-		memo.sendMail("star", mensaje);
-		System.out.println(memo.getMail("betaSAV"));
+		
 		file.sendMail("betaSAV", mensaje);
 		System.out.println(file.getMail("betaSAV"));
+		System.out.println("\n");
+		boxF.updateMail();
+		System.out.println(boxF.listMail());
+		System.out.println("\n");
+		for (Message m: boxF) {
+			System.out.println(m);
+		}
+		System.out.println("\n");
+		boxF.forEach(System.out::println);
+		System.out.println("\n");
+		boxF.filterMail("y").forEach(System.out::println);
+		System.out.println("\n");
+		boxF.sortMail().forEach(System.out::println);
+		
+		System.out.println("\n\n");
+		
+		System.out.println("memo");
+		boxM.sendMail("star", mensaje);
+		for(int i = 0; i < 100000000; ++i);
+		boxM.sendMail("star", "klk", "wtf");
+		for(int i = 0; i < 100000000; ++i);
+		boxM.sendMail("star", "wtf", "klk");
+		System.out.println("update");
+		boxM.updateMail();
+		System.out.println("listMail");
+		System.out.println(boxM.listMail());
+		System.out.println("\n");
+		System.out.println("for each");
+		for (Message m: boxM) {
+			System.out.println(m);
+		}
+		System.out.println("\n");
+		System.out.println("forEach");
+		boxM.forEach(System.out::println);
+		System.out.println("\n");
+		System.out.println("filter");
+		boxM.filterMail("WTF").forEach(System.out::println);
+		System.out.println("\n");
+		System.out.println("sort");
+		boxM.sortMail().forEach(System.out::println);
+
+
+
 	}
 }
