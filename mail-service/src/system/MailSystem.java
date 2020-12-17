@@ -66,6 +66,13 @@ public class MailSystem {
 	 */
 	public int countMessages() {return 0;}
 
+	//Average messages per user.
+
+	//Group messages per subject. Any user.
+
+	//Count the words of all messages from users with a particular name.
+
+	//Get messages to users born before a certain year.
 
 	public static void removeUser(String username) {
 		User rm = getUser(username);
