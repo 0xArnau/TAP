@@ -19,11 +19,11 @@ public class MailBox implements Iterable<Message> {
 	}
 
 	public void updateMail() throws Exception {
-		
+		messages = store.getMail(user);
 	}
 
-	public void listMail() {
-		System.out.println(messages);
+	public List<Message> listMail() {
+		return messages;
 	}
 
 	public void sendMail(String to, String subject, String body) {
