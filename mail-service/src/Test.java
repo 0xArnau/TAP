@@ -135,7 +135,7 @@ public class Test {
 		User star = new User("star","arnau",2000);
 		User beta = new User("beta","sergi",1999);
 		MailStore starMemo = new InMemory();
-		MailStore betaFile = new OnFile();
+		MailStore betaFile = new InMemory();
 		MailBox starBox = MailSystem.newUser(star, starMemo);
 		MailBox betaBox = MailSystem.newUser(beta, betaFile);
 		MailBox box = MailSystem.newUser(beta, betaFile);
@@ -148,12 +148,22 @@ public class Test {
 			if (starMemo != null)
 			System.out.println("beta not null");
 		MailSystem.getAllUsers().forEach(System.out::println);
-		starBox.sendMail("beta", "klk", "wtf");
 		starBox.sendMail("star", "klk", "wtf");
-		betaBox.sendMail("star", "wtf", "klk");
+		starBox.sendMail("beta", "klk", "wtf");
 		betaBox.sendMail("beta", "wtf", "klk");
+		betaBox.sendMail("star", "wtf", "klk");
+		betaBox.sendMail("star", "word", "klk");
+		System.out.println("star");
+		starBox.updateMail().forEach(System.out::println);
+		System.out.println("beta");
+		betaBox.updateMail().forEach(System.out::println);
+		System.out.println("all");
 		MailSystem.getAllMessages().forEach(System.out::println);
-
-
+		System.out.println("Filter");
+		MailSystem.filter("word").forEach(System.out::println);
+		System.out.println("countmessages");
+		System.out.println(MailSystem.countMessages());
+		System.out.println("average");
+		MailSystem.averageMessagesPerUser();
 	}
 }

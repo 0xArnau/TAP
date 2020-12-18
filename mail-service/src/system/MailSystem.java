@@ -64,19 +64,24 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public List<Message> filter() {
-		
-		return null;
+	public static Stream<Message> filter(String word) throws Exception {
+		return getAllMessages().stream().
+			filter(str -> str.toString().contains(word));
 	}
 
 	/**Count total number of messages.
 	 * 
 	 * @return
 	 */
-	public int countMessages() {return 0;}
+	public static int countMessages() throws Exception {return getAllMessages().size(); }
 
 	//Average messages per user.
-
+	//@betaSAV
+	public static void averageMessagesPerUser() {
+		for (Map.Entry<User,MailBox> m: administrative.entrySet()) {
+			System.out.println("user: " + m.getKey().getUserName() + " average messages: " + m.getValue().listMail().size());
+		}
+	}
 	//Group messages per subject. Any user.
 
 	//Count the words of all messages from users with a particular name.
