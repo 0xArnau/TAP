@@ -136,10 +136,23 @@ public class Test {
 		User beta = new User("beta","sergi",1999);
 		MailStore starMemo = new InMemory();
 		MailStore betaFile = new OnFile();
-		MailSystem.newUser(star, starMemo);
-		MailSystem.newUser(star, starMemo);
-		MailSystem.newUser(beta, betaFile);
+		MailBox starBox = MailSystem.newUser(star, starMemo);
+		MailBox betaBox = MailSystem.newUser(beta, betaFile);
+		MailBox box = MailSystem.newUser(beta, betaFile);
+		if (box == null)
+			System.out.println("box null");
+		else
+			System.out.println("box not null");
+		if (starMemo != null)
+			System.out.println("star not null");
+			if (starMemo != null)
+			System.out.println("beta not null");
 		MailSystem.getAllUsers().forEach(System.out::println);
+		starBox.sendMail("beta", "klk", "wtf");
+		starBox.sendMail("star", "klk", "wtf");
+		betaBox.sendMail("star", "wtf", "klk");
+		betaBox.sendMail("beta", "wtf", "klk");
+		MailSystem.getAllMessages().forEach(System.out::println);
 
 
 	}

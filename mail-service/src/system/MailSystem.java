@@ -15,7 +15,7 @@ import java.util.LinkedList;
 
 public class MailSystem {
 	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
-	private static List<Message> allMessages = new LinkedList<Message>();
+	
 	public static MailBox newUser(User u, MailStore store){
 		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
@@ -43,13 +43,14 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public List<Message> getAllMessages() {
-		/*List<Message> all = new LinkedList<Message>();
+	public static List<Message> getAllMessages() throws Exception {
+		List<Message> all = new LinkedList<Message>();
 		for (Map.Entry<User, MailBox> u : administrative.entrySet()) {
-			all = Stream.concat(all.stream(), u.getValue().listMail().stream())
-				.collect(Collectors.toList());
-		}*/
-		return allMessages;
+			if (u.getValue().updateMail() != null)
+				all = Stream.concat(all.stream(), u.getValue().listMail().stream())
+					.collect(Collectors.toList());
+		}
+		return all;
 	}
 
 	/**Get all users in the system.
@@ -81,6 +82,11 @@ public class MailSystem {
 	//Count the words of all messages from users with a particular name.
 
 	//Get messages to users born before a certain year.
+
+
+	public void sendMail() {
+
+	}
 
 	public static void removeUser(String username) {
 		User rm = getUser(username);
