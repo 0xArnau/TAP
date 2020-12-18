@@ -48,9 +48,11 @@ public class MailSystem {
 	public static List<Message> getAllMessages() throws Exception {
 		List<Message> all = new LinkedList<Message>();
 		for (Map.Entry<User, MailBox> u : administrative.entrySet()) {
-			if (u.getValue().updateMail() != null)
-				all = Stream.concat(all.stream(), u.getValue().listMail().stream())
-					.collect(Collectors.toList());
+			try {
+				if (u.getValue().updateMail() != null)
+					all = Stream.concat(all.stream(), u.getValue().listMail().stream())
+						.collect(Collectors.toList());
+			} catch (Exception e) {}
 		}
 		return all;
 	}
@@ -81,7 +83,9 @@ public class MailSystem {
 	//@betaSAV
 	public static void averageMessagesPerUser() {
 		for (Map.Entry<User,MailBox> m: administrative.entrySet()) {
-			System.out.println("user: " + m.getKey().getUserName() + " average messages: " + m.getValue().listMail().size());
+			try {
+				System.out.println("user: " + m.getKey().getUserName() + " average messages: " + m.getValue().listMail().size());
+			} catch (Exception e) {}
 		}
 	}
 	//Group messages per subject. Any user.
@@ -94,13 +98,15 @@ public class MailSystem {
 	public static int countWordsOfMessagesFromUser(String name) {
 		int sum = 0;
 		for (Map.Entry<User, MailBox> m: administrative.entrySet()) {
-			if (m.getKey().getName().equals(name)) {
-				List<Message> message = m.getValue().listMail();
-				int size = message.size();
-				for (int i = 0; i < size; i ++) {
-					sum += message.get(i).getBody().length();
+			try {
+				if (m.getKey().getName().equals(name)) {
+					List<Message> message = m.getValue().listMail();
+					int size = message.size();
+					for (int i = 0; i < size; i ++) {
+						sum += message.get(i).getBody().length();
+					}
 				}
-			}
+			} catch (Exception e) {}
 		}
 		return sum;
 	}
@@ -109,10 +115,12 @@ public class MailSystem {
 	public static List<Message> usersBornBeforeXYear(int year) throws Exception {
 		List<Message> list = new LinkedList<Message>();
 		for (Map.Entry<User, MailBox> m: administrative.entrySet()) {
-			if (m.getKey().getYear() < year) {
-				list = Stream.concat(list.stream(), m.getValue().listMail().stream())
-					.collect(Collectors.toList());
-			}
+			try {
+				if (m.getKey().getYear() < year) {
+					list = Stream.concat(list.stream(), m.getValue().listMail().stream())
+						.collect(Collectors.toList());
+				}
+			} catch (Exception e) {}
 		}
 		return list;
 	}
