@@ -6,9 +6,12 @@ import messages.*;
 import users.*;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class MailSystem {
 	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
@@ -41,10 +44,12 @@ public class MailSystem {
 	 * @return
 	 */
 	public List<Message> getAllMessages() {
-		
-		
-
-		return null;
+		List<Message> all = new LinkedList<Message>();
+		for (Map.Entry<User, MailBox> u : administrative.entrySet()) {
+			all = Stream.concat(all.stream(), u.getValue().listMail().stream())
+				.collect(Collectors.toList());
+		}
+		return all;
 	} 
 
 	/**Get all users in the system.
