@@ -15,7 +15,8 @@ import java.util.LinkedList;
 
 public class MailSystem {
 	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
-	
+	private static Map<String, User> users = new HashMap<String,User>();
+
 	public static MailBox newUser(User u, MailStore store){
 		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
@@ -24,6 +25,7 @@ public class MailSystem {
 		} else {
 			MailBox box = new MailBox(u.getUserName(), store);
 			administrative.put(u,box);
+			users.put(u.getUserName(), u);
 			System.out.println("=> user: " + u.getUserName() + " created.");
 			return box;
 		}
@@ -115,36 +117,29 @@ public class MailSystem {
 		return list;
 	}
 
-
-
-
-	public static void removeUser(String username) {
-		User rm = getUser(username);
-		if (rm != null) administrative.remove(rm);
-	}
-	public static void removeUser(User u) {
-		administrative.remove(u);
-	}
-
 	public static User getUser(String username) {
-		for (User u : administrative.keySet()) {
-				if (u.getUserName().equals(username)) return u;
+		return users.get(username);
+	}
+	public static MailBox getMailBoxOfUser(String username) {
+		try {
+			return administrative.get(getUser(username));
+		} catch (Exception e) {
+			return null;
 		}
-		return null;
+	}
+	public static MailBox getMailBoxOfUser(User username) {
+		return administrative.get(username);
 	}
 
 	public static void printUsers() {
 		administrative.forEach((key,value) -> System.out.println("User: " + key));
 	}
 
-	public static boolean getExist(User u) {
+	private static boolean getExist(User u) {
 		return administrative.containsKey(u);
 	}
 	public static boolean getExist(String username) {
-		for (User u : administrative.keySet()) {
-			if (u.getUserName().equals(username)) return true;
-		}
-		return false;
+		return users.get(username) != null ? true : false;
 	}
 
 
