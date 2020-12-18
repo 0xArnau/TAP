@@ -44,13 +44,13 @@ public class TestSystem {
 
         //Test paso 1.7
         //Test paso 1.8
-        starBox.filterSubject("Nota").forEach(System.out::println);
+        starBox.filterSubject("subject").forEach(System.out::println);
 
         //Test paso 1.9 A HACER
         //MailSystem.filterSubject("").forEach(System.out::println);
 
         //Test paso 1.10
-        System.out.println(MailSystem.countMessages());
+        System.out.println("Mensajes en el sistema: " + MailSystem.countMessages());
 
         //Test paso 1.11
         MailSystem.averageMessagesPerUser();
@@ -59,7 +59,7 @@ public class TestSystem {
 
         //Test paso 1.13
         //Test paso 1.14
-        System.out.println(MailSystem.countWordsOfMessagesFromUser("Arnau"));
+        System.out.println("Palabras totales enviadas por Arnau " + MailSystem.countWordsOfMessagesFromUser("Arnau"));
 
         //Test paso 1.15
         MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
