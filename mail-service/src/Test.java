@@ -134,8 +134,8 @@ public class Test {
 		System.out.println("MailSystem");
 		User star = new User("star","arnau",2000);
 		User beta = new User("beta","sergi",1999);
-		MailStore starMemo = new InMemory();
-		MailStore betaFile = new InMemory();
+		MailStore starMemo = new OnFile();
+		MailStore betaFile = new OnFile();
 		MailBox starBox = MailSystem.newUser(star, starMemo);
 		MailBox betaBox = MailSystem.newUser(beta, betaFile);
 		MailBox box = MailSystem.newUser(beta, betaFile);
@@ -159,6 +159,10 @@ public class Test {
 		betaBox.updateMail().forEach(System.out::println);
 		System.out.println("all");
 		MailSystem.getAllMessages().forEach(System.out::println);
+		System.out.println("starBox sorte");
+		starBox.sortMail().forEach(System.out::println);
+		System.out.println("betaBox sorte");
+		betaBox.sortMail().forEach(System.out::println);
 		System.out.println("Filter");
 		MailSystem.filter("star").forEach(System.out::println);
 		System.out.println("countmessages");
