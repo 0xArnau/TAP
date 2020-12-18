@@ -5,6 +5,7 @@ import mailstore.InMemory;
 import mailstore.MailStore;
 import mailstore.OnFile;
 import messages.Message;
+import system.MailSystem;
 import users.User;
 
 public class Test {
@@ -77,7 +78,7 @@ public class Test {
 		System.out.println(MailSystem.getAllUsers());
 
 		*/
-
+		/*
 		User user = new User("star", "Arnau", 2000);
 		User user1 = new User("betaSAV", "Sergi", 1999);
 		Message mensaje = new Message("star", "betaSAV", "yo", "WTF");
@@ -129,7 +130,16 @@ public class Test {
 		System.out.println("\n");
 		System.out.println("sort");
 		boxM.sortMail().forEach(System.out::println);
-
+		*/
+		System.out.println("MailSystem");
+		User star = new User("star","arnau",2000);
+		User beta = new User("beta","sergi",1999);
+		MailStore starMemo = new InMemory();
+		MailStore betaFile = new OnFile();
+		MailSystem.newUser(star, starMemo);
+		MailSystem.newUser(star, starMemo);
+		MailSystem.newUser(beta, betaFile);
+		MailSystem.getAllUsers().forEach(System.out::println);
 
 
 	}
