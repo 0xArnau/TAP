@@ -149,7 +149,11 @@ public class MailSystem {
 	public static boolean getExist(String username) {
 		return users.get(username) != null ? true : false;
 	}
-
+	
+	public static void reset() {
+		administrative = new HashMap<User, MailBox>();
+		users = new HashMap<String,User>();
+	}
 
 
 }
