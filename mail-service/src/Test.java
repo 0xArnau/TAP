@@ -151,7 +151,7 @@ public class Test {
 		starBox.sendMail("star", "klk", "wtf");
 		starBox.sendMail("beta", "klk", "wtf");
 		betaBox.sendMail("beta", "wtf", "klk");
-		betaBox.sendMail("star", "wtf", "klk");
+		betaBox.sendMail("beta", "wtf", "klk");
 		betaBox.sendMail("star", "word", "klk");
 		System.out.println("star");
 		starBox.updateMail().forEach(System.out::println);
@@ -160,10 +160,16 @@ public class Test {
 		System.out.println("all");
 		MailSystem.getAllMessages().forEach(System.out::println);
 		System.out.println("Filter");
-		MailSystem.filter("word").forEach(System.out::println);
+		MailSystem.filter("star").forEach(System.out::println);
 		System.out.println("countmessages");
 		System.out.println(MailSystem.countMessages());
 		System.out.println("average");
 		MailSystem.averageMessagesPerUser();
+		System.out.println("filter per subject");
+		MailSystem.filterSubject("klk").forEach(System.out::println);
+		System.out.println("CountWords");
+		System.out.println(MailSystem.countWordsOfMessagesFromUser("sergi"));
+		System.out.println("usersBornBeforeXYear");
+		MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
 	}
 }

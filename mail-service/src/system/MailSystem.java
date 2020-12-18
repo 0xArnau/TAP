@@ -83,15 +83,40 @@ public class MailSystem {
 		}
 	}
 	//Group messages per subject. Any user.
+	public static Stream<Message> filterSubject(String word) throws Exception {
+		return getAllMessages().stream().
+			filter(str -> str.getSubject().contains(word));
+	}
 
 	//Count the words of all messages from users with a particular name.
+	public static int countWordsOfMessagesFromUser(String name) {
+		int sum = 0;
+		for (Map.Entry<User, MailBox> m: administrative.entrySet()) {
+			if (m.getKey().getName().equals(name)) {
+				List<Message> message = m.getValue().listMail();
+				int size = message.size();
+				for (int i = 0; i < size; i ++) {
+					sum += message.get(i).getBody().length();
+				}
+			}
+		}
+		return sum;
+	}
 
 	//Get messages to users born before a certain year.
-
-
-	public void sendMail() {
-
+	public static List<Message> usersBornBeforeXYear(int year) throws Exception {
+		List<Message> list = new LinkedList<Message>();
+		for (Map.Entry<User, MailBox> m: administrative.entrySet()) {
+			if (m.getKey().getYear() < year) {
+				list = Stream.concat(list.stream(), m.getValue().listMail().stream())
+					.collect(Collectors.toList());
+			}
+		}
+		return list;
 	}
+
+
+
 
 	public static void removeUser(String username) {
 		User rm = getUser(username);
