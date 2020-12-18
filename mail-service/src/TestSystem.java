@@ -67,6 +67,12 @@ public class TestSystem {
 
         //Test paso 1.16
         //Test paso 2.2
+        user = new User("star1", "Arnau", 2000);
+		user1 = new User("Mr.Star1", "Arnau", 2000);
+		user2 = new User("John Wick1", "Keanu Reeves", 1964);
+		user3 = new User("betaSAV1", "Sergi", 1999);
+		user4 = new User("Mr.Jhonny1", "Josep", 1985);
+
         star = new OnFile();
 		mrStar = new OnFile();
 		john = new OnFile();
