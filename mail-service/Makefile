@@ -26,7 +26,7 @@ users 		: src/users/User.java
 test		: .out/mailservice/Test.class
 		java -cp .out/mailservice/ Test
 testsystem	: .out/mailservice/TestSystem.class
-		java -cp .out/mailservice/ Test	TestSystem
+		java -cp .out/mailservice/ TestSystem
 cli		: .out/mailservice/Cli.class
 		java -cp .out/mailservice/ Cli
 clean 		: .out/mailservice/
