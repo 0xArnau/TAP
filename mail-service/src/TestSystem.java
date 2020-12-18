@@ -36,11 +36,12 @@ public class TestSystem {
         jhonnyBox.sendMail(user.getUserName(), "PC", "Holaaaa, quiero montar un pc, me podrías ayudar porfa? No tengo ni idea de ordenadores. Lo harás gratis, verdad?");
 
         //Test paso 1.4
+        starBox.updateMail();
         //Test paso 1.5
-        starBox.updateMail().forEach(System.out::println);
+        starBox.sortMail().forEach(System.out::println);
 
         //Test paso 1.6 A HACER
-
+        mrStarBox.listMail().forEach(System.out::println);
 
         //Test paso 1.7
         //Test paso 1.8
@@ -68,8 +69,9 @@ public class TestSystem {
         //Test paso 1.16
         //Test paso 2.2
 
-        MailSystem.reset();
         
+        MailSystem.reset();
+
         user = new User("star", "Arnau", 2000);
 		user1 = new User("Mr.Star", "Arnau", 2000);
 		user2 = new User("John Wick", "Keanu Reeves", 1964);
