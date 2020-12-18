@@ -67,12 +67,23 @@ public class TestSystem {
 
         //Test paso 1.16
         //Test paso 2.2
+        user = new User("star1", "Arnau", 2000);
+		user1 = new User("Mr.Star1", "Arnau", 2000);
+		user2 = new User("John Wick1", "Keanu Reeves", 1964);
+		user3 = new User("betaSAV1", "Sergi", 1999);
+		user4 = new User("Mr.Jhonny1", "Josep", 1985);
+
         star = new OnFile();
 		mrStar = new OnFile();
 		john = new OnFile();
 		beta = new OnFile();
         jhonny = new OnFile();
         
+        starBox = MailSystem.newUser(user, star);
+		mrStarBox = MailSystem.newUser(user1, mrStar);
+		johnBox = MailSystem.newUser(user2, john);
+		betaBox = MailSystem.newUser(user3, beta);
+        jhonnyBox = MailSystem.newUser(user4, jhonny);
         //Test paso 2.3
         starBox.sendMail(user1.getUserName(), "subject", "body");
         mrStarBox.sendMail(user.getUserName(), "subject", "body");
