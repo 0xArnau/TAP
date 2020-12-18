@@ -73,6 +73,11 @@ public class TestSystem {
 		beta = new OnFile();
         jhonny = new OnFile();
         
+        starBox = MailSystem.newUser(user, star);
+		mrStarBox = MailSystem.newUser(user1, mrStar);
+		johnBox = MailSystem.newUser(user2, john);
+		betaBox = MailSystem.newUser(user3, beta);
+        jhonnyBox = MailSystem.newUser(user4, jhonny);
         //Test paso 2.3
         starBox.sendMail(user1.getUserName(), "subject", "body");
         mrStarBox.sendMail(user.getUserName(), "subject", "body");
