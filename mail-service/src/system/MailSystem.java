@@ -17,7 +17,7 @@ public class MailSystem {
 	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
 	private static Map<String, User> users = new HashMap<String,User>();
 	private static boolean memory = true;
-	
+
 	public static MailBox newUser(User u){
 		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
@@ -104,6 +104,12 @@ public class MailSystem {
 			filter(str -> str.getSubject().contains(word));
 	}
 
+	public static Stream<Message> filterBySender(String sender, Stream<Message> m) {
+		return m.filter(p -> p.getFrom().equals(sender));
+	}
+	public static Stream<Message> filterBySender(String sender) throws Exception {
+		return getAllMessages().stream().filter(p -> p.getFrom().equals(sender));
+	}
 	//Count the words of all messages from users with a particular name.
 	public static int countWordsOfMessagesFromUser(String name) {
 		int sum = 0;

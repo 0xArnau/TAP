@@ -9,7 +9,7 @@ same subject and make enough so that the following tests have results
 - 4: OK Get one of the mailboxes and update its mail
 - 5: OK List the mailbox messages in the console. (Sorted by newer first.) Use the iterable capabilities
 of the mailbox
-- 6: OK? Now list the messages by sender username using the mailbox feature
+- 6: OK Now list the messages by sender username using the mailbox feature
 - 7: Filter the messages with the following conditions
 	- The message subject contains a certain word
 	- The message sender is a certain user

@@ -48,5 +48,7 @@ public class Test {
 		starBox.updateMail().forEach(System.out::println);
 		System.out.println("by sender");
 		starBox.sortMailBySender().forEach(System.out::println);
+		System.out.println("[7]");
+		MailSystem.filterBySender("beta", MailSystem.filterSubject("word")).forEach(System.out::println);;
 	}
 }
