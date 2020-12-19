@@ -18,9 +18,9 @@ of the mailbox
 	- OK The message subject is a single word
 	- OK The sender was born after year 2000
 - 10: OK Get the count of messages in the system and print it
-- 11: revisar Get the average number of messages received per user and print it
+- 11: OK Get the average number of messages received per user and print it
 - 12:  OK Group the messages per subject in a Map<String, List<Message>> and print it
-- 13: revisar Count the words of all messages sent by users with a certain real name
-- 14: revisar Use the name that you used on two users. Print the result
-- 15: revisar Print the messages received by users born before year 2000
-- 16: Now change the mail store to the file implementation
+- 13: REVISAR Count the words of all messages sent by users with a certain real name
+- 14: REVISAR Use the name that you used on two users. Print the result
+- 15: OK Print the messages received by users born before year 2000
+- 16: >> Now change the mail store to the file implementation
