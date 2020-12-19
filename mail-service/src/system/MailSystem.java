@@ -37,8 +37,8 @@ public class MailSystem {
 		}
 	}
 
-	public static void setMemory(boolean bool) {
-		memory = bool;
+	public static void setMemory(boolean memoryTrueFileFalse) {
+		memory = memoryTrueFileFalse;
 	}
 	/**The mailbox can be retrieved later by giving the username (log in)
 	 * 
