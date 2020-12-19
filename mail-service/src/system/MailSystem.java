@@ -110,6 +110,7 @@ public class MailSystem {
 	public static Stream<Message> filterBySender(String sender) throws Exception {
 		return getAllMessages().stream().filter(p -> p.getFrom().equals(sender));
 	}
+	
 	//Count the words of all messages from users with a particular name.
 	public static int countWordsOfMessagesFromUser(String name) {
 		int sum = 0;
@@ -141,6 +142,9 @@ public class MailSystem {
 		return list;
 	}
 
+	public static Stream<Message> subjectSingleWord(List<Message> m) {
+		return m.stream().filter(p -> p.getSubject().split(" ").length == 1);
+	}
 	public static User getUser(String username) {
 		return users.get(username);
 	}

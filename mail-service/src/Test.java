@@ -18,7 +18,7 @@ public class Test {
 		starBox.sendMail("star", "klk", "wtf");
 		starBox.sendMail("beta", "klk", "wtf");
 		betaBox.sendMail("beta", "wtf", "klk");
-		betaBox.sendMail("beta", "wtf", "klk");
+		betaBox.sendMail("beta", "wtf klk", "klk");
 		betaBox.sendMail("star", "word", "klk");
 		System.out.println("star");
 		starBox.updateMail().forEach(System.out::println);
@@ -50,5 +50,12 @@ public class Test {
 		starBox.sortMailBySender().forEach(System.out::println);
 		System.out.println("[7]");
 		MailSystem.filterBySender("beta", MailSystem.filterSubject("word")).forEach(System.out::println);;
+		
+		System.out.println("[9]");
+		System.out.println("[9.2]");
+		MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
+		System.out.println("[9.1 + 9.2]");
+		MailSystem.subjectSingleWord(MailSystem.usersBornBeforeXYear(2000)).forEach(System.out::println);
+	
 	}
 }

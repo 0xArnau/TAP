@@ -10,9 +10,9 @@ same subject and make enough so that the following tests have results
 - 5: OK List the mailbox messages in the console. (Sorted by newer first.) Use the iterable capabilities
 of the mailbox
 - 6: OK Now list the messages by sender username using the mailbox feature
-- 7: Filter the messages with the following conditions
-	- The message subject contains a certain word
-	- The message sender is a certain user
+- 7: OK Filter the messages with the following conditions
+	- OK The message subject contains a certain word
+	- OK The message sender is a certain user
 - 8: OK Use the mail system object to retrieve all messages and print them
 - 9: Filter messages globally that fulfill the following conditions
 	- The message subject is a single word
