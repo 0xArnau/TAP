@@ -28,10 +28,7 @@ public class Cli {
 						System.out.println("ERROR\nTry again:" + info.length);
 						nonUsers();
 					}
-					if (info[4].equals("file"))
-						box = MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])), new OnFile());
-					else
-						box = MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])), new InMemory());
+					box = MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])));
 					nonUsers();
 				break;
 				case "filter":
@@ -63,6 +60,7 @@ public class Cli {
 		
 		try {
 			System.out.println("Commands availables 4 non users:");
+			System.out.println("\tmemory/file");
 			System.out.println("\tcreateuser <username><name><year of birth><file/memory>");
 			System.out.println("\tfilter <contains<word>> <lessthan<n words>>");
 			System.out.println("\tlogas <username>");

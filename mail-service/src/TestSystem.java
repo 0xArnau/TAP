@@ -26,11 +26,11 @@ public class TestSystem {
 		MailStore beta = new InMemory();
         MailStore jhonny = new InMemory();
         
-		MailBox starBox = MailSystem.newUser(user, star);
-		MailBox mrStarBox = MailSystem.newUser(user1, mrStar);
-		MailBox johnBox = MailSystem.newUser(user2, john);
-		MailBox betaBox = MailSystem.newUser(user3, beta);
-        MailBox jhonnyBox = MailSystem.newUser(user4, jhonny);
+		MailBox starBox = MailSystem.newUser(user);
+		MailBox mrStarBox = MailSystem.newUser(user1);
+		MailBox johnBox = MailSystem.newUser(user2);
+		MailBox betaBox = MailSystem.newUser(user3);
+        MailBox jhonnyBox = MailSystem.newUser(user4);
         
         //Test paso 1.3
         System.out.println("Enviando correos...");
@@ -91,11 +91,11 @@ public class TestSystem {
 		beta = new OnFile();
         jhonny = new OnFile();
         
-        starBox = MailSystem.newUser(user, star);
-		mrStarBox = MailSystem.newUser(user1, mrStar);
-		johnBox = MailSystem.newUser(user2, john);
-		betaBox = MailSystem.newUser(user3, beta);
-        jhonnyBox = MailSystem.newUser(user4, jhonny);
+        starBox = MailSystem.newUser(user);
+		mrStarBox = MailSystem.newUser(user1);
+		johnBox = MailSystem.newUser(user2);
+		betaBox = MailSystem.newUser(user3);
+        jhonnyBox = MailSystem.newUser(user4);
 
         //Test paso 2.3
         System.out.println("Enviando correos...");

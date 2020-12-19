@@ -16,19 +16,29 @@ import java.util.LinkedList;
 public class MailSystem {
 	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
 	private static Map<String, User> users = new HashMap<String,User>();
-
-	public static MailBox newUser(User u, MailStore store){
+	private static boolean memory = true;
+	
+	public static MailBox newUser(User u){
 		if (getExist(u)) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			u = null;
 			return null;
 		} else {
+			MailStore store;
+			if (memory)
+				store = new InMemory();
+			else
+				store = new OnFile();
 			MailBox box = new MailBox(u.getUserName(), store);
 			administrative.put(u,box);
 			users.put(u.getUserName(), u);
 			System.out.println("=> user: " + u.getUserName() + " created.");
 			return box;
 		}
+	}
+
+	public static void setMemory(boolean bool) {
+		memory = bool;
 	}
 	/**The mailbox can be retrieved later by giving the username (log in)
 	 * 
