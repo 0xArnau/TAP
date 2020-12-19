@@ -4,6 +4,7 @@ import messages.*;
 import mailstore.*;
 //import system.*;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -43,7 +44,14 @@ public class MailBox implements Iterable<Message> {
 	}
 	
 	public Stream<Message> sortMail() {
-    return 	messages.stream().sorted().collect(Collectors.toList()).stream();  // sorted(Comparator.reverseOrder()) sorted()
+		return 	messages.stream().sorted()
+			.collect(Collectors.toList()).stream();  // sorted(Comparator.reverseOrder()) sorted()
+	}
+
+	public List<Message> sortMailBySender() {
+		return 	messages.stream()
+			.sorted(Comparator.comparing(Message::getFrom))
+			.collect(Collectors.toList());
 	}
 
 	@Override

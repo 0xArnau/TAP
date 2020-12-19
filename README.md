@@ -2,7 +2,7 @@
 
 ### Mail Service
 
-- 1: Initialize the mail system with an in-memory mail store    (MailSystem es quien decide si es OnFile/InMemory)
+- 1: OK Initialize the mail system with an in-memory mail store    (MailSystem es quien decide si es OnFile/InMemory)
 - 2: OK Create at least 3 users, two have the same name but different username
 - 3: OK Then, use the mailboxes to send a few emails between them. Make some of them share the
 same subject and make enough so that the following tests have results

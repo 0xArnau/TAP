@@ -42,5 +42,11 @@ public class Test {
 		System.out.println(MailSystem.countWordsOfMessagesFromUser("sergi"));
 		System.out.println("usersBornBeforeXYear");
 		MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
+		
+
+		System.out.println("\n");
+		starBox.updateMail().forEach(System.out::println);
+		System.out.println("by sender");
+		starBox.sortMailBySender().forEach(System.out::println);
 	}
 }

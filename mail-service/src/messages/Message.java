@@ -37,7 +37,9 @@ public class Message implements Comparable<Message> {
 	
 	@Override
 	/***/
-	public int compareTo(Message m) {return time.compareTo(m.getTime());}
+	public int compareTo(Message m) {
+		return time.compareTo(m.getTime());
+	}
 	/***/
 	public String toString() {
 		return from + ";" + to + ";" + 
