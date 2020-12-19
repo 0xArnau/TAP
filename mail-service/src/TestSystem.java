@@ -45,7 +45,8 @@ public class TestSystem {
         System.out.println("Actualizando correo star...");
         starBox.updateMail().forEach(System.out::println);
 
-        //Test paso 1.6 A HACER
+        //Test paso 1.6 AHORA FUNCIONA PERO LISTMAIL PETA SI NO HAY CORREOS, UPDATEMAIL ES REQUERIDO ANTES DE LISTMAIL
+        mrStarBox.updateMail();
         mrStarBox.listMail().forEach(System.out::println);
 
         //Test paso 1.7
@@ -110,7 +111,8 @@ public class TestSystem {
         starBox.updateMail().forEach(System.out::println);
 
         //Test paso 2.6 A HACER
-
+        mrStarBox.updateMail();
+        mrStarBox.listMail().forEach(System.out::println);
 
         //Test paso 2.7
         //Test paso 2.8
