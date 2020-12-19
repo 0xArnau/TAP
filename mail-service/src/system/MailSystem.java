@@ -89,14 +89,21 @@ public class MailSystem {
 	 */
 	public static int countMessages() throws Exception {return getAllMessages().size(); }
 
+	public static Map<String, List<Message>> groupBySubject() throws Exception {
+		Map<String, List<Message>> subject = new HashMap<String, List<Message>>();
+		List<Message> messages = getAllMessages();
+		for (Message m: messages) {
+			if (!subject.containsKey(m.getSubject()))
+				subject.put(m.getSubject(), new LinkedList<Message>());
+			subject.get(m.getSubject()).add(m);		
+		}
+		return subject;
+	}
+
 	//Average messages per user.
 	//@betaSAV
-	public static void averageMessagesPerUser() {
-		for (Map.Entry<User,MailBox> m: administrative.entrySet()) {
-			try {
-				System.out.println("user: " + m.getKey().getUserName() + " average messages: " + m.getValue().listMail().size());
-			} catch (Exception e) {}
-		}
+	public static int averageMessagesPerUser() throws Exception {
+		return getAllMessages().size() / getAllUsers().size();
 	}
 	//Group messages per subject. Any user.
 	public static Stream<Message> filterSubject(String word) throws Exception {
