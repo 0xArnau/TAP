@@ -102,8 +102,8 @@ public class MailSystem {
 
 	//Average messages per user.
 	//@betaSAV
-	public static int averageMessagesPerUser() throws Exception {
-		return getAllMessages().size() / getAllUsers().size();
+	public static float averageMessagesPerUser() throws Exception {
+		return getAllMessages().size() / (float) getAllUsers().size();
 	}
 	//Group messages per subject. Any user.
 	public static Stream<Message> filterSubject(String word) throws Exception {
