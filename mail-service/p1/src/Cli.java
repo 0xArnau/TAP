@@ -158,7 +158,6 @@ public class Cli {
 								break;
 							}
 						}
-						users();
 					break;
 					case "exit":
 						exit = true;
