@@ -17,6 +17,7 @@ public class Message implements Comparable<Message> {
 		this.body = body;
 		time = Timestamp.from(Instant.now());
 	}
+
 	public Message(String from, String to, String subject, String body, String time) {
 		this.from = from;
 		this.to = to;
@@ -24,25 +25,40 @@ public class Message implements Comparable<Message> {
 		this.body = body;
 		this.time = Timestamp.valueOf(time);
 	}
+
 	/***/
-	public String getFrom() {return from;}
+	public String getFrom() {
+		return from;
+	}
+
 	/***/
-	public String getTo() {return to;}
+	public String getTo() {
+		return to;
+	}
+
 	/***/
-	public String getSubject() {return subject;}
+	public String getSubject() {
+		return subject;
+	}
+
 	/***/
-	public String getBody() {return body;}
+	public String getBody() {
+		return body;
+	}
+
 	/***/
-	public Timestamp getTime() {return time;}
-	
+	public Timestamp getTime() {
+		return time;
+	}
+
 	@Override
 	/***/
 	public int compareTo(Message m) {
 		return time.compareTo(m.getTime());
 	}
+
 	/***/
 	public String toString() {
-		return from + ";" + to + ";" + 
-		subject + ";" + body + ";" + time.toString();
+		return from + ";" + to + ";" + subject + ";" + body + ";" + time.toString();
 	}
 }

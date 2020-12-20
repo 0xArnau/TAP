@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
 public class MailBox implements Iterable<Message> {
 	private String user;
 	private List<Message> messages;
@@ -23,7 +22,7 @@ public class MailBox implements Iterable<Message> {
 
 	public Stream<Message> updateMail() throws Exception {
 		messages = store.getMail(user);
-		if (messages == null) 
+		if (messages == null)
 			return null;
 		return messages.stream();
 	}
@@ -35,22 +34,22 @@ public class MailBox implements Iterable<Message> {
 	public void sendMail(String to, String subject, String body) {
 		store.sendMail(to, new Message(user, to, subject, body));
 	}
+
 	public void sendMail(String to, Message m) {
 		store.sendMail(to, m);
 	}
+
 	public Stream<Message> filterMail(String p) {
 		return messages.stream().filter(str -> str.toString().contains(p));
 	}
-	
+
 	public Stream<Message> sortMail() {
-		return 	messages.stream().sorted()
-			.collect(Collectors.toList()).stream();  // sorted(Comparator.reverseOrder()) sorted()
+		return messages.stream().sorted().collect(Collectors.toList()).stream(); // sorted(Comparator.reverseOrder())
+																					// sorted()
 	}
 
 	public List<Message> sortMailBySender() {
-		return 	messages.stream()
-			.sorted(Comparator.comparing(Message::getFrom))
-			.collect(Collectors.toList());
+		return messages.stream().sorted(Comparator.comparing(Message::getFrom)).collect(Collectors.toList());
 	}
 
 	@Override

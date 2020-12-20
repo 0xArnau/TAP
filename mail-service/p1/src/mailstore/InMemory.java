@@ -2,7 +2,6 @@ package mailstore;
 
 import messages.*;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.LinkedList;
@@ -14,14 +13,19 @@ public class InMemory implements MailStore {
 
 	public void sendMail(String u, Message m) {
 		if (messages.containsKey(u)) {
-			if (m.toString().matches(".+;"+u+";.+")) {
+			if (m.toString().matches(".+;" + u + ";.+")) {
 				messages.get(u).add(m);
-			}else
+			} else
 				System.out.println("ERROR ==> Message(to) != User");
 			return;
 		}
-		messages.put(u,new LinkedList<Message>(){{add(m);}});
+		messages.put(u, new LinkedList<Message>() {
+			{
+				add(m);
+			}
+		});
 	}
+
 	/**
 	 * 
 	 * @param u

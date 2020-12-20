@@ -59,7 +59,7 @@ public class Test {
 		System.out.println("[9.1 + 9.2]");
 		MailSystem.subjectSingleWord(MailSystem.usersBornAfterXYear(1999)).forEach(System.out::println);
 
-		System.out.println("[10]\n"+MailSystem.averageMessagesPerUser());
+		System.out.println("[10]\n" + MailSystem.averageMessagesPerUser());
 
 		System.out.println("[12]");
 		Map<String, List<Message>> s = MailSystem.groupBySubject();
@@ -68,18 +68,14 @@ public class Test {
 		}
 
 		System.out.println("CLI filter");
-		MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(),"klk", 10)
-			.forEach(System.out::println);
+		MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(), "klk", 10).forEach(System.out::println);
 
 		System.out.println("XN");
-		MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(),"word", 10)
-								.forEach(System.out::println);
+		MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(), "word", 10).forEach(System.out::println);
 		System.out.println("X");
-		MailSystem.containsXWord(MailSystem.getAllMessages(),"word")
-			.forEach(System.out::println);
-			System.out.println("N");
-		MailSystem.lessthanNWords(MailSystem.getAllMessages(),10)
-			.forEach(System.out::println);
-								
+		MailSystem.containsXWord(MailSystem.getAllMessages(), "word").forEach(System.out::println);
+		System.out.println("N");
+		MailSystem.lessthanNWords(MailSystem.getAllMessages(), 10).forEach(System.out::println);
+
 	}
 }

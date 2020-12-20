@@ -3,15 +3,13 @@ import messages.*;
 import mailbox.*;
 import users.*;
 
-
-import java.io.BufferedReader; 
-import java.io.InputStreamReader; 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Cli {
 	private static User user;
 	private static MailBox box;
-	private static BufferedReader reader =
-		new BufferedReader(new InputStreamReader(System.in));
+	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws Exception {
 		System.out.print("File(0)/Memory(1)\n>> ");
@@ -19,10 +17,11 @@ public class Cli {
 			MailSystem.setMemory(false);
 		nonUsers();
 	}
+
 	private static void nonUsers() throws Exception {
 		boolean exit = false;
 		do {
-			String [] info;
+			String[] info;
 			info = waiting4commandNonUsers();
 			try {
 				switch (info[0]) {
@@ -30,50 +29,56 @@ public class Cli {
 						if (info.length < 4)
 							System.out.println("ERROR\nTry again:" + info.length);
 						MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])));
-					break;
+						break;
 					case "filter":
 						if (info.length == 5) {
 							try {
-								MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(),info[2], Integer.parseInt(info[4]))
-									.forEach(System.out::println);
-							} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+								MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(), info[2],
+										Integer.parseInt(info[4])).forEach(System.out::println);
+							} catch (Exception e) {
+								System.out.println("ERROR\nTry again:");
+							}
 						} else if (info.length == 3) {
 							switch (info[1]) {
 								case "contains":
 									try {
-										MailSystem.containsXWord(MailSystem.getAllMessages(),info[2])
-											.forEach(System.out::println);
-									} catch (Exception e) {System.out.println("ERROR\nTry again:");}
-								break;
+										MailSystem.containsXWord(MailSystem.getAllMessages(), info[2])
+												.forEach(System.out::println);
+									} catch (Exception e) {
+										System.out.println("ERROR\nTry again:");
+									}
+									break;
 								case "lessthan":
 									try {
-										MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[2]))
-											.forEach(System.out::println);
-									} catch (Exception e) {System.out.println("ERROR\nTry again:");}
-								break;
+										MailSystem
+												.lessthanNWords(MailSystem.getAllMessages(), Integer.parseInt(info[2]))
+												.forEach(System.out::println);
+									} catch (Exception e) {
+										System.out.println("ERROR\nTry again:");
+									}
+									break;
 								default:
 									System.out.println("ERROR\nTry again:");
-								break;
+									break;
 							}
-						} else 
+						} else
 							System.out.println("ERROR\nTry again:");
-					break;
+						break;
 					case "logas":
 						if (MailSystem.logIn(info[1])) {
 							user = MailSystem.getUser(info[1]);
 							box = MailSystem.getMailBoxOfUser(user);
 							users();
-						}
-						else {
+						} else {
 							System.out.println("ERROR: username\nTry again:");
 						}
-					break;
+						break;
 					case "exit":
 						exit = true;
-					break;
+						break;
 					default:
-					System.out.println("ERROR\nTry again:");
-					break;
+						System.out.println("ERROR\nTry again:");
+						break;
 				}
 			} catch (Exception e) {
 				System.out.println("ERROR\nTry again:");
@@ -81,7 +86,7 @@ public class Cli {
 		} while (!exit);
 	}
 
-	private static String [] waiting4commandNonUsers() {	
+	private static String[] waiting4commandNonUsers() {
 		try {
 			System.out.println("Commands availables 4 non users:");
 			System.out.println("\tcreateuser <username> <name> <year of birth>");
@@ -89,7 +94,7 @@ public class Cli {
 			System.out.println("\tlogas <username>");
 			System.out.println("\texit");
 			System.out.print(">> ");
-			String [] info = reader.readLine().split(" ");
+			String[] info = reader.readLine().split(" ");
 			return info;
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);
@@ -101,8 +106,8 @@ public class Cli {
 
 	private static void users() throws Exception {
 		boolean exit = false;
-		do {	
-			String [] info;
+		do {
+			String[] info;
 			info = waiting4commandUsers();
 			try {
 				switch (info[0]) {
@@ -112,68 +117,70 @@ public class Cli {
 						System.out.print("Body:\n>> ");
 						String body = reader.readLine();
 						box.sendMail(info[1], new Message(user.getUserName(), info[1], subject, body));
-					break;
+						break;
 					case "update":
-						box.updateMail()
-							.forEach(System.out::println);
-					break;
+						box.updateMail().forEach(System.out::println);
+						break;
 					case "list":
-						box.listMail()
-							.forEach(System.out::println);
-					break;
+						box.listMail().forEach(System.out::println);
+						break;
 					case "sort":
 						if (info.length >= 2) {
 							if (info[1].equals("sender"))
-								box.sortMailBySender()
-									.forEach(System.out::println);
-							else 
-								box.sortMail()
-									.forEach(System.out::println);
+								box.sortMailBySender().forEach(System.out::println);
+							else
+								box.sortMail().forEach(System.out::println);
 						} else {
-							box.sortMail()
-								.forEach(System.out::println);
+							box.sortMail().forEach(System.out::println);
 						}
-					break;
+						break;
 					case "filter":
 						if (info.length == 5) {
 							try {
-								MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(),info[2], Integer.parseInt(info[4]))
-									.forEach(System.out::println);
-							} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+								MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(), info[2],
+										Integer.parseInt(info[4])).forEach(System.out::println);
+							} catch (Exception e) {
+								System.out.println("ERROR\nTry again:");
+							}
 						} else if (info.length == 3) {
 							switch (info[1]) {
 								case "contains":
 									try {
-										MailSystem.containsXWord(MailSystem.getAllMessages(),info[2])
-											.forEach(System.out::println);
-									} catch (Exception e) {System.out.println("ERROR\nTry again:");}
-								break;
+										MailSystem.containsXWord(MailSystem.getAllMessages(), info[2])
+												.forEach(System.out::println);
+									} catch (Exception e) {
+										System.out.println("ERROR\nTry again:");
+									}
+									break;
 								case "lessthan":
 									try {
-										MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[2]))
-											.forEach(System.out::println);
-									} catch (Exception e) {System.out.println("ERROR\nTry again:");}
-								break;
+										MailSystem
+												.lessthanNWords(MailSystem.getAllMessages(), Integer.parseInt(info[2]))
+												.forEach(System.out::println);
+									} catch (Exception e) {
+										System.out.println("ERROR\nTry again:");
+									}
+									break;
 								default:
 									System.out.println("ERROR\nTry again:");
-								break;
+									break;
 							}
 						}
-					break;
+						break;
 					case "exit":
 						exit = true;
-					break;
+						break;
 					default:
 						System.out.println("ERROR\nTry again:");
-					break;
+						break;
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				System.out.println("ERROR\nTry again:");
 			}
 		} while (!exit);
 	}
-	private static String [] waiting4commandUsers() {
+
+	private static String[] waiting4commandUsers() {
 		try {
 			System.out.println("\n\n" + user);
 			System.out.println("Commands availables 4 users:");
@@ -184,7 +191,7 @@ public class Cli {
 			System.out.println("\tfilter <contains<word>> <lessthan<n words>>");
 			System.out.println("\texit");
 			System.out.print(">> ");
-			String [] info = reader.readLine().split(" ");
+			String[] info = reader.readLine().split(" ");
 			return info;
 		} catch (Exception e) {
 			System.out.println("ERROR: " + e);
