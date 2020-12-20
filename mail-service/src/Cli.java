@@ -1,12 +1,10 @@
 import system.*;
 import messages.*;
-import mailstore.*;
 import mailbox.*;
 import users.*;
 
 
 import java.io.BufferedReader; 
-import java.io.IOException; 
 import java.io.InputStreamReader; 
 
 public class Cli {
@@ -32,6 +30,31 @@ public class Cli {
 					nonUsers();
 				break;
 				case "filter":
+					if (info.length == 5) {
+						try {
+							MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(),info[2], Integer.parseInt(info[4]))
+								.forEach(System.out::println);
+						} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+					} else if (info.length == 3) {
+						switch (info[1]) {
+							case "contains":
+								try {
+									MailSystem.containsXWord(MailSystem.getAllMessages(),info[2])
+										.forEach(System.out::println);
+								} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+							break;
+							case "lessthan":
+								try {
+									MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[4]))
+										.forEach(System.out::println);
+								} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+							break;
+							default:
+								System.out.println("ERROR\nTry again:");
+							break;
+						}
+						nonUsers();
+					}
 				break;
 				case "logas":
 					if (MailSystem.logIn(info[1])) {
@@ -56,13 +79,12 @@ public class Cli {
 		}
 	}
 
-	private static String [] waiting4commandNonUsers() {
-		
+	private static String [] waiting4commandNonUsers() {	
 		try {
 			System.out.println("Commands availables 4 non users:");
 			System.out.println("\tmemory/file");
-			System.out.println("\tcreateuser <username><name><year of birth><file/memory>");
-			System.out.println("\tfilter <contains<word>> <lessthan<n words>>");
+			System.out.println("\tcreateuser <username> <name> <year of birth> 	<file/memory>");
+			System.out.println("\tfilter <contains <word>> <lessthan <n words>>");
 			System.out.println("\tlogas <username>");
 			System.out.println("\texit");
 			System.out.print(">> ");
@@ -90,19 +112,49 @@ public class Cli {
 					users();
 				break;
 				case "update":
-					box.updateMail().forEach(System.out::println);
+					box.updateMail()
+						.forEach(System.out::println);
 					users();
 				break;
 				case "list":
-					box.listMail().forEach(System.out::println);
+					box.listMail()
+						.forEach(System.out::println);
 					users();
 				break;
 				case "sort":
-					box.sortMail().forEach(System.out::println);
+					if (info[1].equals("sender"))
+						box.sortMailBySender()
+							.forEach(System.out::println);
+					else 
+						box.sortMail()
+							.forEach(System.out::println);
 					users();
 				break;
 				case "filter":
-					box.filterMail(info[2]).forEach(System.out::println);
+					if (info.length == 5) {
+						try {
+							MailSystem.containsXWordAndLessthanNWords(MailSystem.getAllMessages(),info[2], Integer.parseInt(info[4]))
+								.forEach(System.out::println);
+						} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+					} else if (info.length == 3) {
+						switch (info[1]) {
+							case "contains":
+								try {
+									MailSystem.containsXWord(MailSystem.getAllMessages(),info[2])
+										.forEach(System.out::println);
+								} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+							break;
+							case "lessthan":
+								try {
+									MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[4]))
+										.forEach(System.out::println);
+								} catch (Exception e) {System.out.println("ERROR\nTry again:");}
+							break;
+							default:
+								System.out.println("ERROR\nTry again:");
+							break;
+						}
+					}
 					users();
 				break;
 				case "exit":
@@ -126,7 +178,7 @@ public class Cli {
 			System.out.println("\tsend <to>");
 			System.out.println("\tupdate");
 			System.out.println("\tlist");
-			System.out.println("\tsort  <>");
+			System.out.println("\tsort  <time(default)/sender>");
 			System.out.println("\tfilter <contains<word>> <lessthan<n words>>");
 			System.out.println("\texit");
 			System.out.print(">> ");

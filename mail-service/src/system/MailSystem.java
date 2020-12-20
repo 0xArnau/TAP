@@ -6,6 +6,7 @@ import messages.*;
 import users.*;
 
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
@@ -136,6 +137,7 @@ public class MailSystem {
 	}
 
 	//Get messages to users born before a certain year.
+	//Receiver
 	public static List<Message> usersBornBeforeXYear(int year) throws Exception {
 		List<Message> list = new LinkedList<Message>();
 		for (Map.Entry<User, MailBox> m: administrative.entrySet()) {
@@ -148,6 +150,7 @@ public class MailSystem {
 		}
 		return list;
 	}
+	//Sender
 	public static List<Message> usersBornAfterXYear(int year) throws Exception {
 		List<Message> list = new LinkedList<Message>();
 		for (Map.Entry<User, MailBox> m: administrative.entrySet()) {
@@ -161,6 +164,18 @@ public class MailSystem {
 		return list;
 	}
 	
+	public static Stream<Message> containsXWordAndLessthanNWords(List<Message> m, String word, int n) throws Exception {
+		return m.stream()
+			.filter(p -> p.toString().contains(word) && p.getBody().length() < n);
+	}
+	public static Stream<Message> containsXWord(List<Message> m, String word) throws Exception {
+		return m.stream()
+			.filter(p -> p.toString().contains(word));
+	}
+	public static Stream<Message> lessthanNWords(List<Message> m, int n) throws Exception {
+		return m.stream()
+			.filter(p -> p.getBody().length() < n);
+	}
 
 	public static Stream<Message> subjectSingleWord(List<Message> m) {
 		return m.stream().filter(p -> p.getSubject().split(" ").length == 1);

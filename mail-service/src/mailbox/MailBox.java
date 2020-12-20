@@ -4,7 +4,6 @@ import messages.*;
 import mailstore.*;
 //import system.*;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
