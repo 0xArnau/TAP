@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Map;
+import java.util.Map.*;
 import java.util.stream.Stream;
 
 import mailbox.MailBox;
@@ -15,16 +18,10 @@ public class TestSystem {
         System.out.println("--IN-MEMORY IMPLEMENTATION--");
         System.out.println("Creando cuentas...");
 	    User user = new User("star", "Arnau", 2000);
-		User user1 = new User("Mr.Star", "Arnau", 2000);
+		User user1 = new User("Mr.Star", "Arnau", 2001);
 		User user2 = new User("John Wick", "Keanu Reeves", 1964);
 		User user3 = new User("betaSAV", "Sergi", 1999);
         User user4 = new User("Mr.Jhonny", "Josep", 1985);
-        
-		MailStore star = new InMemory();
-		MailStore mrStar = new InMemory();
-		MailStore john = new InMemory();
-		MailStore beta = new InMemory();
-        MailStore jhonny = new InMemory();
         
 		MailBox starBox = MailSystem.newUser(user);
 		MailBox mrStarBox = MailSystem.newUser(user1);
@@ -40,31 +37,35 @@ public class TestSystem {
         jhonnyBox.sendMail(user.getUserName(), "PC", "Holaaaa, quiero montar un pc, me podrías ayudar porfa? No tengo ni idea de ordenadores. Lo harás gratis, verdad?");
 
         //Test paso 1.4
-        starBox.updateMail();
         //Test paso 1.5
         System.out.println("Actualizando correo star...");
         starBox.updateMail().forEach(System.out::println);
 
         //Test paso 1.6 AHORA FUNCIONA PERO LISTMAIL PETA SI NO HAY CORREOS, UPDATEMAIL ES REQUERIDO ANTES DE LISTMAIL
-        mrStarBox.updateMail();
-        mrStarBox.listMail().forEach(System.out::println);
+        System.out.println("1.6");
+        starBox.sortMailBySender().forEach(System.out::println);
 
         //Test paso 1.7
         //Test paso 1.8
-        System.out.println("Correos con el sujeto \"Subject\"");
-        starBox.filterSubject("subject").forEach(System.out::println);
+        System.out.println("Correos con la palabra pc y del usuario star");
+        MailSystem.filterBySender("star", MailSystem.filterSubject("subject")).forEach(System.out::println);
 
-        //Test paso 1.9 A HACER
-        //MailSystem.filterSubject("").forEach(System.out::println);
+        //Test paso 1.9
+        System.out.println("1.9");
+        MailSystem.subjectSingleWord(MailSystem.usersBornAfterXYear(2000)).forEach(System.out::println);
 
         //Test paso 1.10
         System.out.println("Mensajes en el sistema: " + MailSystem.countMessages());
 
         //Test paso 1.11
-        System.out.println("Mensajes de media por usuario: ");
-        MailSystem.averageMessagesPerUser();
+        System.out.println("Mensajes de media por usuario: " + MailSystem.averageMessagesPerUser());
 
-        //Test paso 1.12 A HACER
+        //Test paso 1.12
+        System.out.println("1.12");
+        Map<String, List<Message>> s = MailSystem.groupBySubject();
+        for (Entry<String, List<Message>> m : s.entrySet()) {
+            m.getValue().forEach(System.out::println);
+        }
 
         //Test paso 1.13
         //Test paso 1.14
@@ -75,22 +76,17 @@ public class TestSystem {
         MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
 
         MailSystem.reset();
+        MailSystem.setMemory(false);
 
         //Test paso 1.16
         //Test paso 2.2
         System.out.println("--FILE IMPLEMENTATION--");
         System.out.println("Creando cuentas...");
         user = new User("star", "Arnau", 2000);
-		user1 = new User("Mr.Star", "Arnau", 2000);
+		user1 = new User("Mr.Star", "Arnau", 2001);
 		user2 = new User("John Wick", "Keanu Reeves", 1964);
 		user3 = new User("betaSAV", "Sergi", 1999);
 		user4 = new User("Mr.Jhonny", "Josep", 1985);
-
-        star = new OnFile();
-		mrStar = new OnFile();
-		john = new OnFile();
-		beta = new OnFile();
-        jhonny = new OnFile();
         
         starBox = MailSystem.newUser(user);
 		mrStarBox = MailSystem.newUser(user1);
@@ -111,24 +107,30 @@ public class TestSystem {
         starBox.updateMail().forEach(System.out::println);
 
         //Test paso 2.6 A HACER
-        mrStarBox.updateMail();
-        mrStarBox.listMail().forEach(System.out::println);
+        System.out.println("2.6");
+        starBox.sortMailBySender().forEach(System.out::println);
 
         //Test paso 2.7
         //Test paso 2.8
-        System.out.println("Correos con el sujeto \"Subject\"");
+        System.out.println("Correos con la palabra pc y del usuario star");
+        MailSystem.filterBySender("star", MailSystem.filterSubject("subject")).forEach(System.out::println);
 
         //Test paso 2.9 A HACER
-        //MailSystem.filterSubject("").forEach(System.out::println);
+        System.out.println("2.9");
+        MailSystem.subjectSingleWord(MailSystem.usersBornAfterXYear(2000)).forEach(System.out::println);
 
         //Test paso 2.10
         System.out.println("Mensajes en el sistema: " + MailSystem.countMessages());
 
         //Test paso 2.11
-        System.out.println("Mensajes de media por usuario: ");
-        MailSystem.averageMessagesPerUser();
+        System.out.println("Mensajes de media por usuario: " + MailSystem.averageMessagesPerUser());
 
         //Test paso 2.12 A HACER
+        System.out.println("2.12");
+        Map<String, List<Message>> g = MailSystem.groupBySubject();
+        for (Entry<String, List<Message>> m : g.entrySet()) {
+            m.getValue().forEach(System.out::println);
+        }
 
         //Test paso 2.13
         //Test paso 2.14
