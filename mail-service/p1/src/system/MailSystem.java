@@ -211,10 +211,6 @@ public class MailSystem {
 		administrative.forEach((key, value) -> System.out.println("User: " + key));
 	}
 
-	private static boolean getExist(User u) {
-		return administrative.containsKey(u);
-	}
-
 	public static boolean getExist(String username) {
 		return users.get(username) != null ? true : false;
 	}
