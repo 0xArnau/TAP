@@ -12,7 +12,7 @@ public class User {
 		this.yearOfBirth = year;
 		if (year < 0)
 			if (year == -2147483648)
-				year += 1;
+				yearOfBirth += 1;
 			yearOfBirth *= -1;
 
 		
