@@ -1,12 +1,8 @@
 import java.util.List;
 import java.util.Map;
 import java.util.Map.*;
-import java.util.stream.Stream;
 
 import mailbox.MailBox;
-import mailstore.InMemory;
-import mailstore.MailStore;
-import mailstore.OnFile;
 import messages.Message;
 import system.MailSystem;
 import users.User;

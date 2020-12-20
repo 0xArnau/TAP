@@ -1,8 +1,6 @@
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Stream;
-
 import mailbox.MailBox;
 import messages.Message;
 import system.MailSystem;
