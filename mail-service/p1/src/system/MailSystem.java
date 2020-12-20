@@ -19,7 +19,7 @@ public class MailSystem {
 	private static boolean memory = true;
 
 	public static MailBox newUser(User u){
-		if (getExist(u)) {
+		if (getExist(u.getUserName())) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			u = null;
 			return null;
@@ -36,6 +36,7 @@ public class MailSystem {
 			return box;
 		}
 	}
+	/*
 	public static MailBox newUser(String username, String name, int  year){
 		if (getExist(username)) {
 			System.out.println("=> username: " + username + " already exists.");
@@ -54,6 +55,7 @@ public class MailSystem {
 			return box;
 		}
 	}
+	*/
 
 	public static void setMemory(boolean memoryTrueFileFalse) {
 		memory = memoryTrueFileFalse;
