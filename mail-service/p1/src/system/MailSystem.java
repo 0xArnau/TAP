@@ -165,7 +165,7 @@ public class MailSystem {
 	
 	public static Stream<Message> containsXWordAndLessthanNWords(List<Message> m, String word, int n) throws Exception {
 		return m.stream()
-			.filter(p -> p.toString().contains(word) && p.getBody().length() < n);
+			.filter(p -> p.toString().contains(word) && p.getBody().split(" ").length < n);
 	}
 	public static Stream<Message> containsXWord(List<Message> m, String word) throws Exception {
 		return m.stream()
@@ -173,7 +173,7 @@ public class MailSystem {
 	}
 	public static Stream<Message> lessthanNWords(List<Message> m, int n) throws Exception {
 		return m.stream()
-			.filter(p -> p.getBody().length() < n);
+			.filter(p -> p.getBody().split(" ").length < n);
 	}
 
 	public static Stream<Message> subjectSingleWord(List<Message> m) {
