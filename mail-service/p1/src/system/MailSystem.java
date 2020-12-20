@@ -18,10 +18,9 @@ public class MailSystem {
 	private static Map<String, User> users = new HashMap<String,User>();
 	private static boolean memory = true;
 
-	public static MailBox newUser(User u){
-		if (getExist(u)) {
-			System.out.println("=> username: " + u.getUserName() + " already exists.");
-			u = null;
+	public static MailBox newUser(String username){
+		if (getExist(username)) {
+			System.out.println("=> username: " + username + " already exists.");
 			return null;
 		} else {
 			MailStore store;
@@ -29,6 +28,7 @@ public class MailSystem {
 				store = new InMemory();
 			else
 				store = new OnFile();
+			User u = getUser(username);
 			MailBox box = new MailBox(u.getUserName(), store);
 			administrative.put(u,box);
 			users.put(u.getUserName(), u);

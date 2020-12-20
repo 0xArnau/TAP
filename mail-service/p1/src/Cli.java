@@ -29,7 +29,7 @@ public class Cli {
 					case "createuser":
 						if (info.length < 4)
 							System.out.println("ERROR\nTry again:" + info.length);
-						box = MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])));
+						MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])));
 					break;
 					case "filter":
 						if (info.length == 5) {
@@ -61,6 +61,7 @@ public class Cli {
 					case "logas":
 						if (MailSystem.logIn(info[1])) {
 							user = MailSystem.getUser(info[1]);
+							box = MailSystem.getMailBoxOfUser(user);
 							users();
 						}
 						else {
