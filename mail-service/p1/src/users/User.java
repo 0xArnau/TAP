@@ -10,6 +10,10 @@ public class User {
 		this.username = username;
 		this.name = name;
 		this.yearOfBirth = year;
+		if (year < 0)
+			yearOfBirth *= -1;
+
+		
 	}
 	/***/
 	public String getUserName() {return username;}
