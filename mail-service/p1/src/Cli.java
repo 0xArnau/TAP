@@ -29,7 +29,7 @@ public class Cli {
 					case "createuser":
 						if (info.length < 4)
 							System.out.println("ERROR\nTry again:" + info.length);
-						MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])));
+						MailSystem.newUser(info[1], info[2], Integer.parseInt(info[3]));
 					break;
 					case "filter":
 						if (info.length == 5) {

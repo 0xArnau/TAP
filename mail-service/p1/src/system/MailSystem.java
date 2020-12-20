@@ -18,7 +18,25 @@ public class MailSystem {
 	private static Map<String, User> users = new HashMap<String,User>();
 	private static boolean memory = true;
 
-	public static MailBox newUser(String username){
+	public static MailBox newUser(User u){
+		if (getExist(u)) {
+			System.out.println("=> username: " + u.getUserName() + " already exists.");
+			u = null;
+			return null;
+		} else {
+			MailStore store;
+			if (memory)
+				store = new InMemory();
+			else
+				store = new OnFile();
+			MailBox box = new MailBox(u.getUserName(), store);
+			administrative.put(u,box);
+			users.put(u.getUserName(), u);
+			System.out.println("=> user: " + u.getUserName() + " created.");
+			return box;
+		}
+	}
+	public static MailBox newUser(String username, String name, int  year){
 		if (getExist(username)) {
 			System.out.println("=> username: " + username + " already exists.");
 			return null;
@@ -28,7 +46,7 @@ public class MailSystem {
 				store = new InMemory();
 			else
 				store = new OnFile();
-			User u = getUser(username);
+			User u = new User(username, name, year);
 			MailBox box = new MailBox(u.getUserName(), store);
 			administrative.put(u,box);
 			users.put(u.getUserName(), u);
