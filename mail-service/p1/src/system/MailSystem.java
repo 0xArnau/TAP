@@ -21,7 +21,6 @@ public class MailSystem {
 	public static MailBox newUser(User u){
 		if (getExist(u.getUserName())) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
-			u = null;
 			return null;
 		} else {
 			MailStore store;
@@ -36,26 +35,7 @@ public class MailSystem {
 			return box;
 		}
 	}
-	/*
-	public static MailBox newUser(String username, String name, int  year){
-		if (getExist(username)) {
-			System.out.println("=> username: " + username + " already exists.");
-			return null;
-		} else {
-			MailStore store;
-			if (memory)
-				store = new InMemory();
-			else
-				store = new OnFile();
-			User u = new User(username, name, year);
-			MailBox box = new MailBox(u.getUserName(), store);
-			administrative.put(u,box);
-			users.put(u.getUserName(), u);
-			System.out.println("=> user: " + u.getUserName() + " created.");
-			return box;
-		}
-	}
-	*/
+
 
 	public static void setMemory(boolean memoryTrueFileFalse) {
 		memory = memoryTrueFileFalse;
