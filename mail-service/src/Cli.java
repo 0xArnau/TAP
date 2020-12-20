@@ -21,8 +21,12 @@ public class Cli {
 		info = waiting4commandNonUsers();
 		try {
 			switch (info[0]) {
+				case "file":
+					MailSystem.setMemory(false);
+					nonUsers();
+				break;
 				case "createuser":
-					if (info.length < 5) {
+					if (info.length < 4) {
 						System.out.println("ERROR\nTry again:" + info.length);
 						nonUsers();
 					}
@@ -45,7 +49,7 @@ public class Cli {
 							break;
 							case "lessthan":
 								try {
-									MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[4]))
+									MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[2]))
 										.forEach(System.out::println);
 								} catch (Exception e) {System.out.println("ERROR\nTry again:");}
 							break;
@@ -53,8 +57,9 @@ public class Cli {
 								System.out.println("ERROR\nTry again:");
 							break;
 						}
-						nonUsers();
-					}
+					} else 
+						System.out.println("ERROR\nTry again:");
+					nonUsers();
 				break;
 				case "logas":
 					if (MailSystem.logIn(info[1])) {
@@ -83,7 +88,7 @@ public class Cli {
 		try {
 			System.out.println("Commands availables 4 non users:");
 			System.out.println("\tmemory/file");
-			System.out.println("\tcreateuser <username> <name> <year of birth> 	<file/memory>");
+			System.out.println("\tcreateuser <username> <name> <year of birth>");
 			System.out.println("\tfilter <contains <word>> <lessthan <n words>>");
 			System.out.println("\tlogas <username>");
 			System.out.println("\texit");
