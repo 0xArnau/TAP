@@ -149,7 +149,7 @@ public class Cli {
 								break;
 								case "lessthan":
 									try {
-										MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[4]))
+										MailSystem.lessthanNWords(MailSystem.getAllMessages(),Integer.parseInt(info[2]))
 											.forEach(System.out::println);
 									} catch (Exception e) {System.out.println("ERROR\nTry again:");}
 								break;
