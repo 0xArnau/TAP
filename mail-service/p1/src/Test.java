@@ -64,7 +64,8 @@ public class Test {
 		System.out.println("[9.1 + 9.2]");
 		MailSystem.subjectSingleWord(MailSystem.usersBornAfterXYear(1999)).forEach(System.out::println);
 
-		System.out.println("[10]\n" + MailSystem.averageMessagesPerUser());
+		System.out.println("[10]\n");
+		MailSystem.averageMessagesPerUser();
 
 		System.out.println("[12]");
 		Map<String, List<Message>> s = MailSystem.groupBySubject();
@@ -94,5 +95,7 @@ public class Test {
 		MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
 		System.out.println("get after year");
 		MailSystem.usersBornAfterXYear(2000).forEach(System.out::println);
+		System.out.println("average");
+		MailSystem.averageMessagesPerUser();
 	}
 }

@@ -6,6 +6,7 @@ import messages.*;
 import users.*;
 
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -52,7 +53,7 @@ public class MailSystem {
 	 */
 	public static List<Message> getAllMessages() throws Exception {
 		Stream<Message> all = Stream.empty();
-		List<List<Message>> list=	 administrative.values().stream().map(p -> p.listMail()).collect(Collectors.toList());
+		List<List<Message>> list = administrative.values().stream().map(p -> p.listMail()).collect(Collectors.toList());
 		for (List<Message> l : list) {
 			all = Stream.concat(all, l.stream());
 		}
@@ -88,14 +89,18 @@ public class MailSystem {
 	}
 
 	public static Map<String, List<Message>> groupBySubject() throws Exception {
-		Map<String, List<Message>> all = getAllMessages().stream()
-			.collect(Collectors.groupingBy(Message::getSubject));
+		Map<String, List<Message>> all = getAllMessages().stream().collect(Collectors.groupingBy(Message::getSubject));
 		return all;
 	}
+
 	// Average messages per user.
 	// @betaSAV
-	public static float averageMessagesPerUser() throws Exception {
-		return getAllMessages().size() / (float) getAllUsers().size();
+	public static void averageMessagesPerUser() throws Exception {
+		float size = getAllMessages().size();
+		for (Entry<User, MailBox> m : administrative.entrySet()) {
+			System.out.print("Username: " + m.getKey().getUserName() + " average messages received: ");
+			System.out.println(m.getValue().listMail().size() / size + " %");
+		}
 	}
 
 	// Group messages per subject. Any user.
