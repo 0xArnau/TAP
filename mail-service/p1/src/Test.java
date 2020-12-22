@@ -2,6 +2,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import mailbox.MailBox;
+import mailstore.InMemory;
+import mailstore.MailStore;
+import mailstore.OnFile;
 import messages.Message;
 import system.MailSystem;
 import users.User;
@@ -9,13 +12,14 @@ import users.User;
 public class Test {
 	public static void main(String[] args) throws Exception {
 
-		/*
+		
 		System.out.println("MailSystem");
 		User star = new User("star", "arnau", 2000);
 		User beta = new User("beta", "sergi", 1999);
-		MailSystem.setMemory(true);
-		MailBox starBox = MailSystem.newUser(star);
-		MailBox betaBox = MailSystem.newUser(beta);
+		MailStore sb = new InMemory();
+		MailStore bb = new InMemory();
+		MailBox starBox = MailSystem.newUser(star, sb);
+		MailBox betaBox = MailSystem.newUser(beta, bb);
 
 		MailSystem.getAllUsers().forEach(System.out::println);
 		starBox.sendMail("star", "klk", "wtf");
@@ -77,6 +81,6 @@ public class Test {
 		MailSystem.containsXWord(MailSystem.getAllMessages(), "word").forEach(System.out::println);
 		System.out.println("N");
 		MailSystem.lessthanNWords(MailSystem.getAllMessages(), 10).forEach(System.out::println);
-		*/
+		
 	}
 }
