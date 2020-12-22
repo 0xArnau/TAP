@@ -9,6 +9,7 @@ import users.User;
 
 public class TestSystem {
     public static void main(String[] args) throws Exception {
+        /*
         // Test paso 1.1
         // Test paso 1.2
         System.out.println("--IN-MEMORY IMPLEMENTATION--");
@@ -138,6 +139,6 @@ public class TestSystem {
         // Test paso 2.15
         System.out.println("Correos enviados por usuarios nacidos antes del 2000: ");
         MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
-
+        */
     }
 }

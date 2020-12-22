@@ -9,6 +9,7 @@ import users.User;
 public class Test {
 	public static void main(String[] args) throws Exception {
 
+		/*
 		System.out.println("MailSystem");
 		User star = new User("star", "arnau", 2000);
 		User beta = new User("beta", "sergi", 1999);
@@ -76,6 +77,6 @@ public class Test {
 		MailSystem.containsXWord(MailSystem.getAllMessages(), "word").forEach(System.out::println);
 		System.out.println("N");
 		MailSystem.lessthanNWords(MailSystem.getAllMessages(), 10).forEach(System.out::println);
-
+		*/
 	}
 }

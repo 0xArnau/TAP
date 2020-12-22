@@ -1,6 +1,9 @@
 import system.*;
 import messages.*;
 import mailbox.*;
+import mailstore.InMemory;
+import mailstore.MailStore;
+import mailstore.OnFile;
 import users.*;
 
 import java.io.BufferedReader;
@@ -12,9 +15,6 @@ public class Cli {
 	private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 	public static void main(String[] args) throws Exception {
-		System.out.print("File(0)/Memory(1)\n>> ");
-		if (reader.readLine().equals("0"))
-			MailSystem.setMemory(false);
 		nonUsers();
 	}
 
@@ -26,10 +26,21 @@ public class Cli {
 			try {
 				switch (info[0]) {
 					case "createuser":
-						if (info.length < 4)
+						if (info.length < 5)
 							System.out.println("ERROR\nTry again:" + info.length);
-						MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])));
-						break;
+						else {
+							MailStore store;
+							if (info[4].equals("file"))
+								store = new OnFile();
+							else if (info[4].equals("memory"))
+								store = new InMemory();
+							else {
+								System.out.println("ERROR\nTry again:" + info.length);
+								break;
+							}
+							MailSystem.newUser(new User(info[1], info[2], Integer.parseInt(info[3])), store);
+						}
+					break;
 					case "filter":
 						if (info.length == 5) {
 							try {
@@ -89,7 +100,7 @@ public class Cli {
 	private static String[] waiting4commandNonUsers() {
 		try {
 			System.out.println("Commands availables 4 non users:");
-			System.out.println("\tcreateuser <username> <name> <year of birth>");
+			System.out.println("\tcreateuser <username> <name> <year of birth> <file/memory>");
 			System.out.println("\tfilter <contains <word>> <lessthan <n words>>");
 			System.out.println("\tlogas <username>");
 			System.out.println("\texit");
