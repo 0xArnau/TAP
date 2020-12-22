@@ -22,11 +22,11 @@ public class Test {
 		MailBox betaBox = MailSystem.newUser(beta, bb);
 
 		MailSystem.getAllUsers().forEach(System.out::println);
-		starBox.sendMail("star", "klk", "wtf");
-		starBox.sendMail("beta", "klk", "wtf");
+		starBox.sendMail("star", "klk", "wtfklk");
+		starBox.sendMail("beta", "klk", "wtfklk");
 		betaBox.sendMail("beta", "wtf", "klk");
 		betaBox.sendMail("beta", "wtf", "klk");
-		betaBox.sendMail("star", "word", "klk");
+		betaBox.sendMail("star", "word", "klkklk");
 		System.out.println("star");
 		starBox.updateMail().forEach(System.out::println);
 		System.out.println("beta");
@@ -94,7 +94,12 @@ public class Test {
 		g = MailSystem.groupBySubject(true);
     for (Entry<String, List<Message>> m : g.entrySet()) {
       m.getValue().forEach(System.out::println);
-    }
+		}
+		System.out.println("sum");
+		//MailSystem.countWordsOfMessagesFromUser("arnau", true).forEach(System.out::println);
+		System.out.println(MailSystem.countWordsOfMessagesFromUser("arnau", true));
+		System.out.println("sum");
+		System.out.println(MailSystem.countWordsOfMessagesFromUser("arnau"));
 		
 	}
 }

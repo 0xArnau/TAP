@@ -6,6 +6,7 @@ import messages.*;
 import users.*;
 
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
@@ -149,6 +150,11 @@ public class MailSystem {
 			}
 		}
 		return sum;
+	}
+	public static int countWordsOfMessagesFromUser(String name, boolean s) throws Exception {
+		return 	getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
+			.map(x -> x.getBody().length())
+			.collect(Collectors.summingInt(Integer::intValue));
 	}
 
 	// Get messages to users born before a certain year.
