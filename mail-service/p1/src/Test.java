@@ -81,6 +81,10 @@ public class Test {
 		MailSystem.containsXWord(MailSystem.getAllMessages(), "word").forEach(System.out::println);
 		System.out.println("N");
 		MailSystem.lessthanNWords(MailSystem.getAllMessages(), 10).forEach(System.out::println);
+		System.out.println("getallmessages");
+		MailSystem.getAllMessages().forEach(System.out::println);
+		System.out.println("getallmessages");
+		MailSystem.getAllMessages(true).forEach(System.out::println);
 		
 	}
 }

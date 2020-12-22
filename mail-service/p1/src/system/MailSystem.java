@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class MailSystem {
@@ -58,6 +59,16 @@ public class MailSystem {
 			}
 		}
 		return all;
+	}
+
+	public static List<Message> getAllMessages(boolean s) throws Exception {
+		Stream<Message> all = Stream.empty();
+		List<List<Message>> list=	 administrative.values().stream().map(p -> p.listMail()).collect(Collectors.toList());
+		
+		for (List<Message> l : list) {
+			all = Stream.concat(all, l.stream());
+		}
+		return all.collect(Collectors.toList());
 	}
 
 	/**
