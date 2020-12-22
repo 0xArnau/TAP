@@ -50,7 +50,7 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static List<Message> getAllMessages(boolean s) throws Exception {
+	public static List<Message> getAllMessages() throws Exception {
 		Stream<Message> all = Stream.empty();
 		List<List<Message>> list=	 administrative.values().stream().map(p -> p.listMail()).collect(Collectors.toList());
 		for (List<Message> l : list) {
@@ -87,7 +87,7 @@ public class MailSystem {
 		return getAllMessages().size();
 	}
 
-	public static Map<String, List<Message>> groupBySubject(boolean s) throws Exception {
+	public static Map<String, List<Message>> groupBySubject() throws Exception {
 		Map<String, List<Message>> all = getAllMessages().stream()
 			.collect(Collectors.groupingBy(Message::getSubject));
 		return all;
@@ -112,7 +112,7 @@ public class MailSystem {
 	}
 
 	// Count the words of all messages from users with a particular name.
-	public static int countWordsOfMessagesFromUser(String name, boolean s) throws Exception {
+	public static int countWordsOfMessagesFromUser(String name) throws Exception {
 		return 	getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
 			.map(x -> x.getBody().length())
 			.collect(Collectors.summingInt(Integer::intValue));
