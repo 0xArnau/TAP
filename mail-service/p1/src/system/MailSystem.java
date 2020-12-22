@@ -59,6 +59,11 @@ public class MailSystem {
 		return all.collect(Collectors.toList());
 	}
 
+	public void updateMessages() throws Exception {
+		for (Entry<User, MailBox> m: administrative.entrySet()) {
+			m.getValue().updateMail();
+		}
+	}
 	/**
 	 * Get all users in the system.
 	 * 

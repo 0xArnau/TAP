@@ -22,6 +22,7 @@ public class TestSystem {
 		
         // Test paso 1.1
         // Test paso 1.2
+        System.out.println("1.1/2");
         System.out.println("--IN-MEMORY IMPLEMENTATION--");
         System.out.println("Creando cuentas...");
         User user = new User("star", "Arnau", 2000);
@@ -37,6 +38,7 @@ public class TestSystem {
         MailBox jhonnyBox = system.newUser(user4, jhonnyMem);
 
         // Test paso 1.3
+        System.out.println("1.3");
         System.out.println("Enviando correos...");
         starBox.sendMail(user1.getUserName(), "subject", "body");
         mrStarBox.sendMail(user.getUserName(), "subject", "body");
@@ -46,6 +48,7 @@ public class TestSystem {
 
         // Test paso 1.4
         // Test paso 1.5
+        System.out.println("1.4/5");
         System.out.println("Actualizando correo star...");
         starBox.updateMail().forEach(System.out::println);
 
@@ -56,6 +59,7 @@ public class TestSystem {
 
         // Test paso 1.7
         // Test paso 1.8
+        System.out.println("1.7/8");
         System.out.println("Correos con la palabra pc y del usuario star");
         system.filterBySender("star", system.filterSubject("subject")).forEach(System.out::println);
 
@@ -64,9 +68,11 @@ public class TestSystem {
         system.subjectSingleWord(system.usersBornAfterXYear(2000)).forEach(System.out::println);
 
         // Test paso 1.10
+        System.out.println("1.10");
         System.out.println("Mensajes en el sistema: " + system.countMessages());
 
         // Test paso 1.11
+        System.out.println("1.11");
         System.out.println("Mensajes de media por usuario: ");
         system.averageMessagesPerUser();
 
@@ -79,15 +85,19 @@ public class TestSystem {
 
         // Test paso 1.13
         // Test paso 1.14
+        System.out.println("1.13/14");
         System.out.println("Palabras totales enviadas por Arnau: " + system.countWordsOfMessagesFromUser("Arnau"));
 
         // Test paso 1.15
+        System.out.println("1.15");
         System.out.println("Correos enviados por usuarios nacidos antes del 2000: ");
         system.usersBornBeforeXYear(2000).forEach(System.out::println);
 
         system.reset();
 
         // Test paso 1.16
+        System.out.println("2.1");
+        System.out.println("1.16");
         starMem = new OnFile();
         mrStarMem = new OnFile();
         johnMem = new OnFile();
@@ -95,6 +105,7 @@ public class TestSystem {
         jhonnyMem = new OnFile();
 
         // Test paso 2.2
+        System.out.println("2.2");
         System.out.println("--FILE IMPLEMENTATION--");
         System.out.println("Creando cuentas...");
         user = new User("star", "Arnau", 2000);
@@ -110,6 +121,7 @@ public class TestSystem {
         jhonnyBox = system.newUser(user4, jhonnyMem);
 
         // Test paso 2.3
+        System.out.println("2.3");
         System.out.println("Enviando correos...");
         starBox.sendMail(user1.getUserName(), "subject", "body");
         mrStarBox.sendMail(user.getUserName(), "subject", "body");
@@ -117,8 +129,13 @@ public class TestSystem {
         jhonnyBox.sendMail(user.getUserName(), "PC",
                 "Holaaaa, quiero montar un pc, me podrías ayudar porfa? No tengo ni idea de ordenadores. Lo harás gratis, verdad?");
 
+        system.updateMessages();
+        System.out.println("\nall messages\n");
+        system.getAllMessages().forEach(System.out::println);
+        System.out.println("\n");
         // Test paso 2.4
         // Test paso 2.5
+        System.out.println("2.4/5");
         System.out.println("Actualizando correo star...");
         starBox.updateMail().forEach(System.out::println);
 
@@ -128,17 +145,22 @@ public class TestSystem {
 
         // Test paso 2.7
         // Test paso 2.8
+        System.out.println("2.7/8");
         System.out.println("Correos con la palabra pc y del usuario star");
         system.filterBySender("star", system.filterSubject("subject")).forEach(System.out::println);
+        system.filterBySender("star").forEach(System.out::println);
+        system.filterSubject("subjecy").forEach(System.out::println);
 
         // Test paso 2.9 A HACER
         System.out.println("2.9");
         system.subjectSingleWord(system.usersBornAfterXYear(2000)).forEach(System.out::println);
 
         // Test paso 2.10
+        System.out.println("2.10");
         System.out.println("Mensajes en el sistema: " + system.countMessages());
 
         // Test paso 2.11
+        System.out.println("2.11");
         System.out.println("Mensajes de media por usuario: ");
         system.averageMessagesPerUser();
 
@@ -151,11 +173,14 @@ public class TestSystem {
 
         // Test paso 2.13
         // Test paso 2.14
+        System.out.println("2.13/14");
         System.out.println("Palabras totales enviadas por Arnau: " + system.countWordsOfMessagesFromUser("Arnau"));
 
         // Test paso 2.15
+        System.out.println("2.15");
         System.out.println("Correos enviados por usuarios nacidos antes del 2000: ");
         system.usersBornBeforeXYear(2000).forEach(System.out::println);
- 
+        
+        System.out.println("\n<=>");
     }
 }
