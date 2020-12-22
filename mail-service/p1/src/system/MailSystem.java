@@ -121,31 +121,16 @@ public class MailSystem {
 	// Get messages to users born before a certain year.
 	// Receiver
 	public static List<Message> usersBornBeforeXYear(int year) throws Exception {
-		List<Message> list = new LinkedList<Message>();
-		for (Map.Entry<User, MailBox> m : administrative.entrySet()) {
-			try {
-				if (m.getKey().getYear() < year) {
-					list = Stream.concat(list.stream(), m.getValue().listMail().stream()).collect(Collectors.toList());
-				}
-			} catch (Exception e) {
-			}
-		}
-		return list;
+		return getAllMessages().stream()
+			.filter(p -> getUser(p.getTo()).getYear() < year)
+			.collect(Collectors.toList());
 	}
 
 	// Sender
 	public static List<Message> usersBornAfterXYear(int year) throws Exception {
-		List<Message> list = new LinkedList<Message>();
-		for (Map.Entry<User, MailBox> m : administrative.entrySet()) {
-			try {
-				for (Message mess : m.getValue()) {
-					if (getUser(mess.getTo()).getYear() > year)
-						list.add(mess);
-				}
-			} catch (Exception e) {
-			}
-		}
-		return list;
+		return getAllMessages().stream()
+			.filter(p -> getUser(p.getFrom()).getYear() > year)
+			.collect(Collectors.toList());
 	}
 
 	public static Stream<Message> containsXWordAndLessthanNWords(List<Message> m, String word, int n) throws Exception {

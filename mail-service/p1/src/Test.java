@@ -14,7 +14,7 @@ public class Test {
 
 		
 		System.out.println("MailSystem");
-		User star = new User("star", "arnau", 2000);
+		User star = new User("star", "arnau", 2001);
 		User beta = new User("beta", "sergi", 1999);
 		MailStore sb = new InMemory();
 		MailStore bb = new InMemory();
@@ -90,6 +90,9 @@ public class Test {
 		}
 		System.out.println("sum");
 		System.out.println(MailSystem.countWordsOfMessagesFromUser("arnau"));
-		
+		System.out.println("get before year");
+		MailSystem.usersBornBeforeXYear(2000).forEach(System.out::println);
+		System.out.println("get after year");
+		MailSystem.usersBornAfterXYear(2000).forEach(System.out::println);
 	}
 }
