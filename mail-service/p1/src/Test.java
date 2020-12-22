@@ -85,6 +85,16 @@ public class Test {
 		MailSystem.getAllMessages().forEach(System.out::println);
 		System.out.println("getallmessages");
 		MailSystem.getAllMessages(true).forEach(System.out::println);
+		System.out.println("group");
+		Map<String, List<Message>> g = MailSystem.groupBySubject();
+		for (Entry<String, List<Message>> m : g.entrySet()) {
+			m.getValue().forEach(System.out::println);
+		}
+		System.out.println("group");
+		g = MailSystem.groupBySubject(true);
+    for (Entry<String, List<Message>> m : g.entrySet()) {
+      m.getValue().forEach(System.out::println);
+    }
 		
 	}
 }

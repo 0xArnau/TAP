@@ -109,7 +109,11 @@ public class MailSystem {
 		}
 		return subject;
 	}
-
+	public static Map<String, List<Message>> groupBySubject(boolean s) throws Exception {
+		Map<String, List<Message>> all = getAllMessages().stream()
+			.collect(Collectors.groupingBy(Message::getSubject));
+		return all;
+	}
 	// Average messages per user.
 	// @betaSAV
 	public static float averageMessagesPerUser() throws Exception {
