@@ -14,10 +14,10 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class MailSystem {
-	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
-	private static Map<String, User> users = new HashMap<String, User>();
+	private Map<User, MailBox> administrative = new HashMap<User, MailBox>();
+	private Map<String, User> users = new HashMap<String, User>();
 
-	public static MailBox newUser(User u, MailStore store) {
+	public MailBox newUser(User u, MailStore store) {
 		if (getExist(u.getUserName())) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			return null;
@@ -36,7 +36,7 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static boolean logIn(String username) {
+	public boolean logIn(String username) {
 		User user = getUser(username);
 		if (user == null)
 			return false;
@@ -48,7 +48,7 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static List<Message> getAllMessages() throws Exception {
+	public List<Message> getAllMessages() throws Exception {
 		Stream<Message> all = Stream.empty();
 		List<List<Message>> list = administrative.values().stream().map(p -> p.listMail()).collect(Collectors.toList());
 		for (List<Message> l : list) {
@@ -62,7 +62,7 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static Set<User> getAllUsers() {
+	public Set<User> getAllUsers() {
 		return administrative.keySet();
 	}
 
@@ -72,7 +72,7 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static Stream<Message> filter(String word) throws Exception {
+	public Stream<Message> filter(String word) throws Exception {
 		return getAllMessages().stream().filter(str -> str.toString().contains(word));
 	}
 
@@ -81,18 +81,18 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static int countMessages() throws Exception {
+	public int countMessages() throws Exception {
 		return getAllMessages().size();
 	}
 
-	public static Map<String, List<Message>> groupBySubject() throws Exception {
+	public Map<String, List<Message>> groupBySubject() throws Exception {
 		Map<String, List<Message>> all = getAllMessages().stream().collect(Collectors.groupingBy(Message::getSubject));
 		return all;
 	}
 
 	// Average messages per user.
 	// @betaSAV
-	public static void averageMessagesPerUser() throws Exception {
+	public void averageMessagesPerUser() throws Exception {
 		float size = getAllMessages().size();
 		for (Entry<User, MailBox> m : administrative.entrySet()) {
 			System.out.print("Username: " + m.getKey().getUserName() + " average messages received: ");
@@ -101,20 +101,20 @@ public class MailSystem {
 	}
 
 	// Group messages per subject. Any user.
-	public static Stream<Message> filterSubject(String word) throws Exception {
+	public Stream<Message> filterSubject(String word) throws Exception {
 		return getAllMessages().stream().filter(str -> str.getSubject().contains(word));
 	}
 
-	public static Stream<Message> filterBySender(String sender, Stream<Message> m) {
+	public Stream<Message> filterBySender(String sender, Stream<Message> m) {
 		return m.filter(p -> p.getFrom().equals(sender));
 	}
 
-	public static Stream<Message> filterBySender(String sender) throws Exception {
+	public Stream<Message> filterBySender(String sender) throws Exception {
 		return getAllMessages().stream().filter(p -> p.getFrom().equals(sender));
 	}
 
 	// Count the words of all messages from users with a particular name.
-	public static int countWordsOfMessagesFromUser(String name) throws Exception {
+	public int countWordsOfMessagesFromUser(String name) throws Exception {
 		return 	getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
 			.map(x -> x.getBody().length())
 			.collect(Collectors.summingInt(Integer::intValue));
@@ -122,40 +122,40 @@ public class MailSystem {
 
 	// Get messages to users born before a certain year.
 	// Receiver
-	public static List<Message> usersBornBeforeXYear(int year) throws Exception {
+	public List<Message> usersBornBeforeXYear(int year) throws Exception {
 		return getAllMessages().stream()
 			.filter(p -> getUser(p.getTo()).getYear() < year)
 			.collect(Collectors.toList());
 	}
 
 	// Sender
-	public static List<Message> usersBornAfterXYear(int year) throws Exception {
+	public List<Message> usersBornAfterXYear(int year) throws Exception {
 		return getAllMessages().stream()
 			.filter(p -> getUser(p.getFrom()).getYear() > year)
 			.collect(Collectors.toList());
 	}
 
-	public static Stream<Message> containsXWordAndLessthanNWords(List<Message> m, String word, int n) throws Exception {
+	public Stream<Message> containsXWordAndLessthanNWords(List<Message> m, String word, int n) throws Exception {
 		return m.stream().filter(p -> p.toString().contains(word) && p.getBody().split(" ").length < n);
 	}
 
-	public static Stream<Message> containsXWord(List<Message> m, String word) throws Exception {
+	public Stream<Message> containsXWord(List<Message> m, String word) throws Exception {
 		return m.stream().filter(p -> p.toString().contains(word));
 	}
 
-	public static Stream<Message> lessthanNWords(List<Message> m, int n) throws Exception {
+	public Stream<Message> lessthanNWords(List<Message> m, int n) throws Exception {
 		return m.stream().filter(p -> p.getBody().split(" ").length < n);
 	}
 
-	public static Stream<Message> subjectSingleWord(List<Message> m) {
+	public Stream<Message> subjectSingleWord(List<Message> m) {
 		return m.stream().filter(p -> p.getSubject().split(" ").length == 1);
 	}
 
-	public static User getUser(String username) {
+	public User getUser(String username) {
 		return users.get(username);
 	}
 
-	public static MailBox getMailBoxOfUser(String username) {
+	public MailBox getMailBoxOfUser(String username) {
 		try {
 			return administrative.get(getUser(username));
 		} catch (Exception e) {
@@ -163,19 +163,19 @@ public class MailSystem {
 		}
 	}
 
-	public static MailBox getMailBoxOfUser(User username) {
+	public MailBox getMailBoxOfUser(User username) {
 		return administrative.get(username);
 	}
 
-	public static void printUsers() {
+	public void printUsers() {
 		administrative.forEach((key, value) -> System.out.println("User: " + key));
 	}
 
-	public static boolean getExist(String username) {
+	public boolean getExist(String username) {
 		return users.get(username) != null ? true : false;
 	}
 
-	public static void reset() {
+	public void reset() {
 		administrative = new HashMap<User, MailBox>();
 		users = new HashMap<String, User>();
 	}
