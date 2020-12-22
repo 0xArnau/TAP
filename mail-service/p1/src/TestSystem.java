@@ -45,7 +45,10 @@ public class TestSystem {
         betaBox.sendMail(user2.getUserName(), "Nota", "Hola profe, quina nota tindré al final del treball?");
         jhonnyBox.sendMail(user.getUserName(), "PC",
                 "Holaaaa, quiero montar un pc, me podrías ayudar porfa? No tengo ni idea de ordenadores. Lo harás gratis, verdad?");
-
+        
+        system.updateMessages();
+        System.out.println("Actualizando correos...");
+        system.getAllMessages();
         // Test paso 1.4
         // Test paso 1.5
         System.out.println("1.4/5");
@@ -60,7 +63,7 @@ public class TestSystem {
         // Test paso 1.7
         // Test paso 1.8
         System.out.println("1.7/8");
-        System.out.println("Correos con la palabra pc y del usuario star");
+        System.out.println("Correos con la palabra subject y del usuario star");
         system.filterBySender("star", system.filterSubject("subject")).forEach(System.out::println);
 
         // Test paso 1.9
@@ -130,9 +133,8 @@ public class TestSystem {
                 "Holaaaa, quiero montar un pc, me podrías ayudar porfa? No tengo ni idea de ordenadores. Lo harás gratis, verdad?");
 
         system.updateMessages();
-        System.out.println("\nall messages\n");
-        system.getAllMessages().forEach(System.out::println);
-        System.out.println("\n");
+        System.out.println("Actualizando correos...");
+        system.getAllMessages();
         // Test paso 2.4
         // Test paso 2.5
         System.out.println("2.4/5");
