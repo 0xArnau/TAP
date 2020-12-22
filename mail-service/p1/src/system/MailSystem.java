@@ -50,22 +50,9 @@ public class MailSystem {
 	 * 
 	 * @return
 	 */
-	public static List<Message> getAllMessages() throws Exception {
-		List<Message> all = new LinkedList<Message>();
-		for (Map.Entry<User, MailBox> u : administrative.entrySet()) {
-			try {
-				if (u.getValue().updateMail() != null)
-					all = Stream.concat(all.stream(), u.getValue().listMail().stream()).collect(Collectors.toList());
-			} catch (Exception e) {
-			}
-		}
-		return all;
-	}
-
 	public static List<Message> getAllMessages(boolean s) throws Exception {
 		Stream<Message> all = Stream.empty();
 		List<List<Message>> list=	 administrative.values().stream().map(p -> p.listMail()).collect(Collectors.toList());
-		
 		for (List<Message> l : list) {
 			all = Stream.concat(all, l.stream());
 		}
@@ -100,16 +87,6 @@ public class MailSystem {
 		return getAllMessages().size();
 	}
 
-	public static Map<String, List<Message>> groupBySubject() throws Exception {
-		Map<String, List<Message>> subject = new HashMap<String, List<Message>>();
-		List<Message> messages = getAllMessages();
-		for (Message m : messages) {
-			if (!subject.containsKey(m.getSubject()))
-				subject.put(m.getSubject(), new LinkedList<Message>());
-			subject.get(m.getSubject()).add(m);
-		}
-		return subject;
-	}
 	public static Map<String, List<Message>> groupBySubject(boolean s) throws Exception {
 		Map<String, List<Message>> all = getAllMessages().stream()
 			.collect(Collectors.groupingBy(Message::getSubject));
@@ -135,22 +112,6 @@ public class MailSystem {
 	}
 
 	// Count the words of all messages from users with a particular name.
-	public static int countWordsOfMessagesFromUser(String name) {
-		int sum = 0;
-		for (Map.Entry<User, MailBox> m : administrative.entrySet()) {
-			try {
-				if (m.getKey().getName().equals(name)) {
-					List<Message> message = m.getValue().listMail();
-					int size = message.size();
-					for (int i = 0; i < size; i++) {
-						sum += message.get(i).getBody().length();
-					}
-				}
-			} catch (Exception e) {
-			}
-		}
-		return sum;
-	}
 	public static int countWordsOfMessagesFromUser(String name, boolean s) throws Exception {
 		return 	getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
 			.map(x -> x.getBody().length())
