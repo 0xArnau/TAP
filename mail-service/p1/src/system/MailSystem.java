@@ -7,14 +7,11 @@ import users.*;
 
 import java.util.Set;
 import java.util.Map.Entry;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 
 public class MailSystem {
 	private static Map<User, MailBox> administrative = new HashMap<User, MailBox>();
