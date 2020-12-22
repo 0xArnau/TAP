@@ -83,21 +83,11 @@ public class Test {
 		MailSystem.lessthanNWords(MailSystem.getAllMessages(), 10).forEach(System.out::println);
 		System.out.println("getallmessages");
 		MailSystem.getAllMessages().forEach(System.out::println);
-		System.out.println("getallmessages");
-		MailSystem.getAllMessages(true).forEach(System.out::println);
 		System.out.println("group");
 		Map<String, List<Message>> g = MailSystem.groupBySubject();
 		for (Entry<String, List<Message>> m : g.entrySet()) {
 			m.getValue().forEach(System.out::println);
 		}
-		System.out.println("group");
-		g = MailSystem.groupBySubject(true);
-    for (Entry<String, List<Message>> m : g.entrySet()) {
-      m.getValue().forEach(System.out::println);
-		}
-		System.out.println("sum");
-		//MailSystem.countWordsOfMessagesFromUser("arnau", true).forEach(System.out::println);
-		System.out.println(MailSystem.countWordsOfMessagesFromUser("arnau", true));
 		System.out.println("sum");
 		System.out.println(MailSystem.countWordsOfMessagesFromUser("arnau"));
 		
