@@ -52,6 +52,8 @@ public class MailSystem {
 		Stream<Message> all = Stream.empty();
 		List<List<Message>> list = administrative.values().stream().map(p -> p.listMail()).collect(Collectors.toList());
 		for (List<Message> l : list) {
+			if (l == null)
+				continue;
 			all = Stream.concat(all, l.stream());
 		}
 		return all.collect(Collectors.toList());
@@ -95,6 +97,8 @@ public class MailSystem {
 	public void averageMessagesPerUser() throws Exception {
 		float size = getAllMessages().size();
 		for (Entry<User, MailBox> m : administrative.entrySet()) {
+			if (m.getValue().listMail() == null)
+				continue;
 			System.out.print("Username: " + m.getKey().getUserName() + " average messages received: ");
 			System.out.println(m.getValue().listMail().size() / size + " %");
 		}
