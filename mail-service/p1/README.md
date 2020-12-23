@@ -2,6 +2,11 @@
 
 ### Part 1: OOP
 
+- Funciona : ✅
+- revisar que todo sea correcto : ❌
+- javadoc : ❌
+- JUnit : ❌
+
 - compile
   - make  or make build -> compile all
   - make users -> compile users.*
