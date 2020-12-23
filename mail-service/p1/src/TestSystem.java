@@ -99,8 +99,8 @@ public class TestSystem {
         system.reset();
 
         // Test paso 1.16
-        System.out.println("2.1");
         System.out.println("1.16");
+        System.out.println("2.1");
         starMem = new OnFile();
         mrStarMem = new OnFile();
         johnMem = new OnFile();
@@ -148,7 +148,7 @@ public class TestSystem {
         // Test paso 2.7
         // Test paso 2.8
         System.out.println("2.7/8");
-        System.out.println("Correos con la palabra pc y del usuario star");
+        System.out.println("Correos con la palabra subject y del usuario star");
         system.filterBySender("star", system.filterSubject("subject")).forEach(System.out::println);
         system.filterBySender("star").forEach(System.out::println);
         system.filterSubject("subjecy").forEach(System.out::println);
