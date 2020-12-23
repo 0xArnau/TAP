@@ -125,7 +125,7 @@ public class MailSystem {
 	// Count the words of all messages from users with a particular name.
 	public int countWordsOfMessagesFromUser(String name) throws Exception {
 		return 	getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
-			.map(x -> x.getBody().length())
+			.map(x -> x.getBody().split(" ").length)
 			.collect(Collectors.summingInt(Integer::intValue));
 	}
 
