@@ -105,7 +105,7 @@ public class MailSystem {
 			if (m.getValue().listMail() == null)
 				continue;
 			System.out.print("Username: " + m.getKey().getUserName() + " average messages received: ");
-			System.out.println(m.getValue().listMail().size() / size + " %");
+			System.out.println(m.getValue().listMail().size() / size * 100 + " %");
 		}
 	}
 

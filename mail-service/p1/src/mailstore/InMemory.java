@@ -33,7 +33,7 @@ public class InMemory implements MailStore {
 	 */
 	public List<Message> getMail(String u) {
 		if (messages.get(u) == null)
-			return null;
-		return messages.get(u);
+			return new LinkedList<Message>();
+		return new LinkedList<Message>(messages.get(u));
 	}
 }
