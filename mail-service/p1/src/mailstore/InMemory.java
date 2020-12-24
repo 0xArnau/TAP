@@ -11,6 +11,11 @@ import java.util.List;
 public class InMemory implements MailStore {
 	private static Map<String, List<Message>> messages = new HashMap<String, List<Message>>();
 
+	/**
+	 * Acción encargada de enviar un correo de un usuario a otro.
+	 * @param u Persona a la que irá a parar el correo.
+	 * @param m Variable de tipo Message (Consultar Message.java para más información).
+	 */
 	public void sendMail(String u, Message m) {
 		if (messages.containsKey(u)) {
 			if (m.toString().matches(".+;" + u + ";.+")) {
@@ -27,9 +32,9 @@ public class InMemory implements MailStore {
 	}
 
 	/**
-	 * 
-	 * @param u
-	 * @return
+	 * Función que permite obtener los correos del buzón del usuario u.
+	 * @param u Usuario del que se quiere conseguir los correos.
+	 * @return Devuelve una lista de los mensajes del usuario.
 	 */
 	public List<Message> getMail(String u) {
 		if (messages.get(u) == null)
