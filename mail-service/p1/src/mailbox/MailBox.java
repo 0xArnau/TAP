@@ -109,4 +109,5 @@ public class MailBox implements Iterable<Message> {
 	public Stream<Message> filterSubject(String word) throws Exception {
 		return messages.stream().filter(str -> str.getSubject().contains(word));
 	}
+
 }

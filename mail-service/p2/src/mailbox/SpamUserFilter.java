@@ -21,13 +21,13 @@ public class SpamUserFilter implements Observer{
 			for (Message m: l) {
 				if (m.getFrom().contains("spam")) {
 					list.add(m);
-				}
-				else {
 					ml.add(m);
 				}
 			}
 		}
-		l = ml;
+		for (Message m: ml) {
+			l.remove(m);
+		}
 	}
 
 	public List<Message> getMessages() {return list;}

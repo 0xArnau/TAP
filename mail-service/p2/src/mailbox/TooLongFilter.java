@@ -17,15 +17,15 @@ public class TooLongFilter implements  Observer{
 		List<Message> ml = new LinkedList<Message>();
 		if (l != null) {
 			for (Message m: l) {
-				if (m.getFrom().contains("spam")) {
+				if (m.getBody().length() > 20) {
 					list.add(m);
-				}
-				else {
 					ml.add(m);
 				}
 			}
 		}
-		l = ml;
+		for (Message m: ml) {
+			l.remove(m);
+		}
 	}
 
 	public List<Message> getMessages() {return list;}
