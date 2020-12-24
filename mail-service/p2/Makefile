@@ -3,9 +3,9 @@ build: basic patterns main
 basic : users messages mailstore mailbox system
 patterns : observerPattern
 
-main:	src/Test.java
+main:	src/TestP2.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
-	-d .out/mailservice/ src/Test.java	\
+	-d .out/mailservice/ src/TestP2.java	\
 	-cp .out/mailservice/
 
 
