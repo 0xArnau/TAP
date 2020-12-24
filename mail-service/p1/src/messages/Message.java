@@ -10,6 +10,13 @@ public class Message implements Comparable<Message> {
 	private String body;
 	private Timestamp time;
 
+	/**
+	 * Constructor de Message.
+	 * @param from Persona que envía el correo.
+	 * @param to Persona que recibe el correo.
+	 * @param subject Sujeto del correo.
+	 * @param body Contenido en sí del correo.
+	 */
 	public Message(String from, String to, String subject, String body) {
 		this.from = from;
 		this.to = to;
@@ -18,6 +25,14 @@ public class Message implements Comparable<Message> {
 		time = Timestamp.from(Instant.now());
 	}
 
+	/**
+	 * Constructor alternativo de Message.
+	 * @param from Persona que envía el correo.
+	 * @param to Persona que recibe el correo.
+	 * @param subject Sujeto del correo.
+	 * @param body Contenido en sí del correo.
+	 * @param time Momento en el que se ha enviado el correo.
+	 */
 	public Message(String from, String to, String subject, String body, String time) {
 		this.from = from;
 		this.to = to;
@@ -26,38 +41,61 @@ public class Message implements Comparable<Message> {
 		this.time = Timestamp.valueOf(time);
 	}
 
-	/***/
+	
+	/**
+	 * Getter del from.
+	 * @return Devuelve el usuario que ha enviado el correo.
+	 */
 	public String getFrom() {
 		return from;
 	}
 
-	/***/
+	/**
+	 * Getter del To.
+	 * @return Devuelve el usuario que ha recibido el correo.
+	 */
 	public String getTo() {
 		return to;
 	}
 
-	/***/
+	/**
+	 * Getter del Subject.
+	 * @return Devuelve el sujeto del correo.
+	 */
 	public String getSubject() {
 		return subject;
 	}
 
-	/***/
+	/**
+	 * Getter del Body
+	 * @return Devuelve el contenido del correo.
+	 */
 	public String getBody() {
 		return body;
 	}
 
-	/***/
+	/**
+	 * Getter del Time
+	 * @return Devuelve el momento en el que se ha enviado el correo.
+	 */
 	public Timestamp getTime() {
 		return time;
 	}
 
+	/**
+	 * Función que permite comparar el tiempo de dos Messages.
+	 * @param M Mensaje con el que se va a comparar.
+	 * @return Devuelve el resultado de la comparación de los tiempos. -1 Si va primero, 1 si va después, 0 si son iguales.
+	 */
 	@Override
-	/***/
 	public int compareTo(Message m) {
 		return time.compareTo(m.getTime());
 	}
 
-	/***/
+	/**
+	 * Función encargada de devolver un Message en forma de string.
+	 * @return Devuelve un string con las variables de Message.
+	 */
 	public String toString() {
 		return from + ";" + to + ";" + subject + ";" + body + ";" + time.toString();
 	}

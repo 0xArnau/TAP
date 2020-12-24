@@ -19,6 +19,10 @@ public class Cli {
 		nonUsers();
 	}
 
+	/**
+	 * Acción que mostrará a los visitantes algunas de las opciones que pueden realizar.
+	 * @throws Exception Control de excepciones.
+	 */
 	private static void nonUsers() throws Exception {
 		boolean exit = false;
 		do {
@@ -98,6 +102,10 @@ public class Cli {
 		} while (!exit);
 	}
 
+	/**
+	 * Función que muestra los 4 comandos que puede realizar un visitante.
+	 * @return Devuelve la opción escogida por el visitante o null si se ha equivocado.
+	 */
 	private static String[] waiting4commandNonUsers() {
 		try {
 			System.out.println("Commands availables 4 non users:");
@@ -116,6 +124,10 @@ public class Cli {
 		return null;
 	}
 
+	/**
+	 * Versión alternativa de las opciones pero esta vez para usuarios logeados.
+	 * @throws Exception Control de excepción.
+	 */
 	private static void users() throws Exception {
 		boolean exit = false;
 		do {
@@ -192,6 +204,10 @@ public class Cli {
 		} while (!exit);
 	}
 
+	/**
+	 * Función que muestra los 4 comandos que puede realizar un usuario logeado.
+	 * @return Devuelve la opción escogida por el visitante o null si se ha equivocado.
+	 */
 	private static String[] waiting4commandUsers() {
 		try {
 			System.out.println("\n\n" + user);

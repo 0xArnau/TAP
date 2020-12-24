@@ -12,7 +12,10 @@ public class OnFile implements MailStore {
 
 	private static String fileName = "mail_store.txt";
 
-	// Mètode que crea un fitxer, si aquest no existeix.
+	/**
+	 * Acción encargada de comprobar y crear un nuevo archivo si este no existe.
+	 * @throws Exception Excepción por si hay un problema a la hora de crear el archivo.
+	 */
 	private static void createFile() throws Exception {
 		File log = new File(fileName);
 		if (log.createNewFile()) {
@@ -22,7 +25,11 @@ public class OnFile implements MailStore {
 		}
 	}
 
-	// Mètode que afegeix el @message al final del fitxer.
+	/**
+	 * Acción encargada de escribir en el archivo un mensaje.
+	 * @param message Mensaje a escribir en el archivo.
+	 * @throws Exception Exepción por si hay un problema a la hora de escribir en el archivo.
+	 */
 	private static void writeFile(String message) throws Exception {
 		createFile();
 
@@ -32,6 +39,11 @@ public class OnFile implements MailStore {
 		System.out.println("[added successfully]");
 	}
 
+	/**
+	 * Acción encargada de enviar un correo de un usuario a otro.
+	 * @param to Persona a la que irá a parar el correo.
+	 * @param m Variable de tipo Message (Consultar Message.java para más información).
+	 */
 	public void sendMail(String u, Message m) {
 		try {
 			if (m.toString().matches(".+;" + u + ";.+"))
@@ -43,6 +55,11 @@ public class OnFile implements MailStore {
 		}
 	}
 
+	/**
+	 * Función que permite obtener los correos del buzón del usuario u.
+	 * @param u Usuario del que se quiere conseguir los correos.
+	 * @return Devuelve una lista de los mensajes del usuario.
+	 */
 	public List<Message> getMail(String u) {
 		String line;
 		List<Message> list = new LinkedList<Message>();
