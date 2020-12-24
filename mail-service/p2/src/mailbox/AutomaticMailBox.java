@@ -36,7 +36,7 @@ public class AutomaticMailBox extends MailBox implements Subject{
 	@Override
 	public Stream<Message> updateMail() throws Exception {
 		super.updateMail();
-		notify();
+		notifyObservers();
 		return super.listMail().stream();
 	}
 
