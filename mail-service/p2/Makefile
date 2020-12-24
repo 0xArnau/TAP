@@ -26,10 +26,16 @@ mailstore	: ../p1/src/mailStore/MailStore.java	\
 	-d .out/mailservice/ ../p1/src/mailStore/InMemory.java 		\
 	-d .out/mailservice/ ../p1/src/mailStore/OnFile.java 			\
 	-cp .out/mailservice/
-mailbox	: ../p1/src/mailBox/MailBox.java ./src/mailbox/AutomaticMailBox.java observerPattern
+mailbox	: ../p1/src/mailBox/MailBox.java	\
+	./src/mailbox/AutomaticMailBox.java	\
+	./src/mailbox/SpamUserFilter.java	\
+	./src/mailbox/TooLongFilter.java	\
+	observerPattern
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
 	-d	.out/mailservice/ ../p1/src/mailBox/MailBox.java	\
 	-d .out/mailservice/ ./src/mailBox/AutomaticMailBox.java	\
+	-d .out/mailservice/ ./src/mailBox/SpamUserFilter.java	\
+	-d .out/mailservice/ ./src/mailBox/TooLongFilter.java	\
 	-cp .out/mailservice/
 system	: ../p1/src/system/MailSystem.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
@@ -42,5 +48,5 @@ observerPattern : ./src/patterns/Observer.java ./src/patterns/Subject.java
 	-d .out/mailservice/ src/patterns/Subject.java	\
 	-cp .out/mailservice/
 
-test		: .out/mailservice/Test.class
-		java -cp .out/mailservice/ Test
+test		: .out/mailservice/TestP2.class
+		java -cp .out/mailservice/ TestP2

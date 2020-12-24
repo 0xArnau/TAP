@@ -7,11 +7,11 @@ import messages.Message;
 import patterns.*;
 
 public class TooLongFilter implements  Observer{
-	Subject s = null;
+//	Subject s = null;
 	List<Message> list = new ArrayList<Message>();
-	public TooLongFilter(Subject s) {
+/*	public TooLongFilter(Subject s) {
 		this.s = s;
-	}
+	}*/
 	@Override
 	public void update(List<Message> l) {
 		if (l != null) {

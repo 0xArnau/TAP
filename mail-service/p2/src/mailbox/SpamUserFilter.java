@@ -7,11 +7,11 @@ import messages.Message;
 import patterns.*;
 
 public class SpamUserFilter implements Observer{
-	Subject s = null;
+	//Subject s = null;
 	List<Message> list = new ArrayList<Message>();
-	public SpamUserFilter(Subject s) {
+	/*public SpamUserFilter(Subject s) {
 		this.s = s;
-	}
+	}*/
 
 	@Override
 	public void update(List<Message> l) {
