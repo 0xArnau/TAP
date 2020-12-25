@@ -10,6 +10,7 @@ import messages.Message;
 import system.MailSystem;
 import users.User;
 
+@SuppressWarnings("unused") //Variable johnBox, la cuál si es usada pero no directamente.
 public class TestSystem {
     public static void main(String[] args) throws Exception {
 

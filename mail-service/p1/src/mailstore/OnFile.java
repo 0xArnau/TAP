@@ -77,7 +77,7 @@ public class OnFile implements MailStore {
 				line = input.nextLine();
 				String[] part = line.split(regex);
 				if (part[1].equals(u)) {
-					
+
 					String from = part[0];
 					String to = part[1];
 					if (from == null || to == null) {

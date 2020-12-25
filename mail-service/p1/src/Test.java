@@ -4,7 +4,6 @@ import java.util.Map.Entry;
 import mailbox.MailBox;
 import mailstore.InMemory;
 import mailstore.MailStore;
-import mailstore.OnFile;
 import messages.Message;
 import system.MailSystem;
 import users.User;
