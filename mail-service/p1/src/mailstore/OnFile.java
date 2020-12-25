@@ -67,7 +67,7 @@ public class OnFile implements MailStore {
 	 * @param u Usuario del que se quiere conseguir los correos.
 	 * @return Devuelve una lista de los mensajes del usuario.
 	 */
-	public List<Message> getMail(String u) {
+	public List<Message> getMail(String u) throws Exception {
 		String line;
 		List<Message> list = new LinkedList<Message>();
 		try {
@@ -75,8 +75,9 @@ public class OnFile implements MailStore {
 			Scanner input = new Scanner(log);
 			while (input.hasNextLine()) {
 				line = input.nextLine();
-				if (line.matches(".+;" + u + ";.+")) {
-					String[] part = line.split(regex);
+				String[] part = line.split(regex);
+				if (part[1].equals(u)) {
+					
 					String from = part[0];
 					String to = part[1];
 					if (from == null || to == null) {

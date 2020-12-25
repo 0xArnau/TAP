@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 import mailbox.*;
 import mailstore.*;
 import users.*;
@@ -9,29 +12,30 @@ public class TestP2 {
 
 		User star = new User("star", "arnau", 2000);
 		User spam = new User("spam", "spam", 2000);
-		MailStore ms = new OnFile();
+		MailStore ms = new InMemory();
 		MailBox mb = new MailBox("star", ms);
 		MailBox mbsp = new MailBox("spam", ms);
-		Message mbs = new Message("spam", "star", "subject", "body");
-		Message sspam = new Message("star", "spam", "subject", "body");;
-		Message m1 = new Message("star", "star", "subject", "body");
-		Message mspam = new Message("spam", "spam", "subject", "body");
-		Message mlong = new Message("star", "star", "subject", "bodybodybopdy123412312hsghjdgas");
 
-		mb.sendMail("star", m1);
+		mb.sendMail("star", "subject", "body");
 		System.out.println("1");
-		mb.sendMail("star", mlong);
+		mb.sendMail("star", "subject","123456789010111213141516171819202122232425262728290");
 		System.out.println("2");
-		mb.sendMail("star", sspam);
+		mb.sendMail("star", "spam", "body");
 		System.out.println("3");
-		mbsp.sendMail("star", mbs);
+		mbsp.sendMail("star", "spam", "spam");
 		System.out.println("4");
-		mbsp.sendMail("star", mspam);
+		mbsp.sendMail("star", "spam", "wtf");
 		System.out.println("5");
 		mb.sendMail("spam", "k", "w");
 
 		try {
 			mb.updateMail().forEach(System.out::println);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			mbsp.updateMail().forEach(System.out::println);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,5 +67,15 @@ public class TestP2 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		System.out.println("spammers");
+		Set<String> st = ambstar.getSpammers();
+		Set<String> sts =ambspam.getSpammers();
+		Set<String> spammers = new HashSet<String>() {{
+			addAll(st);
+			addAll(sts);
+		}};
+
+		spammers.forEach(System.out::println);
 	}
 }

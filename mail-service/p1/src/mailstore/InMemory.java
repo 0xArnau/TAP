@@ -39,7 +39,7 @@ public class InMemory implements MailStore {
 	 * @param u Usuario del que se quiere conseguir los correos.
 	 * @return Devuelve una lista de los mensajes del usuario.
 	 */
-	public List<Message> getMail(String u) {
+	public List<Message> getMail(String u) throws Exception {
 		if (messages.get(u) == null)
 			return new LinkedList<Message>();
 		return new LinkedList<Message>(messages.get(u));
