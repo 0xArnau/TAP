@@ -12,26 +12,27 @@ public class TestP2 {
 		MailStore ms = new OnFile();
 		MailBox mb = new MailBox("star", ms);
 		MailBox mbsp = new MailBox("spam", ms);
-		Message mbs = new Message("spam", "star", "subject", "body");
-		Message sspam = new Message("star", "spam", "subject", "body");;
-		Message m1 = new Message("star", "star", "subject", "body");
-		Message mspam = new Message("spam", "spam", "subject", "body");
-		Message mlong = new Message("star", "star", "subject", "bodybodybopdy123412312hsghjdgas");
 
-		mb.sendMail("star", m1);
+		mb.sendMail("star", "subject", "body");
 		System.out.println("1");
-		mb.sendMail("star", mlong);
+		mb.sendMail("star", "subject","123456789010111213141516171819202122232425262728290");
 		System.out.println("2");
-		mb.sendMail("star", sspam);
+		mb.sendMail("star", "spam", "body");
 		System.out.println("3");
-		mbsp.sendMail("star", mbs);
+		mbsp.sendMail("star", "spam", "spam");
 		System.out.println("4");
-		mbsp.sendMail("star", mspam);
+		mbsp.sendMail("star", "spam", "wtf");
 		System.out.println("5");
 		mb.sendMail("spam", "k", "w");
 
 		try {
 			mb.updateMail().forEach(System.out::println);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			mbsp.updateMail().forEach(System.out::println);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

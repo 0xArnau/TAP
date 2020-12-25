@@ -12,5 +12,5 @@ public interface MailStore {
 
 	public void sendMail(String u, Message m);
 
-	public List<Message> getMail(String u);
+	public List<Message> getMail(String u) throws Exception;
 }
