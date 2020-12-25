@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 import mailbox.*;
 import mailstore.*;
 import users.*;
@@ -9,7 +12,7 @@ public class TestP2 {
 
 		User star = new User("star", "arnau", 2000);
 		User spam = new User("spam", "spam", 2000);
-		MailStore ms = new OnFile();
+		MailStore ms = new InMemory();
 		MailBox mb = new MailBox("star", ms);
 		MailBox mbsp = new MailBox("spam", ms);
 
@@ -64,5 +67,15 @@ public class TestP2 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		System.out.println("spammers");
+		Set<String> st = ambstar.getSpammers();
+		Set<String> sts =ambspam.getSpammers();
+		Set<String> spammers = new HashSet<String>() {{
+			addAll(st);
+			addAll(sts);
+		}};
+
+		spammers.forEach(System.out::println);
 	}
 }
