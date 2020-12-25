@@ -12,7 +12,7 @@ import users.User;
 public class Test {
 	public static void main(String[] args) throws Exception {
 		MailSystem system = new MailSystem();
-		
+
 		System.out.println("MailSystem");
 		User star = new User("star", "arnau", 2001);
 		User beta = new User("beta", "sergi", 1999);

@@ -8,9 +8,10 @@ public class User {
 
 	/**
 	 * Constructor de User
+	 * 
 	 * @param username Nombre del usuario.
-	 * @param name Nombre real del usuario.
-	 * @param year Año de nacimiento del usuario.
+	 * @param name     Nombre real del usuario.
+	 * @param year     Año de nacimiento del usuario.
 	 */
 	public User(String username, String name, int year) {
 		this.username = username;
@@ -20,6 +21,7 @@ public class User {
 
 	/**
 	 * Getter del nombre del usuario.
+	 * 
 	 * @return Devuelve el nombre del usuario.
 	 */
 	public String getUserName() {
@@ -28,6 +30,7 @@ public class User {
 
 	/**
 	 * Getter del nombre real del usuario.
+	 * 
 	 * @return Devuelve el nombre real del usuario.
 	 */
 	public String getName() {
@@ -36,6 +39,7 @@ public class User {
 
 	/**
 	 * Getter del año de naciemiento del usuario.
+	 * 
 	 * @return Devuelve el año de naciemiento del usuario.
 	 */
 	public int getYear() {
@@ -44,6 +48,7 @@ public class User {
 
 	/**
 	 * toString del usuario.
+	 * 
 	 * @return Devuelve el string con la información del usuario.
 	 */
 	public String toString() {

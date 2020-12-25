@@ -13,8 +13,10 @@ public class InMemory implements MailStore {
 
 	/**
 	 * Acción encargada de enviar un correo de un usuario a otro.
+	 * 
 	 * @param u Persona a la que irá a parar el correo.
-	 * @param m Variable de tipo Message (Consultar Message.java para más información).
+	 * @param m Variable de tipo Message (Consultar Message.java para más
+	 *          información).
 	 */
 	public void sendMail(String u, Message m) {
 		if (messages.containsKey(u)) {
@@ -33,6 +35,7 @@ public class InMemory implements MailStore {
 
 	/**
 	 * Función que permite obtener los correos del buzón del usuario u.
+	 * 
 	 * @param u Usuario del que se quiere conseguir los correos.
 	 * @return Devuelve una lista de los mensajes del usuario.
 	 */

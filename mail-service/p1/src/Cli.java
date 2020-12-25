@@ -20,7 +20,9 @@ public class Cli {
 	}
 
 	/**
-	 * Acción que mostrará a los visitantes algunas de las opciones que pueden realizar.
+	 * Acción que mostrará a los visitantes algunas de las opciones que pueden
+	 * realizar.
+	 * 
 	 * @throws Exception Control de excepciones.
 	 */
 	private static void nonUsers() throws Exception {
@@ -45,7 +47,7 @@ public class Cli {
 							}
 							system.newUser(new User(info[1], info[2], Integer.parseInt(info[3])), store);
 						}
-					break;
+						break;
 					case "filter":
 						if (info.length == 5) {
 							try {
@@ -66,8 +68,7 @@ public class Cli {
 									break;
 								case "lessthan":
 									try {
-										system
-												.lessthanNWords(system.getAllMessages(), Integer.parseInt(info[2]))
+										system.lessthanNWords(system.getAllMessages(), Integer.parseInt(info[2]))
 												.forEach(System.out::println);
 									} catch (Exception e) {
 										System.out.println("ERROR\nTry again:");
@@ -104,7 +105,9 @@ public class Cli {
 
 	/**
 	 * Función que muestra los 4 comandos que puede realizar un visitante.
-	 * @return Devuelve la opción escogida por el visitante o null si se ha equivocado.
+	 * 
+	 * @return Devuelve la opción escogida por el visitante o null si se ha
+	 *         equivocado.
 	 */
 	private static String[] waiting4commandNonUsers() {
 		try {
@@ -126,6 +129,7 @@ public class Cli {
 
 	/**
 	 * Versión alternativa de las opciones pero esta vez para usuarios logeados.
+	 * 
 	 * @throws Exception Control de excepción.
 	 */
 	private static void users() throws Exception {
@@ -178,8 +182,7 @@ public class Cli {
 									break;
 								case "lessthan":
 									try {
-										system
-												.lessthanNWords(system.getAllMessages(), Integer.parseInt(info[2]))
+										system.lessthanNWords(system.getAllMessages(), Integer.parseInt(info[2]))
 												.forEach(System.out::println);
 									} catch (Exception e) {
 										System.out.println("ERROR\nTry again:");
@@ -206,7 +209,9 @@ public class Cli {
 
 	/**
 	 * Función que muestra los 4 comandos que puede realizar un usuario logeado.
-	 * @return Devuelve la opción escogida por el visitante o null si se ha equivocado.
+	 * 
+	 * @return Devuelve la opción escogida por el visitante o null si se ha
+	 *         equivocado.
 	 */
 	private static String[] waiting4commandUsers() {
 		try {

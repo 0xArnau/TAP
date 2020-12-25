@@ -14,7 +14,9 @@ public class OnFile implements MailStore {
 
 	/**
 	 * Acción encargada de comprobar y crear un nuevo archivo si este no existe.
-	 * @throws Exception Excepción por si hay un problema a la hora de crear el archivo.
+	 * 
+	 * @throws Exception Excepción por si hay un problema a la hora de crear el
+	 *                   archivo.
 	 */
 	private static void createFile() throws Exception {
 		File log = new File(fileName);
@@ -27,8 +29,10 @@ public class OnFile implements MailStore {
 
 	/**
 	 * Acción encargada de escribir en el archivo un mensaje.
+	 * 
 	 * @param message Mensaje a escribir en el archivo.
-	 * @throws Exception Exepción por si hay un problema a la hora de escribir en el archivo.
+	 * @throws Exception Exepción por si hay un problema a la hora de escribir en el
+	 *                   archivo.
 	 */
 	private static void writeFile(String message) throws Exception {
 		createFile();
@@ -41,8 +45,10 @@ public class OnFile implements MailStore {
 
 	/**
 	 * Acción encargada de enviar un correo de un usuario a otro.
+	 * 
 	 * @param to Persona a la que irá a parar el correo.
-	 * @param m Variable de tipo Message (Consultar Message.java para más información).
+	 * @param m  Variable de tipo Message (Consultar Message.java para más
+	 *           información).
 	 */
 	public void sendMail(String u, Message m) {
 		try {
@@ -57,6 +63,7 @@ public class OnFile implements MailStore {
 
 	/**
 	 * Función que permite obtener los correos del buzón del usuario u.
+	 * 
 	 * @param u Usuario del que se quiere conseguir los correos.
 	 * @return Devuelve una lista de los mensajes del usuario.
 	 */

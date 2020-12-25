@@ -19,7 +19,8 @@ public class MailSystem {
 
 	/**
 	 * Función encargada de añadir un usuario a la Mailbox.
-	 * @param u Usuario a añadir.
+	 * 
+	 * @param u     Usuario a añadir.
 	 * @param store MailStore del usuario.
 	 * @return Devuelve la MailBox recién creade del usuario u.
 	 */
@@ -32,13 +33,15 @@ public class MailSystem {
 			MailBox box = new MailBox(u.getUserName(), store);
 			administrative.put(u, box);
 			users.put(u.getUserName(), u);
-			System.out.println("=> user: " + u.getUserName() + " created.");
+			// System.out.println("=> user: " + u.getUserName() + " created.");
 			return box;
 		}
 	}
 
 	/**
-	 * Función que permite inciciar sesión. También comprueba si este existe de verdad o no.
+	 * Función que permite inciciar sesión. También comprueba si este existe de
+	 * verdad o no.
+	 * 
 	 * @param username Usuario a iniciar sesión.
 	 * @return Devuelve true si el usuario existe y false en caso contrario.
 	 */
@@ -51,6 +54,7 @@ public class MailSystem {
 
 	/**
 	 * Función que permite obtener todos los mensajes del sistema.
+	 * 
 	 * @return Devuelve una lista con todos los mensajes.
 	 */
 	public List<Message> getAllMessages() throws Exception {
@@ -66,15 +70,19 @@ public class MailSystem {
 
 	/**
 	 * Acción encargada de actualizar todos los correos recibidos.
-	 * @throws Exception Excepción por si se pide actualizar el correo de alguien inexistente.
+	 * 
+	 * @throws Exception Excepción por si se pide actualizar el correo de alguien
+	 *                   inexistente.
 	 */
 	public void updateMessages() throws Exception {
-		for (Entry<User, MailBox> m: administrative.entrySet()) {
+		for (Entry<User, MailBox> m : administrative.entrySet()) {
 			m.getValue().updateMail();
 		}
 	}
+
 	/**
 	 * Función que permite obtener todos los usuarios registrados.
+	 * 
 	 * @return Devuelve una colección de los usuarios del sistema.
 	 */
 	public Set<User> getAllUsers() {
@@ -82,9 +90,12 @@ public class MailSystem {
 	}
 
 	/**
-	 * Función que permite obtener todos los correos del sistema que contienen cierta palabra.
+	 * Función que permite obtener todos los correos del sistema que contienen
+	 * cierta palabra.
+	 * 
 	 * @param word Palabra a filtrar de los correos.
-	 * @return Devuelve un Stream con todos los correos que han cumplido la condición.
+	 * @return Devuelve un Stream con todos los correos que han cumplido la
+	 *         condición.
 	 */
 	public Stream<Message> filter(String word) throws Exception {
 		return getAllMessages().stream().filter(str -> str.toString().contains(word));
@@ -92,6 +103,7 @@ public class MailSystem {
 
 	/**
 	 * Función que cuenta el número total de mensajes del sistema.
+	 * 
 	 * @return Devuelve el número total de mensajes en el sistema.
 	 */
 	public int countMessages() throws Exception {
@@ -100,6 +112,7 @@ public class MailSystem {
 
 	/**
 	 * Función que agrupa los correos del sistema por el sujeto del mismo.
+	 * 
 	 * @return Devuelve un Map con todos los correos que han cumplido la condición.
 	 * @throws Exception Control de excpeciónes.
 	 */
@@ -110,7 +123,9 @@ public class MailSystem {
 
 	/**
 	 * Acción que permite saber la media de mensajes de los usuarios.
-	 * @throws Exception Excepción por si se pide la media de un usuario inexistente.
+	 * 
+	 * @throws Exception Excepción por si se pide la media de un usuario
+	 *                   inexistente.
 	 */
 	public void averageMessagesPerUser() throws Exception {
 		float size = getAllMessages().size();
@@ -124,6 +139,7 @@ public class MailSystem {
 
 	/**
 	 * Función que muestra los correos del sistema con el sujeto word.
+	 * 
 	 * @param word Sujeto a filtrar de los correos.
 	 * @return Devuelve un stream de los correos que han cumplido la condición.
 	 * @throws Exception Control de excepción.
@@ -133,9 +149,11 @@ public class MailSystem {
 	}
 
 	/**
-	 * Función que permite filtrar correos enviados por una persona en específico y a la vez de un stream de correos en específico.
+	 * Función que permite filtrar correos enviados por una persona en específico y
+	 * a la vez de un stream de correos en específico.
+	 * 
 	 * @param sender Persona de la que se quieren filtrar los correos.
-	 * @param m Stream de los correos
+	 * @param m      Stream de los correos
 	 * @return Devuelve un stream con los correos que han cumplido la condición.
 	 */
 	public Stream<Message> filterBySender(String sender, Stream<Message> m) {
@@ -144,6 +162,7 @@ public class MailSystem {
 
 	/**
 	 * Función que permite filtrar correos enviados por una persona en específico.
+	 * 
 	 * @param sender Persona de la que se quieren filtrar los correos.
 	 * @return Devuelve un stream de los crreos que han cumplido la condición.
 	 * @throws Exception Excepción por si el usuario no existe.
@@ -154,45 +173,48 @@ public class MailSystem {
 
 	/**
 	 * Función que cuenta las palabras de los mensajes de un usuario en concrecto.
+	 * 
 	 * @param name Número del usuario a contar.
 	 * @return Devuelve un int con el número total de palabras.
 	 * @throws Exception Excepción por si el usuario no existe.
 	 */
 	public int countWordsOfMessagesFromUser(String name) throws Exception {
-		return 	getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
-			.map(x -> x.getBody().split(" ").length)
-			.collect(Collectors.summingInt(Integer::intValue));
+		return getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
+				.map(x -> x.getBody().split(" ").length).collect(Collectors.summingInt(Integer::intValue));
 	}
 
 	/**
-	 * Función que permite obtener los correos de usuarios que sean de un año anterior o más a year.
+	 * Función que permite obtener los correos de usuarios que sean de un año
+	 * anterior o más a year.
+	 * 
 	 * @param year Año con el que se va a comparar y obtener de años más antiguos.
 	 * @return Devuelve una lista con los correos que han cumplido la condición.
 	 * @throws Exception Control de excepción.
 	 */
 	public List<Message> usersBornBeforeXYear(int year) throws Exception {
-		return getAllMessages().stream()
-			.filter(p -> getUser(p.getTo()).getYear() < year)
-			.collect(Collectors.toList());
+		return getAllMessages().stream().filter(p -> getUser(p.getTo()).getYear() < year).collect(Collectors.toList());
 	}
 
 	/**
-	 * Función que permite obtener los correos de usuarios que sean de un año posterior o más a year.
+	 * Función que permite obtener los correos de usuarios que sean de un año
+	 * posterior o más a year.
+	 * 
 	 * @param year Año con el que se va a comparar y obtener de años posteriores.
 	 * @return Devuelve una lista con los correos que han cumplido la condición.
 	 * @throws Exception Control de excepción.
 	 */
 	public List<Message> usersBornAfterXYear(int year) throws Exception {
-		return getAllMessages().stream()
-			.filter(p -> getUser(p.getFrom()).getYear() > year)
-			.collect(Collectors.toList());
+		return getAllMessages().stream().filter(p -> getUser(p.getFrom()).getYear() > year)
+				.collect(Collectors.toList());
 	}
 
 	/**
-	 * Función que devuelve los correos que contengan la palabra word y a la vez contengan menos de n palabras.
-	 * @param m Lista de mensajes.
+	 * Función que devuelve los correos que contengan la palabra word y a la vez
+	 * contengan menos de n palabras.
+	 * 
+	 * @param m    Lista de mensajes.
 	 * @param word Palabra a filtrar.
-	 * @param n Número de palabras a filtrar.
+	 * @param n    Número de palabras a filtrar.
 	 * @return Devuelve un stream con los mensajes que han cumplido la condición.
 	 * @throws Exception Control de excepción.
 	 */
@@ -202,7 +224,8 @@ public class MailSystem {
 
 	/**
 	 * Función que devuelve un stream de los mensajes con cierta palabra word.
-	 * @param m Lista de mensajes a comprobar.
+	 * 
+	 * @param m    Lista de mensajes a comprobar.
 	 * @param word Palabra a buscar.
 	 * @return Devuelve los mensajes que han cumplido la condición.
 	 * @throws Exception Control de excepción.
@@ -213,6 +236,7 @@ public class MailSystem {
 
 	/**
 	 * Función que devuelve un stream de mensajes con menos de n palabras en él.
+	 * 
 	 * @param m Lista de mensajes a comprobar.
 	 * @param n Número de palabras a filtrar.
 	 * @return Devuelve los mensajes que han cumplido la condición.
@@ -224,6 +248,7 @@ public class MailSystem {
 
 	/**
 	 * Función que devuelve los correos que contienen una sola palabra en el sujeto.
+	 * 
 	 * @param m Lista de mensajes a comprobar.
 	 * @return Devuelve los mensajes que han cumplido la condición.
 	 */
@@ -233,6 +258,7 @@ public class MailSystem {
 
 	/**
 	 * Función que permite obtener el usuario con nombre username.
+	 * 
 	 * @param username Nombre a obtener el usuario.
 	 * @return Devuelve el User con nombre username.
 	 */
@@ -242,6 +268,7 @@ public class MailSystem {
 
 	/**
 	 * Función que permite obtener la MailBox de un usuario con nombre username.
+	 * 
 	 * @param username Nombre del usuario del que obtener su MailBox.
 	 * @return Devuelve la MailBox del usuario.
 	 */
@@ -255,6 +282,7 @@ public class MailSystem {
 
 	/**
 	 * Función alternativa que permite obtener la MailBox de un usuario.
+	 * 
 	 * @param username Usuario del que obtener su MailBox.
 	 * @return Devuelve la MailBox del usuario.
 	 */
@@ -271,6 +299,7 @@ public class MailSystem {
 
 	/**
 	 * Función que comprueba que un usuario con nombre username exista.
+	 * 
 	 * @param username Nombre del usuario.
 	 * @return Devuelve cierto o falso dependiendo de si cumple o no la condición.
 	 */

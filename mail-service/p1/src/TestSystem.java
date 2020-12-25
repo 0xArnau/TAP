@@ -12,14 +12,14 @@ import users.User;
 
 public class TestSystem {
     public static void main(String[] args) throws Exception {
-        
+
         MailSystem system = new MailSystem();
         MailStore starMem = new InMemory();
         MailStore mrStarMem = new InMemory();
         MailStore johnMem = new InMemory();
         MailStore betaMem = new InMemory();
         MailStore jhonnyMem = new InMemory();
-		
+
         // Test paso 1.1
         // Test paso 1.2
         System.out.println("1.1/2");
@@ -45,7 +45,7 @@ public class TestSystem {
         betaBox.sendMail(user2.getUserName(), "Nota", "Hola profe, quina nota tindré al final del treball?");
         jhonnyBox.sendMail(user.getUserName(), "PC",
                 "Holaaaa, quiero montar un pc, me podrías ayudar porfa? No tengo ni idea de ordenadores. Lo harás gratis, verdad?");
-        
+
         system.updateMessages();
         System.out.println("Actualizando correos...");
         system.getAllMessages();
@@ -182,7 +182,7 @@ public class TestSystem {
         System.out.println("2.15");
         System.out.println("Correos enviados por usuarios nacidos antes del 2000: ");
         system.usersBornBeforeXYear(2000).forEach(System.out::println);
-        
+
         System.out.println("\n<=>");
     }
 }
