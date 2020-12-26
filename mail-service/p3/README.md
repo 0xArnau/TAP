@@ -4,10 +4,11 @@
 
 #### Redis
 
-##### Adapter
-##### Singleton
-##### Factory
+#### Adapter
+#### Singleton
+#### Factory
 
+### Compile & Run
 - compile
   - make  or make build -> compile all
   - make users -> compile users.*
