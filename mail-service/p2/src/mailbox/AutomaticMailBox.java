@@ -51,7 +51,6 @@ public class AutomaticMailBox extends MailBox implements Subject{
 					spammers.add(from);
 				}
 			} catch (Exception e) {
-				//TODO: handle exception
 			}
 			try {
 				TooLongFilter stf = ((TooLongFilter) o);
@@ -59,7 +58,6 @@ public class AutomaticMailBox extends MailBox implements Subject{
 					spammers.add(from);
 				}
 			} catch (Exception e) {
-				//TODO: handle exception
 			}	
 		}
 		

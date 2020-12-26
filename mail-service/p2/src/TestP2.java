@@ -11,6 +11,7 @@ import mailstore.*;
 import users.*;
 import messages.*;
 
+@SuppressWarnings("unused")
 public class TestP2 {
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException {
 		System.out.println("P2");
@@ -37,13 +38,11 @@ public class TestP2 {
 		try {
 			mb.updateMail().forEach(System.out::println);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			mbsp.updateMail().forEach(System.out::println);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -63,14 +62,12 @@ public class TestP2 {
 		try {
 			ambstar.updateMail().forEach(System.out::println);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("SPAM");
 		try {
 			ambspam.updateMail().forEach(System.out::println);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -78,6 +75,8 @@ public class TestP2 {
 		Set<String> st = ambstar.getSpammers();
 		Set<String> sts = ambspam.getSpammers();
 		Set<String> spammers = new HashSet<String>() {
+			private static final long serialVersionUID = -1632603294655041069L;
+
 			{
 				addAll(st);
 				addAll(sts);
