@@ -5,6 +5,7 @@
 #### Observer
 #### Decorator 
 
+### Compile & Run
 - compile
   - make  or make build -> compile all
   - make users -> compile users.*
