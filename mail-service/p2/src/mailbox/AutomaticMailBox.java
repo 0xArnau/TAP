@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 
 import mailstore.*;
 import messages.Message;
-import patterns.*;
 
 public class AutomaticMailBox extends MailBox implements Subject{
 	private List<Observer> list = new LinkedList<Observer>();

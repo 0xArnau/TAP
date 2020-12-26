@@ -10,6 +10,6 @@
   - make mailbox -> compile mailbox.*
   - make system -> compile system.*
 - run
-  - make test -> run Test.java
-  - make testsystem -> run TestSystem.java
-  - make cli -> run Cli.java
+  - make test -> run TestP2.java
+  - make testObserver -> run TestObserver.java
+  - make testDecorator -> run TestDecorator.java

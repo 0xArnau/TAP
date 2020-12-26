@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import messages.Message;
-import patterns.*;
 
 public class TooLongFilter implements  Observer{
 //	Subject s = null;

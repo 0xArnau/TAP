@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import messages.Message;
-import patterns.*;
 
 public class SpamUserFilter implements Observer{
 	//Subject s = null;
