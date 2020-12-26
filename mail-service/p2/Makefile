@@ -1,7 +1,7 @@
 build: basic patterns main
 
 basic : users messages mailstore mailbox system
-patterns : observerPattern
+patterns : observerPattern mailstoreDecorator
 
 main:	src/TestP2.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
@@ -44,13 +44,13 @@ system	: ../p1/src/system/MailSystem.java
 
 mailstoreDecorator	: ./src/mailstore/MessageDecorator.java ./src/mailstore/EncodeDecorator.java 
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
-		-d .out/mailservice/  src/mailstore/MessageDecorarator.java	\
+	-d .out/mailservice/  src/mailstore/MessageDecorator.java	\
 	-d .out/mailservice/  src/mailstore/EncodeDecorator.java	\
 	-cp .out/mailservice/
 
 observerPattern : ./src/patterns/Observer.java ./src/patterns/Subject.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
-	-d	.out/mailservice/ src/patterns/Observer.java	\
+	-d .out/mailservice/ src/patterns/Observer.java	\
 	-d .out/mailservice/ src/patterns/Subject.java	\
 	-cp .out/mailservice/
 
