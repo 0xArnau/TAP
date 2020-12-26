@@ -2,10 +2,7 @@
 
 ### Part 1: OOP
 
-- Funciona : ✅
-- revisar que todo sea correcto : ❌
-- javadoc : ❌
-- JUnit : ❌
+### Compile & Run
 
 - compile
   - make  or make build -> compile all
