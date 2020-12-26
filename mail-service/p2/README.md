@@ -1,6 +1,6 @@
 # MAIL SERVICE
 
-### Part 2: PATTERNS
+## Part 2: PATTERNS
 
 #### Observer
 #### Decorator 
