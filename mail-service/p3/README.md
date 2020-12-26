@@ -2,6 +2,12 @@
 
 ### Part 3: PATTERNS 2
 
+#### Redis
+
+##### Adapter
+##### Singleton
+##### Factory
+
 - compile
   - make  or make build -> compile all
   - make users -> compile users.*

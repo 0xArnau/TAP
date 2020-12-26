@@ -2,6 +2,9 @@
 
 ### Part 2: PATTERNS
 
+#### Observer
+#### Decorator 
+
 - compile
   - make  or make build -> compile all
   - make users -> compile users.*
