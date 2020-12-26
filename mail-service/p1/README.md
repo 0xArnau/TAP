@@ -1,6 +1,6 @@
 # MAIL SERVICE
 
-### Part 1: OOP
+## Part 1: OOP
 
 ### Compile & Run
 
