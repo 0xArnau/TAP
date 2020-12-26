@@ -42,6 +42,12 @@ system	: ../p1/src/system/MailSystem.java
 	-d .out/mailservice/  ../p1/src/system/MailSystem.java	\
 	-cp .out/mailservice/
 
+mailstoreDecorator	: ./src/mailstore/MessageDecorator.java ./src/mailstore/EncodeDecorator.java 
+	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
+		-d .out/mailservice/  src/mailstore/MessageDecorarator.java	\
+	-d .out/mailservice/  src/mailstore/EncodeDecorator.java	\
+	-cp .out/mailservice/
+
 observerPattern : ./src/patterns/Observer.java ./src/patterns/Subject.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
 	-d	.out/mailservice/ src/patterns/Observer.java	\

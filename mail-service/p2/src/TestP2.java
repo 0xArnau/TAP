@@ -1,5 +1,10 @@
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 
 import mailbox.*;
 import mailstore.*;
@@ -7,8 +12,9 @@ import users.*;
 import messages.*;
 
 public class TestP2 {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException {
 		System.out.println("P2");
+		System.out.println("Observer");
 
 		User star = new User("star", "arnau", 2000);
 		User spam = new User("spam", "spam", 2000);
@@ -18,7 +24,7 @@ public class TestP2 {
 
 		mb.sendMail("star", "subject", "body");
 		System.out.println("1");
-		mb.sendMail("star", "subject","123456789010111213141516171819202122232425262728290");
+		mb.sendMail("star", "subject", "123456789010111213141516171819202122232425262728290");
 		System.out.println("2");
 		mb.sendMail("star", "spam", "body");
 		System.out.println("3");
@@ -70,12 +76,55 @@ public class TestP2 {
 
 		System.out.println("spammers");
 		Set<String> st = ambstar.getSpammers();
-		Set<String> sts =ambspam.getSpammers();
-		Set<String> spammers = new HashSet<String>() {{
-			addAll(st);
-			addAll(sts);
-		}};
+		Set<String> sts = ambspam.getSpammers();
+		Set<String> spammers = new HashSet<String>() {
+			{
+				addAll(st);
+				addAll(sts);
+			}
+		};
 
 		spammers.forEach(System.out::println);
+
+		System.out.println("Cypher");
+		String key = "IWantToPassTAP12"; // 128 bit key
+		java.security.Key aesKey = new javax.crypto.spec.SecretKeySpec(key.getBytes(), "AES");
+		Cipher cipher = Cipher.getInstance("AES");
+
+		System.out.println(key);
+		System.out.println(aesKey);
+		System.out.println(cipher);
+		System.out.println("Encrypt");
+		byte[] encrypted = new byte[0];
+		try {
+			cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+			encrypted = cipher.doFinal(key.getBytes());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String idk = Base64.getEncoder().encodeToString(encrypted);
+		System.out.println(idk);
+		System.out.println("Decrypt");
+
+		byte[] encrypted1 = Base64.getDecoder().decode(idk.getBytes());
+		String decrypted = null;
+		try {
+			cipher.init(Cipher.DECRYPT_MODE, aesKey);
+			decrypted = new String(cipher.doFinal(encrypted1));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(decrypted);
+		System.out.println("Decorator");
+
+		MailStore none = new OnFile();
+		EncodeDecorator deco = new EncodeDecorator(none);
+		deco.setCipher();
+		deco.sendMail("star", new Message("star", "star", "subject", "body"));
+		try {
+			deco.getMail("star").forEach(System.out::println);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
