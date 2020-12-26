@@ -1,6 +1,6 @@
 # MAIL SERVICE
 
-### Part 3: PATTERNS 2
+## Part 3: PATTERNS 2
 
 #### Redis
 
