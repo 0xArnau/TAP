@@ -1,4 +1,4 @@
-package patterns;
+package mailbox;
 
 import java.util.List;
 

@@ -1,9 +1,12 @@
 # MAIL SERVICE
 
-## Part 2: PATTERNS
+## Part 3: PATTERNS 2
 
-#### Observer
-#### Decorator 
+#### Redis
+
+#### Adapter
+#### Singleton
+#### Factory
 
 ### Compile & Run
 - compile
