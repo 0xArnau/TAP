@@ -43,8 +43,13 @@ public class Message implements Comparable<Message> {
 		this.time = Timestamp.valueOf(time);
 	}
 
+	/**
+	 * Constructor alternativo para facilitar la P3
+	 * 
+	 * @param m String del mensaje que se quiere crear. Este se separa en partes.
+	 */
 	public Message(String m) {
-		String [] parts = m.split(";");
+		String[] parts = m.split(";");
 		if (parts.length == 4) {
 			this.from = parts[0];
 			this.to = parts[1];
