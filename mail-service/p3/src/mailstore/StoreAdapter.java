@@ -1,6 +1,5 @@
 package mailstore;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import messages.Message;
