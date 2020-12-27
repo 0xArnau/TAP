@@ -1,5 +1,7 @@
 package msfactory;
 
-public interface MailStoreFactory {
-	public void createMailStore();
+import mailstore.MailStore;
+
+public interface MailStoreFactory extends MailStore {
+	public MailStore createMailStore();
 }

@@ -1,13 +1,13 @@
 package msfactory;
 
 import mailstore.InMemory;
+import mailstore.MailStore;
 
 public class MemoryStore extends InMemory implements MailStoreFactory {
 
 	@Override
-	public void createMailStore() {
-		// TODO Auto-generated method stub
-
+	public MailStore createMailStore() {
+		return null;
 	}
 	
 }

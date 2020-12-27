@@ -1,6 +1,9 @@
 package mailstore;
 
+import java.util.LinkedList;
 import java.util.List;
+
+import messages.Message;
 
 public class RedisClient implements RedisMailStore {
 
@@ -21,8 +24,12 @@ public class RedisClient implements RedisMailStore {
 	}
 
 	@Override
-	public List<String> lrange(String u) {
-		return jedis.lrange(u, 0, -1);
+	public List<Message> lrange(String u) {
+		List<Message> list = new LinkedList<Message>();
+		jedis.lrange(u, 0, -1).forEach( (e) -> {
+			list.add(new Message(e));
+		});
+		return list;
 	}
 
 	@Override
