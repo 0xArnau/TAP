@@ -1,4 +1,4 @@
-build:  main
+build:   mailstore main
 
 basic : users messages mailstore mailbox system
 

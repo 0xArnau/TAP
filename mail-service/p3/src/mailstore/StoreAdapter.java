@@ -1,5 +1,6 @@
 package mailstore;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import messages.Message;
@@ -19,7 +20,8 @@ public class StoreAdapter implements MailStore {
 
 	@Override
 	public List<Message> getMail(String u) throws Exception {
-		redis.lrange(u);
+		List<Message> list = new LinkedList<Message>();
+		redis.lrange(u).forEach(p -> list.add(p));
 		return null;
 	}
 	

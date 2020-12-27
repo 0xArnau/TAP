@@ -43,6 +43,22 @@ public class Message implements Comparable<Message> {
 		this.time = Timestamp.valueOf(time);
 	}
 
+	public Message(String m) {
+		String [] parts = m.split(";");
+		if (parts.length == 4) {
+			this.from = parts[0];
+			this.to = parts[1];
+			this.subject = parts[2];
+			this.body = parts[3];
+		} else if (parts.length == 5) {
+			this.from = parts[0];
+			this.to = parts[1];
+			this.subject = parts[2];
+			this.body = parts[3];
+			this.time = Timestamp.valueOf(parts[4]);
+		}
+	}
+
 	/**
 	 * Getter del from.
 	 * 

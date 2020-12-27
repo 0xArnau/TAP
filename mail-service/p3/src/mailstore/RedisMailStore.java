@@ -1,8 +1,9 @@
 package mailstore;
 
+import java.util.List;
 
-public interface RedisMailStore{
+public interface RedisMailStore {
 
 	public void lpush(String u, String m);
-	public void lrange(String u);
+	public List<String> lrange(String u);
 }

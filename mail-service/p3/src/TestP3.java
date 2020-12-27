@@ -8,7 +8,9 @@ import redis.clients.jedis.Jedis;
 
 public class TestP3 {
 	public static void main(String[] args) {
+		Jedis jedis = new Jedis("localhost");
 		RedisMailStore rsm = new RedisStore();
+		RedisStore.setJedis(jedis);
 		MailStore ms = new OnFile();
 		MailStore sa = new StoreAdapter(rsm);
 
