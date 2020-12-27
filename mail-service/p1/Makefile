@@ -1,6 +1,11 @@
 all 		: build
 build 	: users messages mailstore mailbox system main
 
+junit : ../lib/junit-4.13.1.jar
+	cd ../.out/mailservice/	 &&\
+	jar xf ../../lib/junit-4.13.1.jar org/	 &&\
+	cd ../../p3/
+
 main 		: src/Test.java src/Cli.java src/TestSystem.java
 		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
 		-d ../.out/mailservice/ src/Test.java				\

@@ -16,7 +16,7 @@ public class TestP3 {
 
 		sa.sendMail("sa", new Message("from", "to", " subject", " body"));
 		try {
-			sa.getMail("sa");
+			sa.getMail("sa").forEach(System.out::println);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

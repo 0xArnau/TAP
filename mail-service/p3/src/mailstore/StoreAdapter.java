@@ -21,8 +21,10 @@ public class StoreAdapter implements MailStore {
 	@Override
 	public List<Message> getMail(String u) throws Exception {
 		List<Message> list = new LinkedList<Message>();
-		redis.lrange(u).forEach(p -> list.add(p));
-		return null;
+		redis.lrange(u).forEach( (e) -> {
+			list.add(new Message(e));
+		});
+		return list;
 	}
 	
 }
