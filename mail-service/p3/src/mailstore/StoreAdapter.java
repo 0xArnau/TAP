@@ -26,5 +26,4 @@ public class StoreAdapter implements MailStore {
 		});
 		return list;
 	}
-	
 }
