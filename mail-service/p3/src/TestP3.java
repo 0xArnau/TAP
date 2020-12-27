@@ -21,5 +21,8 @@ public class TestP3 {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		
+		jedis.flushAll();
 	}
 }
