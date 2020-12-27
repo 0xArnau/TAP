@@ -2,9 +2,17 @@ package mailstore;
 
 import java.util.List;
 
-import redis.clients.jedis.Jedis;
-
 public class RedisStore implements RedisMailStore {
+
+	private static RedisStore instance = null;
+
+	public RedisStore() {}
+
+	public static RedisStore getInstance() {
+		if (RedisStore.instance == null)
+			RedisStore.instance = new RedisStore();
+		return RedisStore.instance;
+	}
 
 	@Override
 	public void lpush(String u, String m) {
