@@ -1,12 +1,12 @@
-build: basic  main
+build: jedis main
 
 basic : users messages mailstore mailbox system
 
-main:	src/TestP2.java
+jedis : ../lib/jedis-2.9.0.jar
+	jar xf ../lib/jedis-2.9.0.jar ../.out/mailservice/lib/
+main:	src/TestP3.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
-	-d ../.out/mailservice/ src/TestP2.java	\
-	-d ../.out/mailservice/ src/TestObserver.java	\
-	-d ../.out/mailservice/ src/TestDecorator.java	\
+	-d ../.out/mailservice/ src/TestP3.java	\
 	-cp ../.out/mailservice/
 
 
