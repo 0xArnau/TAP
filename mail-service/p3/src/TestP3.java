@@ -5,5 +5,6 @@ public class TestP3 {
 		Jedis jedis = new Jedis("localhost");
 		jedis.set("foo", "bar");
 		String value = jedis.get("foo");
+		System.out.println(value);
 	}
 }
