@@ -2,14 +2,16 @@ package mailstore;
 
 import java.util.List;
 
-import redis.clients.jedis.Jedis;
-
 public class RedisStore implements RedisMailStore {
 
-	static Jedis jedis = null;
+	private static RedisStore instance = null;
 
-	public static void setJedis(Jedis j) {
-		jedis = j;
+	public RedisStore() {}
+
+	public static RedisStore getInstance() {
+		if (RedisStore.instance == null)
+			RedisStore.instance = new RedisStore();
+		return RedisStore.instance;
 	}
 
 	@Override
@@ -21,5 +23,9 @@ public class RedisStore implements RedisMailStore {
 	public List<String> lrange(String u) {
 		return jedis.lrange(u, 0, -1);
 	}
-	
+
+	@Override
+	public void flushAll() {
+		jedis.flushAll();
+	}
 }

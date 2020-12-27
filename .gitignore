@@ -12,6 +12,7 @@ mail_store.txt
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+.out/
 # Package Files #
 .vscode
 *.war
