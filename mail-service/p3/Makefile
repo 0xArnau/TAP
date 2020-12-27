@@ -26,7 +26,7 @@ mailstore	: ../p1/src/mailStore/MailStore.java	\
 	../p2/./src/mailstore/MessageDecorator.java \
 	../p2/./src/mailstore/EncodeDecorator.java  \
 	./src/mailstore/RedisMailStore.java \
-	./src/mailstore/RedisStore.java \
+	./src/mailstore/RedisClient.java \
 	./src/mailstore/StoreAdapter.java 
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 	\
 	-d ../.out/mailservice/ ../p1/src/mailStore/MailStore.java  	\
@@ -35,7 +35,7 @@ mailstore	: ../p1/src/mailStore/MailStore.java	\
 	-d ../.out/mailservice/ ../p2/src/mailstore/MessageDecorator.java	\
 	-d ../.out/mailservice/ ../p2/src/mailstore/EncodeDecorator.java	\
 	-d ../.out/mailservice/  src/mailstore/RedisMailStore.java	\
-	-d ../.out/mailservice/  src/mailstore/RedisStore.java	\
+	-d ../.out/mailservice/  src/mailstore/RedisClient.java	\
 	-d ../.out/mailservice/  src/mailstore/StoreAdapter.java	\
 	-cp ../.out/mailservice/
 

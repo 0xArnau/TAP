@@ -1,15 +1,15 @@
 import mailstore.MailStore;
 import mailstore.OnFile;
 import mailstore.RedisMailStore;
-import mailstore.RedisStore;
+import mailstore.RedisClient;
 import mailstore.StoreAdapter;
 import messages.Message;
 
 public class TestP3 {
 	public static void main(String[] args) {
 		
-		RedisMailStore rsm = RedisStore.getInstance();
-		RedisMailStore rsm1 = RedisStore.getInstance();
+		RedisMailStore rsm = RedisClient.getInstance();
+		RedisMailStore rsm1 = RedisClient.getInstance();
 		MailStore ms = new OnFile();
 		MailStore sa = new StoreAdapter(rsm);
 		MailStore sa1 = new StoreAdapter(rsm1);
