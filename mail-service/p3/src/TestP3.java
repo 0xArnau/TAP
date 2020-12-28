@@ -5,8 +5,10 @@ import mailstore.RedisMailStore;
 import mailstore.RedisClient;
 import mailstore.StoreAdapter;
 import messages.Message;
+import msfactory.FileFactory;
 import msfactory.MailStoreFactory;
-import msfactory.StoreType;
+import msfactory.MemoryFactory;
+import msfactory.RedisFactory;
 
 public class TestP3 {
 	public static void main(String[] args) throws Exception {
@@ -35,16 +37,19 @@ public class TestP3 {
 		rsm.flushAll();
 		rsm1.flushAll();
 
-		MailStore file = MailStoreFactory.createMailStore(StoreType.FILE);
+		MailStoreFactory msf = new FileFactory();
+		MailStore file = msf.createMailStore();
 		((EncodeDecorator) file).setCipher();
 		System.out.println("File");
 		file.sendMail("star",new Message("star","star","klk","1234567878990"));
 		file.getMail("star").forEach(System.out::println);
-		MailStore redis = MailStoreFactory.createMailStore(StoreType.REDIS);
+		msf = new RedisFactory();
+		MailStore redis = msf.createMailStore();
 		System.out.println("Redis");
 		redis.sendMail("star",new Message("star","star","qwe","123213213"));
 		redis.getMail("star").forEach(System.out::println);
-		MailStore memo = MailStoreFactory.createMailStore(StoreType.MEMORY);
+		msf = new MemoryFactory();
+		MailStore memo = msf.createMailStore();
 		System.out.println("Mem");
 		memo.sendMail("star",new Message("star","star", "subject"," body"));
 		memo.getMail("star").forEach(System.out::println);

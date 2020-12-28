@@ -39,9 +39,14 @@ mailstore	: ../p1/src/mailStore/MailStore.java	\
 	-d ../.out/mailservice/  src/mailstore/StoreAdapter.java	\
 	-cp ../.out/mailservice/
 
-msfactory : ./src/msfactory/MailStoreFactory.java ./src/msfactory/StoreType.java
+msfactory : ./src/msfactory/MailStoreFactory.java	\
+	 ./src/msfactory/MemoryFactory.java	\
+	 ./src/msfactory/RedisFactory.java	\
+	 ./src/msfactory/FileFactory.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 	\
-	-d ../.out/mailservice/  ./src/msfactory/StoreType.java	\
+	-d ../.out/mailservice/  ./src/msfactory/FileFactory.java	\
+	-d ../.out/mailservice/  ./src/msfactory/RedisFactory.java	\
+	-d ../.out/mailservice/  ./src/msfactory/MemoryFactory.java	\
 	-d ../.out/mailservice/  ./src/msfactory/MailStoreFactory.java	\
 	-cp ../.out/mailservice/
 
