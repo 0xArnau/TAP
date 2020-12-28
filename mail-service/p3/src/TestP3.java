@@ -9,6 +9,8 @@ import msfactory.FileFactory;
 import msfactory.MailStoreFactory;
 import msfactory.MemoryFactory;
 import msfactory.RedisFactory;
+import system.MailSystemFactory;
+import users.User;
 
 public class TestP3 {
 	public static void main(String[] args) throws Exception {
@@ -53,5 +55,11 @@ public class TestP3 {
 		System.out.println("Mem");
 		memo.sendMail("star",new Message("star","star", "subject"," body"));
 		memo.getMail("star").forEach(System.out::println);
+
+		MailSystemFactory misf = new MailSystemFactory(new FileFactory());
+		misf.newUser(new User("star","arnau",2000));
+		misf.getAllUsers().forEach(System.out::println);
+		misf.updateMessages();
+		misf.getAllMessages().forEach(System.out::println);
 	}
 }

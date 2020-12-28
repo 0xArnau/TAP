@@ -1,4 +1,4 @@
-build:   mailstore msfactory main
+build:   mailstore msfactory mssystem main
 
 basic : users messages mailstore mailbox system
 
@@ -50,5 +50,9 @@ msfactory : ./src/msfactory/MailStoreFactory.java	\
 	-d ../.out/mailservice/  ./src/msfactory/MailStoreFactory.java	\
 	-cp ../.out/mailservice/
 
+mssystem : ./src/system/MailSystemFactory.java
+	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 	\
+	-d ../.out/mailservice/  ./src/system/MailSystemFactory.java	\
+	-cp ../.out/mailservice/
 test		: ../.out/mailservice/TestP3.class
 	java -cp ../.out/mailservice/ TestP3

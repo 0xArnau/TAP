@@ -1,7 +1,6 @@
 package system;
 
 import mailbox.MailBox;
-import mailstore.MailStore;
 import msfactory.MailStoreFactory;
 import users.User;
 
@@ -12,8 +11,7 @@ public class MailSystemFactory extends MailSystem {
 		this.msf = msf;
 	}
 
-	@Override
-	public MailBox newUser(User u, MailStore ignore) {
+	public MailBox newUser(User u) {
 		return super.newUser(u, msf.createMailStore());
 	}
 }
