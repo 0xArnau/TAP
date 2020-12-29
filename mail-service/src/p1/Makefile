@@ -3,9 +3,12 @@ build 	: users messages mailstore mailbox system main
 
 junit : ../../lib/junit-4.13.1.jar ../../lib/hamcrest-core-1.3.jar
 	cd ../../.out/mailservice/	 && \
-	jar xf ../../lib/junit-4.13.1.jar org/ junit/	 && \
-	jar xf ../../lib/hamcrest-core-1.3.jar org/ junit/	 && \
+	jar xf ../../lib/junit-4.13.1.jar \
+		org/ junit/ &&\
+	jar xf ../../lib/hamcrest-core-1.3.jar org/hamcrest/ &&\
 	cd ../../src/p1/
+
+
 
 main 		: ./tests/Test.java ./cli/Cli.java ./tests/TestSystem.java
 		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\

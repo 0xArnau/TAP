@@ -11,6 +11,7 @@ import p1.mailstore.InMemory;
 import p1.mailstore.MailStore;
 import p1.users.User;
 
+
 @SuppressWarnings("unused")
 public class TestObserver {
 	public static void main(String[] args) {

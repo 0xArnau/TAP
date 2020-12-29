@@ -13,6 +13,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.BeforeClass;
 
+
 public class TestMailSystem {
 
     MailSystem system = new MailSystem();

@@ -10,6 +10,7 @@ import p1.mailstore.MailStore;
 import p1.mailstore.OnFile;
 import p1.messages.Message;
 
+
 @SuppressWarnings("unused")
 public class TestDecorator {
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException {

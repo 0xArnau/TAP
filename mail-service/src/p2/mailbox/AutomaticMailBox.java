@@ -11,6 +11,7 @@ import p1.mailstore.*;
 import p1.messages.Message;
 import p1.mailbox.*;
 
+
 public class AutomaticMailBox extends MailBox implements Subject {
 	private List<Observer> list = new LinkedList<Observer>();
 

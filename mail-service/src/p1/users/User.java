@@ -4,7 +4,6 @@ public class User {
 	private String username;
 	private String name;
 	private int yearOfBirth;
-	// ?private String passwd;
 
 	/**
 	 * Constructor de User

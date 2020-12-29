@@ -11,6 +11,7 @@ import p1.messages.Message;
 import p1.system.MailSystem;
 import p1.users.User;
 
+
 public class Test {
 	public static void main(String[] args) throws Exception {
 		MailSystem system = new MailSystem();

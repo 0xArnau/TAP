@@ -5,6 +5,7 @@ import java.util.List;
 import p1.messages.Message;
 import p1.mailstore.*;
 
+
 public class StoreAdapter implements MailStore {
 
 	private RedisMailStore redis = null;

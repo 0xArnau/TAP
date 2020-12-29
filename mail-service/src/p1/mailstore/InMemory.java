@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.LinkedList;
 import java.util.List;
 
+
 @SuppressWarnings("serial")
 public class InMemory implements MailStore {
 	private static Map<String, List<Message>> messages = new HashMap<String, List<Message>>();

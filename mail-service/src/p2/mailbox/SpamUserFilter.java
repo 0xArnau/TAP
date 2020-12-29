@@ -6,6 +6,7 @@ import java.util.List;
 
 import p1.messages.Message;
 
+
 public class SpamUserFilter implements Observer {
 	// Subject s = null;
 	List<Message> list = new ArrayList<Message>();

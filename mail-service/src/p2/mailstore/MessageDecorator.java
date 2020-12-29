@@ -5,6 +5,7 @@ import java.util.List;
 import p1.messages.Message;
 import p1.mailstore.*;
 
+
 public abstract class MessageDecorator implements MailStore {
 	private MailStore store;
 

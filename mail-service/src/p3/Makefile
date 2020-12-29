@@ -4,7 +4,7 @@ basic : users messages mailstore mailbox system
 
 jedis : ../../lib/jedis-2.9.0.jar
 	cd ../../.out/mailservice/	 &&\
-	jar xf ../../lib/jedis-2.9.0.jar redis/	 &&\
+	jar xf ../../lib/jedis-2.9.0.jar redis/clients/jedis/Jedis.class &&\
 	cd ../../src/p3/
 
 main:	./tests/TestP3.java

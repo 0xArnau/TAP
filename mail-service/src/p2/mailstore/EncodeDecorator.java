@@ -11,6 +11,7 @@ import javax.crypto.NoSuchPaddingException;
 import p1.messages.Message;
 import p1.mailstore.*;
 
+
 public class EncodeDecorator extends MessageDecorator {
 	private Cipher cipher = null;
 	private java.security.Key aesKey = null;

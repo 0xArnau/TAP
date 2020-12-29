@@ -5,6 +5,7 @@ import java.util.List;
 
 import p1.messages.Message;
 
+
 public class RedisClient implements RedisMailStore {
 
 	private static RedisClient instance = null;

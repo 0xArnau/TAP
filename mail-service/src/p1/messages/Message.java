@@ -3,6 +3,7 @@ package p1.messages;
 import java.sql.Timestamp;
 import java.time.Instant;
 
+
 public class Message implements Comparable<Message> {
 	private String from;
 	private String to;

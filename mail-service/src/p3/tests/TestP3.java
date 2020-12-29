@@ -13,6 +13,7 @@ import p3.msfactory.RedisFactory;
 import p3.system.MailSystemFactory;
 import p1.users.User;
 
+
 public class TestP3 {
 	public static void main(String[] args) throws Exception {
 		

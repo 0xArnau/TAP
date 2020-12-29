@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
 public class MailBox implements Iterable<Message> {
 	private String user;
 	private List<Message> messages;

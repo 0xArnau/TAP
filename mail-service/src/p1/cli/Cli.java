@@ -11,6 +11,7 @@ import p1.users.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+
 public class Cli {
 	private static MailSystem system = new MailSystem();
 	private static User user;
