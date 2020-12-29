@@ -1,9 +1,9 @@
-package system;
+package p1.system;
 
-import mailbox.*;
-import mailstore.*;
-import messages.*;
-import users.*;
+import p1.mailbox.*;
+import p1.mailstore.*;
+import p1.messages.*;
+import p1.users.*;
 
 import java.util.Set;
 import java.util.Map.Entry;

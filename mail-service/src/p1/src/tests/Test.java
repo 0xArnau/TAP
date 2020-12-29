@@ -1,12 +1,15 @@
+package p1.tests;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import mailbox.MailBox;
-import mailstore.InMemory;
-import mailstore.MailStore;
-import messages.Message;
-import system.MailSystem;
-import users.User;
+
+import p1.mailbox.MailBox;
+import p1.mailstore.InMemory;
+import p1.mailstore.MailStore;
+import p1.messages.Message;
+import p1.system.MailSystem;
+import p1.users.User;
 
 public class Test {
 	public static void main(String[] args) throws Exception {

@@ -1,14 +1,16 @@
+package p1.tests;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Map.*;
 
-import mailbox.MailBox;
-import mailstore.InMemory;
-import mailstore.MailStore;
-import mailstore.OnFile;
-import messages.Message;
-import system.MailSystem;
-import users.User;
+import p1.mailbox.MailBox;
+import p1.mailstore.InMemory;
+import p1.mailstore.MailStore;
+import p1.mailstore.OnFile;
+import p1.messages.Message;
+import p1.system.MailSystem;
+import p1.users.User;
 
 @SuppressWarnings("unused") //Variable johnBox, la cuál si es usada pero no directamente.
 public class TestSystem {

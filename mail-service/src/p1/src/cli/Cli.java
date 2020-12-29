@@ -1,10 +1,12 @@
-import system.*;
-import messages.*;
-import mailbox.*;
-import mailstore.InMemory;
-import mailstore.MailStore;
-import mailstore.OnFile;
-import users.*;
+package p1.cli;
+
+import p1.system.*;
+import p1.messages.*;
+import p1.mailbox.*;
+import p1.mailstore.InMemory;
+import p1.mailstore.MailStore;
+import p1.mailstore.OnFile;
+import p1.users.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
