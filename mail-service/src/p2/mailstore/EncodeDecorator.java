@@ -53,11 +53,11 @@ public class EncodeDecorator extends MessageDecorator {
 	}
 
 	/**
-	 * Acción encargada de iniciar el Cipher con llave IWantToPassTAp1.src2 decidida por
+	 * Acción encargada de iniciar el Cipher con llave IWantToPassTAp12 decidida por
 	 * enunciado.
 	 */
 	public void setCipher() {
-		String key = "IWantToPassTAp1.src2"; // 128 bit key
+		String key = "IWantToPassTAp12"; // 128 bit key
 		aesKey = new javax.crypto.spec.SecretKeySpec(key.getBytes(), "AES");
 		try {
 			cipher = Cipher.getInstance("AES");

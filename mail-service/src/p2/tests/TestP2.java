@@ -88,9 +88,9 @@ public class TestP2 {
 		};
 
 		spammers.forEach(System.out::println);
-
+		
 		System.out.println("Cypher");
-		String key = "IWantToPassTAp1.src2"; // 128 bit key
+		String key = "IWantToPassTAp12"; // 128 bit key
 		java.security.Key aesKey = new javax.crypto.spec.SecretKeySpec(key.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 
@@ -118,6 +118,7 @@ public class TestP2 {
 			e.printStackTrace();
 		}
 		System.out.println(decrypted);
+		
 		System.out.println("Decorator");
 
 		MailStore none = new OnFile();
