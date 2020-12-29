@@ -1,16 +1,19 @@
+package p2.src.tests;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
-import mailstore.EncodeDecorator;
-import mailstore.MailStore;
-import mailstore.OnFile;
-import messages.Message;
+
+import p2.src.mailstore.EncodeDecorator;
+import p1.src.mailstore.MailStore;
+import p1.src.mailstore.OnFile;
+import p1.src.messages.Message;
 
 @SuppressWarnings("unused")
 public class TestDecorator {
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException {
-		String key = "IWantToPassTAP12"; // 128 bit key
+		String key = "IWantToPassTAp1.src2"; // 128 bit key
 		java.security.Key aesKey = new javax.crypto.spec.SecretKeySpec(key.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 

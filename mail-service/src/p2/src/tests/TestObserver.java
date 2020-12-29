@@ -1,13 +1,15 @@
+package p2.src.tests;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import mailbox.AutomaticMailBox;
-import mailbox.MailBox;
-import mailbox.SpamUserFilter;
-import mailbox.TooLongFilter;
-import mailstore.InMemory;
-import mailstore.MailStore;
-import users.User;
+import p2.src.mailbox.AutomaticMailBox;
+import p1.src.mailbox.MailBox;
+import p2.src.mailbox.SpamUserFilter;
+import p2.src.mailbox.TooLongFilter;
+import p1.src.mailstore.InMemory;
+import p1.src.mailstore.MailStore;
+import p1.src.users.User;
 
 @SuppressWarnings("unused")
 public class TestObserver {

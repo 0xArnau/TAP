@@ -1,4 +1,4 @@
-package p1.messages;
+package p1.src.messages;
 
 import java.sql.Timestamp;
 import java.time.Instant;

@@ -1,10 +1,10 @@
-package mailbox;
+package p2.src.mailbox;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import messages.Message;
+import p1.src.messages.Message;
 
 public class SpamUserFilter implements Observer {
 	// Subject s = null;

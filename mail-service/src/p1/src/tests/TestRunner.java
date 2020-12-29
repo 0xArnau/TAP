@@ -1,4 +1,4 @@
-package p1.tests;
+package p1.src.tests;
 
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;

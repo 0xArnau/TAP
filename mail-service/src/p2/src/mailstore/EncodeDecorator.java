@@ -1,4 +1,4 @@
-package mailstore;
+package p2.src.mailstore;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 
-import messages.Message;
+import p1.src.messages.Message;
+import p1.src.mailstore.*;
 
 public class EncodeDecorator extends MessageDecorator {
 	private Cipher cipher = null;
@@ -52,11 +53,11 @@ public class EncodeDecorator extends MessageDecorator {
 	}
 
 	/**
-	 * Acción encargada de iniciar el Cipher con llave IWantToPassTAP12 decidida por
+	 * Acción encargada de iniciar el Cipher con llave IWantToPassTAp1.src2 decidida por
 	 * enunciado.
 	 */
 	public void setCipher() {
-		String key = "IWantToPassTAP12"; // 128 bit key
+		String key = "IWantToPassTAp1.src2"; // 128 bit key
 		aesKey = new javax.crypto.spec.SecretKeySpec(key.getBytes(), "AES");
 		try {
 			cipher = Cipher.getInstance("AES");

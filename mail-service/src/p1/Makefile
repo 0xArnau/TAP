@@ -35,15 +35,15 @@ cjunit : ./src/tests/TestMailSystem.java ./src/tests/TestRunner.java
 		-d ../../.out/mailservice/ src/tests/TestRunner.java 			\
 		-cp ../../.out/mailservice/
 
-rjunit : ../../.out/mailservice/p1/tests/TestMailSystem.class ../../.out/mailservice/p1/tests/TestRunner.class
-	java -cp ../../.out/mailservice/ p1.tests.TestRunner
+rjunit : ../../.out/mailservice/p1/src/tests/TestMailSystem.class ../../.out/mailservice/p1/src/tests/TestRunner.class
+	java -cp ../../.out/mailservice/ p1.src.tests.TestRunner
 
-test		: ../../.out/mailservice/p1/tests/Test.class
-		java -cp ../../.out/mailservice/ p1.tests.Test
-testsystem	: ../../.out/mailservice/p1/tests/TestSystem.class
-		java -cp ../../.out/mailservice/ p1.tests.TestSystem
-cli		: ../../.out/mailservice/cli/p1/Cli.class
-		java -cp ../../.out/mailservice/ p1.cli.Cli
+test		: ../../.out/mailservice/p1/src/tests/Test.class
+		java -cp ../../.out/mailservice/ p1.src.tests.Test
+testsystem	: ../../.out/mailservice/p1/src/tests/TestSystem.class
+		java -cp ../../.out/mailservice/ p1.src.tests.TestSystem
+cli		: ../../.out/mailservice/cli/p1/src/src/Cli.class
+		java -cp ../../.out/mailservice/ p1.src.cli.Cli
 clean 		: ../../.out/
 		rm -r ../../.out/
 

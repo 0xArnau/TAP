@@ -1,3 +1,5 @@
+package p2.src.tests;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashSet;
@@ -6,15 +8,17 @@ import java.util.Set;
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
 
-import mailbox.*;
-import mailstore.*;
-import users.*;
-import messages.*;
+import p1.src.mailbox.*;
+import p1.src.mailstore.*;
+import p2.src.mailbox.*;
+import p2.src.mailstore.*;
+import p1.src.users.*;
+import p1.src.messages.*;
 
 @SuppressWarnings("unused")
 public class TestP2 {
 	public static void main(String[] args) throws NoSuchAlgorithmException, NoSuchPaddingException {
-		System.out.println("P2");
+		System.out.println("p2.src");
 		System.out.println("Observer");
 
 		User star = new User("star", "arnau", 2000);
@@ -86,7 +90,7 @@ public class TestP2 {
 		spammers.forEach(System.out::println);
 
 		System.out.println("Cypher");
-		String key = "IWantToPassTAP12"; // 128 bit key
+		String key = "IWantToPassTAp1.src2"; // 128 bit key
 		java.security.Key aesKey = new javax.crypto.spec.SecretKeySpec(key.getBytes(), "AES");
 		Cipher cipher = Cipher.getInstance("AES");
 

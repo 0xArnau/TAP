@@ -1,8 +1,9 @@
-package mailstore;
+package p2.src.mailstore;
 
 import java.util.List;
 
-import messages.Message;
+import p1.src.messages.Message;
+import p1.src.mailstore.*;
 
 public abstract class MessageDecorator implements MailStore {
 	private MailStore store;

@@ -1,12 +1,12 @@
-package p1.tests;
+package p1.src.tests;
 
 import org.junit.Test;
 
-import p1.mailbox.MailBox;
-import p1.mailstore.InMemory;
-import p1.mailstore.MailStore;
-import p1.system.MailSystem;
-import p1.users.User;
+import p1.src.mailbox.MailBox;
+import p1.src.mailstore.InMemory;
+import p1.src.mailstore.MailStore;
+import p1.src.system.MailSystem;
+import p1.src.users.User;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

@@ -1,4 +1,4 @@
-package mailbox;
+package p2.src.mailbox;
 
 
 public interface Subject {

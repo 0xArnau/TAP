@@ -1,4 +1,4 @@
-package mailbox;
+package p2.src.mailbox;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -7,8 +7,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import mailstore.*;
-import messages.Message;
+import p1.src.mailstore.*;
+import p1.src.messages.Message;
+import p1.src.mailbox.*;
 
 public class AutomaticMailBox extends MailBox implements Subject {
 	private List<Observer> list = new LinkedList<Observer>();

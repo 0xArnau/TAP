@@ -1,6 +1,6 @@
-package p1.mailstore;
+package p1.src.mailstore;
 
-import p1.messages.*;
+import p1.src.messages.*;
 
 import java.util.LinkedList;
 import java.util.List;

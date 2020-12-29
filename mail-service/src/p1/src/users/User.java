@@ -1,4 +1,4 @@
-package p1.users;
+package p1.src.users;
 
 public class User {
 	private String username;

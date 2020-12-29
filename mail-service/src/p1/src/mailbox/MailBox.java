@@ -1,7 +1,7 @@
-package p1.mailbox;
+package p1.src.mailbox;
 
-import p1.messages.*;
-import p1.mailstore.*;
+import p1.src.messages.*;
+import p1.src.mailstore.*;
 
 import java.util.Comparator;
 import java.util.Iterator;
