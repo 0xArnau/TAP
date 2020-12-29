@@ -7,43 +7,43 @@ junit : ../../lib/junit-4.13.1.jar ../../lib/hamcrest-core-1.3.jar
 	jar xf ../../lib/hamcrest-core-1.3.jar org/ junit/	 && \
 	cd ../../src/p1/
 
-main 		: src/tests/Test.java src/cli/Cli.java src/tests/TestSystem.java
+main 		: ./tests/Test.java ./cli/Cli.java ./tests/TestSystem.java
 		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
-		-d ../../.out/mailservice/ src/tests/Test.java				\
-		-d ../../.out/mailservice/ src/cli/Cli.java					\
-		-d ../../.out/mailservice/ src/tests/TestSystem.java	\
+		-d ../../.out/mailservice/ ./tests/Test.java				\
+		-d ../../.out/mailservice/ ./cli/Cli.java					\
+		-d ../../.out/mailservice/ ./tests/TestSystem.java	\
 		-cp ../../.out/mailservice/
 
-system 	: mailbox src/system/MailSystem.java
-		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ src/system/MailSystem.java -cp ../../.out/mailservice/
-mailbox : src/mailBox/MailBox.java mailstore
-		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ src/mailBox/MailBox.java -cp ../../.out/mailservice/
-mailstore	: src/mailStore/MailStore.java src/mailStore/InMemory.java  src/mailStore/OnFile.java
+system 	: mailbox ./system/MailSystem.java
+		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ ./system/MailSystem.java -cp ../../.out/mailservice/
+mailbox : ./mailBox/MailBox.java mailstore
+		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ ./mailBox/MailBox.java -cp ../../.out/mailservice/
+mailstore	: ./mailStore/MailStore.java ./mailStore/InMemory.java  ./mailStore/OnFile.java
 		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 	\
-		-d ../../.out/mailservice/ src/mailStore/MailStore.java  	\
-		-d ../../.out/mailservice/ src/mailStore/InMemory.java 		\
-		-d ../../.out/mailservice/ src/mailStore/OnFile.java 			\
+		-d ../../.out/mailservice/ ./mailStore/MailStore.java  	\
+		-d ../../.out/mailservice/ ./mailStore/InMemory.java 		\
+		-d ../../.out/mailservice/ ./mailStore/OnFile.java 			\
 		-cp ../../.out/mailservice/
-messages 	: src/messages/Message.java
-		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ src/messages/Message.java -cp ../../.out/mailservice/
-users 		: src/users/User.java
-		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ src/users/User.java -cp ../../.out/mailservice/
+messages 	: ./messages/Message.java
+		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ ./messages/Message.java -cp ../../.out/mailservice/
+users 		: ./users/User.java
+		javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 -d ../../.out/mailservice/ ./users/User.java -cp ../../.out/mailservice/
 
-cjunit : ./src/tests/TestMailSystem.java ./src/tests/TestRunner.java
+cjunit : ./tests/TestMailSystem.java ./tests/TestRunner.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 	\
-		-d ../../.out/mailservice/ src/tests/TestMailSystem.java 		\
-		-d ../../.out/mailservice/ src/tests/TestRunner.java 			\
+		-d ../../.out/mailservice/ ./tests/TestMailSystem.java 		\
+		-d ../../.out/mailservice/ ./tests/TestRunner.java 			\
 		-cp ../../.out/mailservice/
 
-rjunit : ../../.out/mailservice/p1/src/tests/TestMailSystem.class ../../.out/mailservice/p1/src/tests/TestRunner.class
-	java -cp ../../.out/mailservice/ p1.src.tests.TestRunner
+rjunit : ../../.out/mailservice/p1/tests/TestMailSystem.class ../../.out/mailservice/p1/tests/TestRunner.class
+	java -cp ../../.out/mailservice/ p1.tests.TestRunner
 
-test		: ../../.out/mailservice/p1/src/tests/Test.class
-		java -cp ../../.out/mailservice/ p1.src.tests.Test
-testsystem	: ../../.out/mailservice/p1/src/tests/TestSystem.class
-		java -cp ../../.out/mailservice/ p1.src.tests.TestSystem
-cli		: ../../.out/mailservice/cli/p1/src/src/Cli.class
-		java -cp ../../.out/mailservice/ p1.src.cli.Cli
+test		: ../../.out/mailservice/p1/tests/Test.class
+		java -cp ../../.out/mailservice/ p1.tests.Test
+testsystem	: ../../.out/mailservice/p1/tests/TestSystem.class
+		java -cp ../../.out/mailservice/ p1.tests.TestSystem
+cli		: ../../.out/mailservice/cli/p1/Cli.class
+		java -cp ../../.out/mailservice/ p1.cli.Cli
 clean 		: ../../.out/
 		rm -r ../../.out/
 

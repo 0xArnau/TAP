@@ -1,42 +1,42 @@
 build: mailstore mailbox  main
 
-main:	src/tests/TestP2.java src/tests/TestObserver.java src/tests/TestDecorator.java
+main:	./tests/TestP2.java ./tests/TestObserver.java ./tests/TestDecorator.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
-	-d ../../.out/mailservice/ src/tests/TestP2.java	\
-	-d ../../.out/mailservice/ src/tests/TestObserver.java	\
-	-d ../../.out/mailservice/ src/tests/TestDecorator.java 	\
+	-d ../../.out/mailservice/ ./tests/TestP2.java	\
+	-d ../../.out/mailservice/ ./tests/TestObserver.java	\
+	-d ../../.out/mailservice/ ./tests/TestDecorator.java 	\
 	-cp ../../.out/mailservice/
 
-mailstore	: ../../.out/mailservice/p1/src/mailstore/MailStore.class	\
-	../../.out/mailservice/p1/src/mailstore/InMemory.class	\
-	../../.out/mailservice/p1/src/mailstore/OnFile.class	\
-	./src/mailstore/MessageDecorator.java \
-	./src/mailstore/EncodeDecorator.java 
+mailstore	: ../../.out/mailservice/p1/mailstore/MailStore.class	\
+	../../.out/mailservice/p1/mailstore/InMemory.class	\
+	../../.out/mailservice/p1/mailstore/OnFile.class	\
+	./mailstore/MessageDecorator.java \
+	./mailstore/EncodeDecorator.java 
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8 	\
-	-d ../../.out/mailservice/ -sourcepath .././	src/mailstore/MessageDecorator.java	\
-	-d ../../.out/mailservice/ -sourcepath .././ src/mailstore/EncodeDecorator.java	\
+	-d ../../.out/mailservice/ 	./mailstore/MessageDecorator.java	\
+	-d ../../.out/mailservice/  ./mailstore/EncodeDecorator.java	\
 	-cp ../../.out/mailservice/
-mailbox	: ../../.out/mailservice/p1/src/mailbox/mailBox.class	\
-	./src/mailbox/AutomaticMailBox.java	\
-	./src/mailbox/SpamUserFilter.java	\
-	./src/mailbox/TooLongFilter.java	\
-	./src/mailbox/Observer.java	\
-	./src/mailbox/Subject.java
+mailbox	: ../../.out/mailservice/p1/mailbox/mailBox.class	\
+	./mailbox/AutomaticMailBox.java	\
+	./mailbox/SpamUserFilter.java	\
+	./mailbox/TooLongFilter.java	\
+	./mailbox/Observer.java	\
+	./mailbox/Subject.java
 
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
-	-d ../../.out/mailservice/ src/mailbox/Observer.java	\
-	-d ../../.out/mailservice/ src/mailbox/Subject.java	\
-	-d ../../.out/mailservice/ ./src/mailBox/AutomaticMailBox.java	\
-	-d ../../.out/mailservice/ ./src/mailBox/SpamUserFilter.java	\
-	-d ../../.out/mailservice/ ./src/mailBox/TooLongFilter.java	\
+	-d ../../.out/mailservice/ ./mailbox/Observer.java	\
+	-d ../../.out/mailservice/ ./mailbox/Subject.java	\
+	-d ../../.out/mailservice/ ./mailBox/AutomaticMailBox.java	\
+	-d ../../.out/mailservice/ ./mailBox/SpamUserFilter.java	\
+	-d ../../.out/mailservice/ ./mailBox/TooLongFilter.java	\
 	-cp ../../.out/mailservice/
 
 
-test		: ../../.out/mailservice/p2/src/tests/TestP2.class
-	java -cp ../../.out/mailservice/ p2.src.tests.TestP2
+test		: ../../.out/mailservice/p2/tests/TestP2.class
+	java -cp ../../.out/mailservice/ p2.tests.TestP2
 
-testObserver		: ../../.out/mailservice/p2/src/tests/TestObserver.class
-	java -cp ../../.out/mailservice/ p2.src.tests.TestObserver
+testObserver		: ../../.out/mailservice/p2/tests/TestObserver.class
+	java -cp ../../.out/mailservice/ p2.tests.TestObserver
 
-testDecorator		: ../../.out/mailservice/p2/src/tests/TestDecorator.class
-	java -cp ../../.out/mailservice/ p2.src.tests.TestDecorator
+testDecorator		: ../../.out/mailservice/p2/tests/TestDecorator.class
+	java -cp ../../.out/mailservice/ p2.tests.TestDecorator
