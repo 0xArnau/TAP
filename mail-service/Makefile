@@ -1,3 +1,4 @@
+all: lib p1 p2 p3
 
 lib: lib/junit-4.13.1.jar lib/hamcrest-core-1.3.jar lib/jedis-2.9.0.jar
 
