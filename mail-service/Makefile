@@ -14,12 +14,12 @@ lib: lib/junit-4.13.1.jar lib/hamcrest-core-1.3.jar lib/jedis-2.9.0.jar
 
 	cd .out/mailservice/	 && \
 	jar xf ../../lib/junit-4.13.1.jar \
-		org/ junit/ &&\
+		org/junit/ &&\
 	jar xf ../../lib/hamcrest-core-1.3.jar org/hamcrest/ &&\
 	jar xf ../../lib/jedis-2.9.0.jar redis/clients/ &&\
 	cd ../../
 
-p1: users messages mailstore mailbox system
+p1: users messages mailstore mailbox system cli testsp1 cjunitp1
 
 users: src/p1/users/User.java
 

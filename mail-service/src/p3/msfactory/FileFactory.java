@@ -9,7 +9,9 @@ public class FileFactory implements MailStoreFactory {
 
 	@Override
 	public MailStore createMailStore() {
-		return new EncodeDecorator(new OnFile());
+		EncodeDecorator deco = new EncodeDecorator(new OnFile());
+		deco.setCipher();
+		return deco;
 	}
 	
 }

@@ -34,10 +34,14 @@ public class MailBox implements Iterable<Message> {
 	 *                   inexistente.
 	 */
 	public Stream<Message> updateMail() throws Exception {
-		messages = store.getMail(user);
+		try {
+			messages = store.getMail(user);
 		if (messages == null)
 			return null;
 		return messages.stream();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	/**

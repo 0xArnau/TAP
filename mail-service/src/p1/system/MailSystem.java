@@ -77,7 +77,8 @@ public class MailSystem {
 	 */
 	public void updateMessages() throws Exception {
 		for (Entry<User, MailBox> m : administrative.entrySet()) {
-			m.getValue().updateMail();
+			if (m.getValue().updateMail() != null)
+				m.getValue().updateMail();
 		}
 	}
 
