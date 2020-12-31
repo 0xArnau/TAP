@@ -1,6 +1,7 @@
 package p4.tests;
 
 import p4.dynamic.DynamicProxy;
+import p4.dynamic.Log;
 import p4.system.MailSystem;
 
 import java.lang.annotation.Annotation;
@@ -45,6 +46,8 @@ public class TestP4 {
 		MailBox mb = ms.newUser(new User("star", "arnau", 2000));
 		mb.sendMail("star", new Message("star", "star", "subject", "body"));
 		mb.updateMail().forEach(System.out::println);
+
+		Log.getLogs().forEach(System.out::println);
 		
 	}
 }

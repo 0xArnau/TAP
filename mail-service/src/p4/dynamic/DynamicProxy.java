@@ -30,10 +30,14 @@ public class DynamicProxy implements InvocationHandler {
 		{	
 			if (log) {
 				System.out.println("Calling method: " + method.getName());
+				Log.add("Calling method: " + method.getName());
 				invocationResult = method.invoke(this.target, args);
 				System.out.println("Ended method: " + method.getName());
+				Log.add("Ended method: " + method.getName());
 			} else {
+				Log.add("Calling method: " + method.getName());
 				invocationResult = method.invoke(this.target, args);
+				Log.add("Ended method: " + method.getName());
 			}
 		}
 		catch(InvocationTargetException ite)
