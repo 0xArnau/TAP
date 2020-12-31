@@ -1,6 +1,6 @@
 package p4.tests;
 
-import p4.mailstore.MailStoreAnnotation;
+import p4.dynamic.DynamicProxy;
 import p4.system.MailSystem;
 
 import java.lang.annotation.Annotation;
@@ -8,10 +8,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import p1.mailbox.MailBox;
-import p1.mailstore.MailStore;
 import p1.messages.Message;
 import p1.users.User;
-import p3.msfactory.MailStoreFactory;
 
 public class TestP4 {
 	public static void main(String[] args) throws Exception {

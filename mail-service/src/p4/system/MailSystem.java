@@ -4,6 +4,7 @@ import p1.mailbox.*;
 import p1.mailstore.*;
 import p1.messages.*;
 import p1.users.*;
+import p4.dynamic.DynamicProxy;
 import p4.mailstore.MailStoreAnnotation;
 
 import java.util.Set;
@@ -52,7 +53,8 @@ public class MailSystem {
 		} else {
 			readAnnotation();
 			Class aClass = Class.forName(store);
-			MailBox box = new MailBox(u.getUserName(), (MailStore) aClass.newInstance());
+			MailStore ms = (MailStore) DynamicProxy.newInstance( (MailStore) aClass.newInstance());
+			MailBox box = new MailBox(u.getUserName(), ms);
 			administrative.put(u, box);
 			users.put(u.getUserName(), u);
 			// System.out.println("=> user: " + u.getUserName() + " created.");
