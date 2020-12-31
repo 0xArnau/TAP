@@ -7,27 +7,34 @@ import java.lang.reflect.Proxy;
 
 public class DynamicProxy implements InvocationHandler {
 	private Object target = null;
+	private boolean log = false;
 
-	private DynamicProxy(Object target) {
+	private DynamicProxy(Object target, boolean log) {
 		this.target = target;
+		this.log = log;
 	}
 
-	public static Object newInstance(Object target) {
+	public static Object newInstance(Object target, boolean log) {
 		Class targetClass = target.getClass();
 		Class [] interfaces = targetClass.getInterfaces();
+		
 		return Proxy.newProxyInstance(targetClass.getClassLoader()
 			, interfaces
-			, new DynamicProxy(target));
+			, new DynamicProxy(target, log));
 	}
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object invocationResult = null;
 		try
-		{
-			System.out.println("Calling method: " + method.getName());
-			invocationResult = method.invoke(this.target, args);
-			System.out.println("Ended method: " + method.getName());
+		{	
+			if (log) {
+				System.out.println("Calling method: " + method.getName());
+				invocationResult = method.invoke(this.target, args);
+				System.out.println("Ended method: " + method.getName());
+			} else {
+				invocationResult = method.invoke(this.target, args);
+			}
 		}
 		catch(InvocationTargetException ite)
 		{

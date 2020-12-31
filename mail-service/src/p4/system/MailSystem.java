@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 @MailStoreAnnotation (
 	store = "p1.mailstore.InMemory",
-	log = true
+	log = false
 )
 public class MailSystem {
 	private Map<User, MailBox> administrative = new HashMap<User, MailBox>();
@@ -53,7 +53,7 @@ public class MailSystem {
 		} else {
 			readAnnotation();
 			Class aClass = Class.forName(store);
-			MailStore ms = (MailStore) DynamicProxy.newInstance( (MailStore) aClass.newInstance());
+			MailStore ms = (MailStore) DynamicProxy.newInstance( (MailStore) aClass.newInstance(), log);
 			MailBox box = new MailBox(u.getUserName(), ms);
 			administrative.put(u, box);
 			users.put(u.getUserName(), u);
