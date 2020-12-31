@@ -2,7 +2,7 @@
 
 
 
-all: create lib p1 p2 p3
+all: create lib p1 p2 p3 p4
 
 clean: .out/
 	rm -r .out/mailservice/p1 && rm -r .out/mailservice/p2 && rm -r .out/mailservice/p3
@@ -185,3 +185,24 @@ testsp3: src/p3/tests/TestP3.java
 
 runtestp3		: .out/mailservice/p3/tests/TestP3.class
 	java -cp .out/mailservice/ p3.tests/TestP3
+
+
+p4: mailstorep4 systemp4 testsp4
+
+mailstorep4: ./src/p4/mailstore/MailStoreAnnotation.java
+	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
+	-d .out/mailservice/ src/p4/mailstore/MailStoreAnnotation.java	\
+	-cp .out/mailservice/
+
+systemp4: ./src/p4/system/MailSystem.java
+	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
+	-d .out/mailservice/ src/p4/system/MailSystem.java	\
+	-cp .out/mailservice/
+
+testsp4: ./src/p4/tests/TestP4.java
+	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
+	-d .out/mailservice/ src/p4/tests/Testp4.java	\
+	-cp .out/mailservice/
+
+runtestp4: .out/mailservice/p4/tests/TestP4.class
+	java -cp .out/mailservice/ p4.tests/TestP4
