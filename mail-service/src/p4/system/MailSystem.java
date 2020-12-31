@@ -12,30 +12,47 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
 import java.util.Map;
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 
 @MailStoreAnnotation (
-	store = "p1.mailstore.OnFile",
+	store = "p1.mailstore.InMemory",
 	log = true
 )
 public class MailSystem {
 	private Map<User, MailBox> administrative = new HashMap<User, MailBox>();
 	private Map<String, User> users = new HashMap<String, User>();
+	private String store = null;
+	private boolean log = false;
 
+	private void readAnnotation() {
+		Class<MailSystem> obj = MailSystem.class;
+		if (obj.isAnnotationPresent(MailStoreAnnotation.class)) {
+			Annotation annotation = obj.getAnnotation(MailStoreAnnotation.class);
+			MailStoreAnnotation msa = (MailStoreAnnotation) annotation;
+			store = msa.store();
+			log = msa.log();
+		}
+	}
+	
 	/**
 	 * Función encargada de añadir un usuario a la Mailbox.
 	 * 
 	 * @param u     Usuario a añadir.
 	 * @param store MailStore del usuario.
 	 * @return Devuelve la MailBox recién creade del usuario u.
+	 * @throws ClassNotFoundException
+	 * @throws IllegalAccessException
+	 * @throws InstantiationException
 	 */
-	public MailBox newUser(User u, MailStore store) {
+	public MailBox newUser(User u) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		if (getExist(u.getUserName())) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			return null;
 		} else {
-
-			MailBox box = new MailBox(u.getUserName(), store);
+			readAnnotation();
+			Class aClass = Class.forName(store);
+			MailBox box = new MailBox(u.getUserName(), (MailStore) aClass.newInstance());
 			administrative.put(u, box);
 			users.put(u.getUserName(), u);
 			// System.out.println("=> user: " + u.getUserName() + " created.");
