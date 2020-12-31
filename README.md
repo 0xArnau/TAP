@@ -2,11 +2,98 @@
 
 ## Mail Service
 
-- [Part 1](https://github.com/watswormx/TAP/tree/master/mail-service/p1)
-- [Part 2](https://github.com/watswormx/TAP/tree/master/mail-service/p2)
-- [Part 3](https://github.com/watswormx/TAP/tree/master/mail-service/p3)
-- [Part 4](https://github.com/watswormx/TAP/tree/master/mail-service/p4)
+Los ficheros Test/P2/P3/P4.java han sido usados para hacer algunas comprobaciones en concreto.
 
-### Lib
+No han sido usados para testear el correcto funcionamiento de todas las clases, para eso se han creado los ficheros:
 
-- jedis2.9.0.jar
+TestMailSystem/TestRunner/TestSystem/TestDecorator...
+
+
+
+
+
+#### COMPILE
+
+- make/make all
+
+- make p1
+	-	users
+		- User.java
+	- messages
+		- Message.java
+	- mailstore
+		- MailStore.java
+		- InMemory.java
+		- OnFile.java
+	- mailbox
+		- MailBox.java
+	- system
+		- MailSystem.java
+	- cli
+		- Cli.java
+	- tests
+		- TestMailSystem.java
+		- TestRunner.java
+		- Test.java
+		- TestSystem.java
+
+- make p2
+	- mailstore
+		- MessageDecorator.java
+		- EncodeDecorator.java
+	- mailbox
+		- AutomaticMailBox.java
+		- Observer.java
+		- SpamUserFilter.java
+		- Subject.java
+		- TooLongFilter.java
+	- tests
+		- TestDecorator.java
+		- TestObserver.java
+		- TestP2.java
+
+- make p3
+	- mailstore
+		- RedisClient.java
+		- RedisMailStore.java
+		StoreAdapter.java
+	- msfactory
+		- FileFactory.java
+		- MailStoreFactory.java
+		- Memoryfactory.java
+		- RedisFactory.java
+	- system
+		- MailSystemFactory.java
+	- tests
+		- TestP3.java
+
+- make p4
+	- dynamic
+		- DynamicProxy.java
+		- Log.java
+	- mailstore
+		- MailStoreAnnotation.java
+	- system
+		- MailSystem.java
+	- test
+		- testP4.java
+
+
+#### RUN
+
+- P1
+	- make runtestp1
+	- make runjunitp1
+	- make runclip1	
+	- make runtestsystemp1
+
+- P2
+	- make runtestp2
+	- make runtestObserverp2
+	- make runtestDecoratorp2
+
+- P3
+	- make runtestp3
+
+- P4
+	- make runtestp4
