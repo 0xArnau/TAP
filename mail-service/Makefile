@@ -187,7 +187,7 @@ runtestp3		: .out/mailservice/p3/tests/TestP3.class
 	java -cp .out/mailservice/ p3.tests/TestP3
 
 
-p4: mailstorep4 systemp4 testsp4
+p4: dynamic mailstorep4 systemp4 testsp4
 
 mailstorep4: ./src/p4/mailstore/MailStoreAnnotation.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
@@ -197,6 +197,12 @@ mailstorep4: ./src/p4/mailstore/MailStoreAnnotation.java
 systemp4: ./src/p4/system/MailSystem.java
 	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
 	-d .out/mailservice/ src/p4/system/MailSystem.java	\
+	-cp .out/mailservice/
+
+dynamic: ./src/p4/dynamic/DynamicProxy.java ./src/p4/dynamic/Log.java
+	javac -Xdiags:verbose -Xlint:unchecked -encoding UTF-8	\
+	-d .out/mailservice/ src/p4/dynamic/Log.java	\
+	-d .out/mailservice/ src/p4/dynamic/DynamicProxy.java	\
 	-cp .out/mailservice/
 
 testsp4: ./src/p4/tests/TestP4.java
