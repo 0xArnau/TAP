@@ -1,12 +1,7 @@
 package p4.tests;
 
-import p4.dynamic.DynamicProxy;
 import p4.dynamic.Log;
 import p4.system.MailSystem;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import p1.mailbox.MailBox;
 import p1.messages.Message;

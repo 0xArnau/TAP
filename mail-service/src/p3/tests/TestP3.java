@@ -17,28 +17,29 @@ import p1.users.User;
 public class TestP3 {
 	public static void main(String[] args) throws Exception {
 		
-		RedisMailStore rsm = RedisClient.getInstance();
-		RedisMailStore rsm1 = RedisClient.getInstance();
-		MailStore sa = new StoreAdapter(rsm);
-		MailStore sa1 = new StoreAdapter(rsm1);
+		RedisMailStore redisMailStore0 = RedisClient.getInstance();
+		RedisMailStore redisMailStore1 = RedisClient.getInstance();
+		MailStore storeAdapter = new StoreAdapter(redisMailStore0);
+		MailStore storeAdapter1 = new StoreAdapter(redisMailStore1);
 
-		sa.sendMail("sa", new Message("from", "to", " subject", " body"));
+		System.out.println("Enviando mensaje storeAdapter...");
+		storeAdapter.sendMail("Mr.User", new Message("from", "to", " subject", " body"));
+		System.out.println("Correos de Mr.User: ");
 		try {
-			sa.getMail("sa").forEach(System.out::println);
+			storeAdapter.getMail("Mr.User").forEach(System.out::println);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("'");
-		sa1.sendMail("sa", new Message("from", "to", " subject", " body"));
+		System.out.println("Enviando mensaje storeAdapter1...");
+		storeAdapter1.sendMail("Mr.User", new Message("from", "to", " subject", " body"));
+		System.out.println("Correos de Mr.User: ");
 		try {
-			sa1.getMail("sa").forEach(System.out::println);
+			storeAdapter1.getMail("Mr.User").forEach(System.out::println);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		rsm.flushAll();
-		rsm1.flushAll();
+		redisMailStore0.flushAll();
+		redisMailStore1.flushAll();
 		
 		MailStoreFactory msf = new FileFactory();
 		MailStore file = msf.createMailStore();
