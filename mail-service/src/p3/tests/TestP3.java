@@ -23,7 +23,7 @@ public class TestP3 {
 		MailStore storeAdapter1 = new StoreAdapter(redisMailStore1);
 
 		System.out.println("Enviando mensaje storeAdapter...");
-		storeAdapter.sendMail("Mr.User", new Message("from", "to", " subject", " body"));
+		storeAdapter.sendMail("Mr.User", new Message("Mr.Sender", "Mr.User", " Feliz año nuevo", "Buenas!!Espero que todo te vaya bien, te envio este correo para desearte lo mejor en este 2021."));
 		System.out.println("Correos de Mr.User: ");
 		try {
 			storeAdapter.getMail("Mr.User").forEach(System.out::println);
@@ -31,7 +31,7 @@ public class TestP3 {
 			e.printStackTrace();
 		}
 		System.out.println("Enviando mensaje storeAdapter1...");
-		storeAdapter1.sendMail("Mr.User", new Message("from", "to", " subject", " body"));
+		storeAdapter1.sendMail("Mr.User", new Message("Mr.Sender", "Mr.User", "Feliz año nuevo", "Buenas!!Espero que todo te vaya bien, te envio este correo para desearte lo mejor en este 2021."));
 		System.out.println("Correos de Mr.User: ");
 		try {
 			storeAdapter1.getMail("Mr.User").forEach(System.out::println);
@@ -41,27 +41,27 @@ public class TestP3 {
 		redisMailStore0.flushAll();
 		redisMailStore1.flushAll();
 		
-		MailStoreFactory msf = new FileFactory();
-		MailStore file = msf.createMailStore();
+		MailStoreFactory mailStoreFactoryTest = new FileFactory();
+		MailStore file = mailStoreFactoryTest.createMailStore();
 		((EncodeDecorator) file).setCipher();
-		System.out.println("File");
-		file.sendMail("star",new Message("star","star","klk","1234567878990"));
+		System.out.println("Archivo");
+		file.sendMail("star",new Message("star","star","Prueba n.1","Feliz"));
 		file.getMail("star").forEach(System.out::println);
-		msf = new RedisFactory();
-		MailStore redis = msf.createMailStore();
+		mailStoreFactoryTest = new RedisFactory();
+		MailStore redis = mailStoreFactoryTest.createMailStore();
 		System.out.println("Redis");
-		redis.sendMail("star",new Message("star","star","qwe","123213213"));
+		redis.sendMail("star",new Message("star","star","Prueba n.2","año"));
 		redis.getMail("star").forEach(System.out::println);
-		msf = new MemoryFactory();
-		MailStore memo = msf.createMailStore();
-		System.out.println("Mem");
-		memo.sendMail("star",new Message("star","star", "subject"," body"));
+		mailStoreFactoryTest = new MemoryFactory();
+		MailStore memo = mailStoreFactoryTest.createMailStore();
+		System.out.println("Memoria");
+		memo.sendMail("star",new Message("star","star", "Prueba n.3","nuevo"));
 		memo.getMail("star").forEach(System.out::println);
 		
-		MailSystemFactory misf = new MailSystemFactory(new FileFactory());
-		misf.newUser(new User("star","arnau",2000));
-		misf.getAllUsers().forEach(System.out::println);
-		misf.updateMessages();
-		misf.getAllMessages().forEach(System.out::println);
+		MailSystemFactory mailSystemFactoryTest = new MailSystemFactory(new FileFactory());
+		mailSystemFactoryTest.newUser(new User("star","arnau",2000));
+		mailSystemFactoryTest.getAllUsers().forEach(System.out::println);
+		mailSystemFactoryTest.updateMessages();
+		mailSystemFactoryTest.getAllMessages().forEach(System.out::println);
 	}
 }
