@@ -13,6 +13,12 @@ public class MailSystemFactory extends MailSystem {
 		this.msf = msf;
 	}
 
+	/**
+	 * Función encargada de añadir un usuario a la Mailbox.
+	 * 
+	 * @param u Usuario a añadir.
+	 * @return Devuelve la MailBox recién creade del usuario u.
+	 */
 	public MailBox newUser(User u) {
 		return super.newUser(u, msf.createMailStore());
 	}
