@@ -2,15 +2,6 @@
 
 ## Mail Service
 
-Los ficheros Test/P2/P3/P4.java han sido usados para hacer algunas comprobaciones en concreto.
-
-No han sido usados para testear el correcto funcionamiento de todas las clases, para eso se han creado los ficheros:
-
-TestMailSystem/TestRunner/TestSystem/TestDecorator...
-
-
-
-
 
 #### COMPILE
 
