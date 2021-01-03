@@ -15,19 +15,16 @@ public class DynamicProxy implements InvocationHandler {
 	}
 
 	public static Object newInstance(Object target, boolean log) {
-		Class targetClass = target.getClass();
-		Class [] interfaces = targetClass.getInterfaces();
-		
-		return Proxy.newProxyInstance(targetClass.getClassLoader()
-			, interfaces
-			, new DynamicProxy(target, log));
+		Class<?> targetClass = target.getClass();
+		Class<?>[] interfaces = targetClass.getInterfaces();
+
+		return Proxy.newProxyInstance(targetClass.getClassLoader(), interfaces, new DynamicProxy(target, log));
 	}
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object invocationResult = null;
-		try
-		{	
+		try {
 			if (log) {
 				System.out.println("Calling method: " + method.getName());
 				Log.add("Calling method: " + method.getName());
@@ -39,18 +36,13 @@ public class DynamicProxy implements InvocationHandler {
 				invocationResult = method.invoke(this.target, args);
 				Log.add("Ended method: " + method.getName());
 			}
-		}
-		catch(InvocationTargetException ite)
-		{
-				 throw ite.getTargetException();
-		}
-		catch(Exception e)
-		{
-				System.err.println("Invocation of " + method.getName() + " failed");
-		}
-		finally{
-				return invocationResult;
+		} catch (InvocationTargetException ite) {
+			throw ite.getTargetException();
+		} catch (Exception e) {
+			System.err.println("Invocation of " + method.getName() + " failed");
+		} finally {
+			return invocationResult;
 		}
 	}
-	
+
 }

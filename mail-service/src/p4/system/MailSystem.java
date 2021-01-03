@@ -14,12 +14,10 @@ import java.util.stream.Stream;
 import java.util.List;
 import java.util.Map;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
-@MailStoreAnnotation (
-	store = "p1.mailstore.InMemory",
-	log = false
-)
+@MailStoreAnnotation(store = "p1.mailstore.InMemory", log = false)
 public class MailSystem {
 	private Map<User, MailBox> administrative = new HashMap<User, MailBox>();
 	private Map<String, User> users = new HashMap<String, User>();
@@ -35,7 +33,7 @@ public class MailSystem {
 			log = msa.log();
 		}
 	}
-	
+
 	/**
 	 * Función encargada de añadir un usuario a la Mailbox.
 	 * 
@@ -45,15 +43,21 @@ public class MailSystem {
 	 * @throws ClassNotFoundException
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
 	 */
-	public MailBox newUser(User u) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public MailBox newUser(User u) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		if (getExist(u.getUserName())) {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			return null;
 		} else {
 			readAnnotation();
-			Class aClass = Class.forName(store);
-			MailStore ms = (MailStore) DynamicProxy.newInstance( (MailStore) aClass.newInstance(), log);
+			Class<?> aClass = Class.forName(store);
+			MailStore ms = (MailStore) DynamicProxy
+					.newInstance((MailStore) aClass.getDeclaredConstructor().newInstance(), log);
 			MailBox box = new MailBox(u.getUserName(), ms);
 			administrative.put(u, box);
 			users.put(u.getUserName(), u);
