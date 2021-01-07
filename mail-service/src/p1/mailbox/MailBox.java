@@ -45,7 +45,7 @@ public class MailBox implements Iterable<Message> {
 	}
 
 	/**
-	 * Función que devuelve una lista con todos los correos ya sean globales o de un
+	 * Función que devuelve una lista con todos los correos de un
 	 * usuario en concreto.
 	 * 
 	 * @return Devuelve los mensajes en forma de lista.
@@ -87,7 +87,19 @@ public class MailBox implements Iterable<Message> {
 	}
 
 	/**
-	 * Función encargada de ordenar el correo recibido.
+	 * Función que permite buscar correos que contengan un sujeto en específico.
+	 * 
+	 * @param word Sujeto por el que buscar en los correos.
+	 * @return Devuelve un stream de los correos que cumplen la condición.
+	 * @throws Exception Excepción por si se pide buscar de un usuario inexistente
+	 *                   entre otros.
+	 */
+	public Stream<Message> filterSubject(String word) throws Exception {
+		return messages.stream().filter(str -> str.getSubject().contains(word));
+	}
+
+	/**
+	 * Función encargada de ordenar el correo recibido por tiempo.
 	 * 
 	 * @return Devuelve un stream de los mensajes ordenados.
 	 */
@@ -114,18 +126,6 @@ public class MailBox implements Iterable<Message> {
 		if (messages == null)
 			return null;
 		return messages.iterator();
-	}
-
-	/**
-	 * Función que permite buscar correos que contengan un sujeto en específico.
-	 * 
-	 * @param word Sujeto por el que buscar en los correos.
-	 * @return Devuelve un stream de los correos que cumplen la condición.
-	 * @throws Exception Excepción por si se pide buscar de un usuario inexistente
-	 *                   entre otros.
-	 */
-	public Stream<Message> filterSubject(String word) throws Exception {
-		return messages.stream().filter(str -> str.getSubject().contains(word));
 	}
 
 }
