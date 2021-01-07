@@ -23,6 +23,7 @@ public class EncodeDecorator extends MessageDecorator {
 	 */
 	public EncodeDecorator(MailStore store) {
 		super(store);
+		setCipher();
 	}
 
 	/**
