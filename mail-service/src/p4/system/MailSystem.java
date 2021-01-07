@@ -17,7 +17,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
-@MailStoreAnnotation(store = "p1.mailstore.InMemory", log = false)
+@MailStoreAnnotation(store = "p1.mailstore.OnFile", log = true)
 public class MailSystem {
 	private Map<User, MailBox> administrative = new HashMap<User, MailBox>();
 	private Map<String, User> users = new HashMap<String, User>();

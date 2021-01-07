@@ -9,6 +9,5 @@ import java.lang.annotation.RetentionPolicy;
 @Target(ElementType.TYPE)
 public @interface MailStoreAnnotation {
 	String store() default "p1.mailstore.InMemory";
-
 	boolean log() default false;
 }

@@ -17,6 +17,6 @@ public class TestP4 {
 		System.out.println("Actualizando correos...");
 		mailBoxTest.updateMail().forEach(System.out::println);
 		System.out.println("Printando log: ");
-		Log.getLogs().forEach(System.out::println);
+		//Log.getLogs().forEach(System.out::println);
 	}
 }
