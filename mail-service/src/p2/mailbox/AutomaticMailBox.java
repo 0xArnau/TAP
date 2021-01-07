@@ -79,7 +79,7 @@ public class AutomaticMailBox extends MailBox implements Subject {
 	 *         spammers.
 	 */
 	public Set<String> getSpammers() {
-		Set<String> spammers = new HashSet<String>();
+		Set<String> spammers = new HashSet<String>(); 
 		for (Observer o : list) {
 			try {
 				SpamUserFilter suf = ((SpamUserFilter) o);

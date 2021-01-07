@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import p1.mailbox.MailBox;
 import p1.mailstore.InMemory;
 import p1.mailstore.MailStore;
+import p1.mailstore.OnFile;
 import p1.messages.Message;
 import p1.system.MailSystem;
 import p1.users.User;
@@ -100,5 +101,13 @@ public class Test {
 		system.usersBornAfterXYear(2000).forEach(System.out::println);
 		System.out.println("average");
 		system.averageMessagesPerUser();
+
+
+		System.out.println("File");
+		MailStore file = new OnFile();
+		file.sendMail("star",new Message("star", "to"," subject"," body"));
+		file.sendMail("star",new Message("from", "star"," subject"," body"));
+		file.sendMail("star",new Message("star", "star"," subject"," body"));
+		file.sendMail("star",new Message("from", "to"," star"," body"));
 	}
 }
