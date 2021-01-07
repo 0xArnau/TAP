@@ -30,11 +30,9 @@ public class MailSystem {
 			System.out.println("=> username: " + u.getUserName() + " already exists.");
 			return null;
 		} else {
-
 			MailBox box = new MailBox(u.getUserName(), store);
 			administrative.put(u, box);
 			users.put(u.getUserName(), u);
-			// System.out.println("=> user: " + u.getUserName() + " created.");
 			return box;
 		}
 	}
@@ -77,8 +75,7 @@ public class MailSystem {
 	 */
 	public void updateMessages() throws Exception {
 		for (Entry<User, MailBox> m : administrative.entrySet()) {
-			if (m.getValue().updateMail() != null)
-				m.getValue().updateMail();
+			m.getValue().updateMail();
 		}
 	}
 
@@ -116,18 +113,16 @@ public class MailSystem {
 	 * Función que agrupa los correos del sistema por el sujeto del mismo.
 	 * 
 	 * @return Devuelve un Map con todos los correos que han cumplido la condición.
-	 * @throws Exception Control de excpeciónes.
+	 * @throws Exception Control de excpeciones.
 	 */
 	public Map<String, List<Message>> groupBySubject() throws Exception {
-		Map<String, List<Message>> all = getAllMessages().stream().collect(Collectors.groupingBy(Message::getSubject));
-		return all;
+		return getAllMessages().stream().collect(Collectors.groupingBy(Message::getSubject));
 	}
 
 	/**
 	 * Acción que permite saber la media de mensajes de los usuarios.
 	 * 
-	 * @throws Exception Excepción por si se pide la media de un usuario
-	 *                   inexistente.
+	 * @throws Exception Excepción de getAllMessages.
 	 */
 	public void averageMessagesPerUser() throws Exception {
 		float size = getAllMessages().size();
@@ -167,7 +162,7 @@ public class MailSystem {
 	 * 
 	 * @param sender Persona de la que se quieren filtrar los correos.
 	 * @return Devuelve un stream de los crreos que han cumplido la condición.
-	 * @throws Exception Excepción por si el usuario no existe.
+	 * @throws Exception Excepción de getAllMessages.
 	 */
 	public Stream<Message> filterBySender(String sender) throws Exception {
 		return getAllMessages().stream().filter(p -> p.getFrom().equals(sender));
@@ -178,7 +173,7 @@ public class MailSystem {
 	 * 
 	 * @param name Número del usuario a contar.
 	 * @return Devuelve un int con el número total de palabras.
-	 * @throws Exception Excepción por si el usuario no existe.
+	 * @throws Exception Excepción de getAllMessages.
 	 */
 	public int countWordsOfMessagesFromUser(String name) throws Exception {
 		return getAllMessages().stream().filter(p -> getUser(p.getFrom()).getName().equals(name))
@@ -191,10 +186,11 @@ public class MailSystem {
 	 * 
 	 * @param year Año con el que se va a comparar y obtener de años más antiguos.
 	 * @return Devuelve una lista con los correos que han cumplido la condición.
-	 * @throws Exception Control de excepción.
+	 * @throws Exception Excepción de getAllMessages.
 	 */
 	public List<Message> usersBornBeforeXYear(int year) throws Exception {
-		return getAllMessages().stream().filter(p -> getUser(p.getTo()).getYear() < year).collect(Collectors.toList());
+		return getAllMessages().stream().filter(p -> getUser(p.getTo()).getYear() < year)
+			.collect(Collectors.toList());
 	}
 
 	/**

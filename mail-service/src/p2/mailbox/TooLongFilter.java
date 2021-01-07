@@ -8,11 +8,8 @@ import java.util.List;
 import p1.messages.Message;
 
 public class TooLongFilter implements Observer {
-	// Subject s = null;
 	List<Message> list = new ArrayList<Message>();
-	/*
-	 * public TooLongFilter(Subject s) { this.s = s; }
-	 */
+
 
 	/**
 	 * Acción a la cual se le pasa una lista con los Messages, este detecta cuáles

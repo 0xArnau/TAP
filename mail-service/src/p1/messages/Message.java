@@ -52,16 +52,16 @@ public class Message implements Comparable<Message> {
 	public Message(String m) {
 		String[] parts = m.split(";");
 		if (parts.length == 4) {
-			this.from = parts[0];
-			this.to = parts[1];
-			this.subject = parts[2];
-			this.body = parts[3];
+			this.from = parts[0]; 	// from
+			this.to = parts[1]; 		// to
+			this.subject = parts[2]; // subject
+			this.body = parts[3]; // body
 		} else if (parts.length == 5) {
-			this.from = parts[0];
-			this.to = parts[1];
-			this.subject = parts[2];
-			this.body = parts[3];
-			this.time = Timestamp.valueOf(parts[4]);
+			this.from = parts[0]; // from
+			this.to = parts[1]; // to
+			this.subject = parts[2]; // subject
+			this.body = parts[3]; // body
+			this.time = Timestamp.valueOf(parts[4]); // time
 		}
 	}
 

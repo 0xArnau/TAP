@@ -18,7 +18,7 @@ public class TestDecorator {
 		System.out.println("Decorator");
 		MailStore none = new OnFile();
 		EncodeDecorator deco = new EncodeDecorator(none);
-		deco.setCipher();
+		//deco.setCipher();
 		deco.sendMail("star", new Message("star", "star", "subject", "body"));
 		System.out.println("Mail decrypted: ");
 		try {

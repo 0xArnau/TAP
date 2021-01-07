@@ -59,7 +59,7 @@ public class AutomaticMailBox extends MailBox implements Subject {
 
 	// </Observer>
 	/**
-	 * Función encargada de actualizar el correo recibido.
+	 * Función encargada de actualizar el correo recibido y filtrarlo por los filtros que estan siendo observados.
 	 * 
 	 * @return Devuelve on stream de todos los correos recibidos.
 	 * @throws Exception Caso edge donde se pida actualizar el correo de alguien
@@ -79,7 +79,7 @@ public class AutomaticMailBox extends MailBox implements Subject {
 	 *         spammers.
 	 */
 	public Set<String> getSpammers() {
-		Set<String> spammers = new HashSet<String>();
+		Set<String> spammers = new HashSet<String>(); 
 		for (Observer o : list) {
 			try {
 				SpamUserFilter suf = ((SpamUserFilter) o);

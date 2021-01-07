@@ -41,4 +41,13 @@ public class StoreAdapter implements MailStore {
 	public List<Message> getMail(String u) throws Exception {
 		return redis.lrange(u);
 	}
+
+
+	/**
+	 * Borra todas las keys de todos las bases de datos. O(N) N = Nombre total de
+	 * llaves
+	 */
+	public void clear() {
+		redis.flushAll();
+	}
 }

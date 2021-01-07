@@ -53,8 +53,8 @@ public class OnFile implements MailStore {
 	 */
 	public void sendMail(String u, Message m) {
 		try {
-			if (m.toString().matches(".+;" + u + ";.+"))
-				writeFile(/* u.getUserName() + ";" + */ m.toString() + "\n");
+			if (u.equals(m.toString().split(regex)[1]))
+				writeFile(m.toString() + "\n");
 			else
 				System.out.println("ERROR ==> Message(to) != User");
 		} catch (Exception e) {

@@ -9,7 +9,7 @@ public class MemoryFactory implements MailStoreFactory {
 	/**
 	 * Función alternativa encargada de devolver una Mailstore a partir de InMemory.
 	 * 
-	 * @return MailStore
+	 * @return MailStore en memória
 	 */
 	@Override
 	public MailStore createMailStore() {

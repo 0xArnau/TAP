@@ -9,13 +9,11 @@ public class FileFactory implements MailStoreFactory {
 	/**
 	 * Función encargada de devolver una Mailstore a partir de EncodeDecorator.
 	 * 
-	 * @return MailStore
+	 * @return MailStore en fichero con el cuerpo encriptado
 	 */
 	@Override
 	public MailStore createMailStore() {
-		EncodeDecorator deco = new EncodeDecorator(new OnFile());
-		deco.setCipher();
-		return deco;
+		return  new EncodeDecorator(new OnFile());
 	}
 
 }

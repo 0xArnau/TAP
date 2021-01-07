@@ -9,8 +9,7 @@ public class RedisClient implements RedisMailStore {
 
 	private static RedisClient instance = null;
 
-	public RedisClient() {
-	}
+	private RedisClient() {}
 
 	/**
 	 * Función que devuelve la instancia de un RedisClient.
