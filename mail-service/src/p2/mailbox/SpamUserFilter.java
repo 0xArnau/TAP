@@ -8,11 +8,7 @@ import p1.messages.Message;
 
 
 public class SpamUserFilter implements Observer {
-	// Subject s = null;
 	List<Message> list = new ArrayList<Message>();
-	/*
-	 * public SpamUserFilter(Subject s) { this.s = s; }
-	 */
 
 	/**
 	 * Acción a la cual se le pasa una lista con los Messages, este detecta cuáles
