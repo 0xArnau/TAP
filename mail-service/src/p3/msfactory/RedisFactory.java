@@ -10,7 +10,7 @@ public class RedisFactory implements MailStoreFactory{
 	/**
 	 * Función alternativa encargada de devolver una Mailstore a partir de StoreAdapter.
 	 * 
-	 * @return MailStore
+	 * @return MailStore en redis
 	 */
 	@Override
 	public MailStore createMailStore() {
